@@ -10,6 +10,7 @@ import { InstructorDetailComponent } from './components/instructor-detail/instru
 import { InstructorListComponent } from './components/instructor-list/instructor-list.component';
 
 import { HttpClientModule } from '@angular/common/http';
+import { NavigationComponent } from './components/navigation/navigation.component';
 
 
 @NgModule({
@@ -19,6 +20,7 @@ import { HttpClientModule } from '@angular/common/http';
     DashboardComponent,
     InstructorListComponent,
     InstructorDetailComponent,
+    NavigationComponent,
   ],
   imports: [
     BrowserModule,

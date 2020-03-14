@@ -7,34 +7,11 @@
     
 }
 
-
-.back-button {
-    grid-column: 1;
-    grid-row: 1;
-
-    width: 80px;
-    height: 40px;
-    background-color: orange;
-
-    color: black;
-    border-radius: 7px;
-    border-style: solid;
-    border-color: #2c8191;
-}
-
-.nav-bar {
-    display: grid;
+app-navigation {
     grid-column: 2 / -2;
     grid-row: 1;
-
-    align-content: center;
-    justify-content: center;
-    letter-spacing: 20px;
-
-    background-color: rgb(197, 196, 196);
-
-    border: solid 2px #2c8191;
 }
+
 
 /* 
     ----- DASHBOARD -----
