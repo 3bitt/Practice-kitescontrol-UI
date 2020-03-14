@@ -19,7 +19,7 @@ app-navigation {
 .dashboard-content {
     display: grid;
     grid-column: 2 / -2;
-    grid-row: 2;
+    grid-row: 2 / 4;
 
     /* grid-template-columns: repeat(6, 0.3fr); */
     grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
@@ -29,6 +29,16 @@ app-navigation {
     justify-content: space-evenly;
     
 }
+
+
+
+
+
+
+
+
+
+/* DEPRECATED CODE - can be deleted */
 .icon {
     display: grid;
     justify-content: center;

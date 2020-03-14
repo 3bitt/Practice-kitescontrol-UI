@@ -1,0 +1,15 @@
+
+<h2>Students list</h2>
+
+<a routerLink="/dashboard">Back</a>
+<!-- <button class="back-button" routerLink='/dashboard'>Back</button> -->
+
+<ul *ngFor="let student of students.results">
+    <li>{{student.id}}</li>
+    <li>{{student.name}}</li>
+    <li>{{student.surname}}</li>
+    <li>{{student.birth_date}}</li>
+    <li>{{student.weight}}</li>
+    <li>{{student.register_date}}</li>
+    <a [routerLink]="['/students', student.id]">Szczegóły</a>
+</ul>

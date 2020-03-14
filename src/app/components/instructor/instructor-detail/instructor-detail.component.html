@@ -1,6 +1,9 @@
-<h2>Instructors list</h2>
+<!-- <router-outlet></router-outlet> -->
 
-<ul *ngFor="let instructor of instructors">
+<h2>Instructors detail </h2>
+
+<a routerLink="/instructors">Back</a>
+<ul>
     <li>{{instructor.name}}</li>
     <li>{{instructor.surname}}</li>
     <li>{{instructor.birth_date}}</li>

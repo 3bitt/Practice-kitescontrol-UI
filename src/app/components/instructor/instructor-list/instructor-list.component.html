@@ -1,0 +1,17 @@
+<!-- <router-outlet></router-outlet> -->
+<h2>Instructors list</h2>
+
+<a routerLink="/dashboard">Back</a>
+<!-- <button class="back-button" routerLink='/dashboard'>Back</button> -->
+
+<ul *ngFor="let instructor of instructors.results">
+    <li>{{instructor.id}}</li>
+    <li>{{instructor.name}}</li>
+    <li>{{instructor.surname}}</li>
+    <li>{{instructor.birth_date}}</li>
+    <li>{{instructor.weight}}</li>
+    <a [routerLink]="['/instructors', instructor.id]">Szczegóły</a>
+</ul>
+
+
+

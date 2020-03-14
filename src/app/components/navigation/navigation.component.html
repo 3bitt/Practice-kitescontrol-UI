@@ -1,7 +1,7 @@
 
 
 <nav class="navbar navbar-dark bg-dark">
-    <a href="/dashboard" class="navbar-dashboard-btn btn btn-outline-info" type="button">Strona główna</a>
+    <a routerLink='/dashboard' class="navbar-dashboard-btn btn btn-outline-info" type="button">Strona główna</a>
     <div class="dropdown navbar-student-dropdown">
         <a class="btn btn-outline-success dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Kursant
@@ -9,7 +9,7 @@
         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
           <a class="dropdown-item" href="#">Dodaj [+]</a>
           <a class="dropdown-item" href="#">Znajdź [O]</a>
-          <a class="dropdown-item" href="#">Baza [=]</a>
+          <a class="dropdown-item" [routerLink]="['/students']" routerLinkActive="router-link-active" >Baza [=]</a>
         </div>
       </div>
 
@@ -20,7 +20,7 @@
         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
           <a class="dropdown-item" href="#">Dodaj [+]</a>
           <a class="dropdown-item" href="#">Znajdź [O]</a>
-          <a class="dropdown-item" href="/instructors">Baza [=]</a>
+          <a class="dropdown-item" [routerLink]="['/instructors']" routerLinkActive="router-link-active">Baza [=]</a>
         </div>
       </div>
 
@@ -31,7 +31,7 @@
         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
           <a class="dropdown-item" href="#">Dodaj [+]</a>
           <a class="dropdown-item" href="#">Znajdź [O]</a>
-          <a class="dropdown-item" href="#">Baza [=]</a>
+          <a class="dropdown-item" [routerLink]="['/lessons']" routerLinkActive="router-link-active" >Baza [=]</a>
         </div>
       </div>
   </nav>
