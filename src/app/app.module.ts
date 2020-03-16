@@ -3,6 +3,7 @@ import { StudentService } from './service/student/student.service';
 import { InstructorService } from './service/instructor/instructor.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule} from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -36,6 +37,7 @@ import { LessonDetailComponent } from './components/lesson/lesson-detail/lesson-
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    FormsModule,
   ],
   providers: [InstructorService, StudentService, LessonService],
   bootstrap: [AppComponent]

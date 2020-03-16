@@ -35,7 +35,7 @@ export class InstructorListComponent implements OnInit {
   };
 
   // Function used in template - place instructor.id in relative path /instructors/{id}
-  getInstructorDetails(instructor){
-    this.router.navigate([instructor.id], {relativeTo: this.route})
-  }
+  // getInstructorDetails(instructor){
+  //   this.router.navigate([instructor.id], {relativeTo: this.route})
+  // }
 }

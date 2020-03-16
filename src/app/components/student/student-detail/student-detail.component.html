@@ -1,5 +1,6 @@
 <!-- <router-outlet></router-outlet> -->
 
+<div *ngIf="student">
 <h2>Student detail </h2>
 
 <a routerLink="/students">Back</a>
@@ -10,3 +11,4 @@
     <li>{{student.weight}}</li>
     <li>{{student.register_date}}</li>
 </ul>
+</div>
