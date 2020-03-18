@@ -1,0 +1,60 @@
+:host { 
+    display: grid;
+    grid-template-columns: 50px 400px auto;
+
+}
+
+.form-container{
+    grid-column: 2;
+    width: 300px;
+}
+
+
+
+.form-group #birthDate{
+    width: 150px;
+}
+
+.form-group #weight {
+    width: 110px;
+}
+
+::placeholder{
+    font-size: 90%;
+}
+
+button{
+    margin-top: 30px;
+}
+
+.confirmed-form{
+    margin-top: 50px;
+}
+.confirmed-form h2{
+    text-align: center;
+}
+
+.confirmed-form-field{
+    font-weight: bold;
+}
+
+.confirmed-form-buttons{
+    display: grid;
+    align-content: space-around;
+     
+}
+
+/* .name-validation-error{
+    color: red;
+    font-size: 90%;
+} */
+
+
+.form-control.ng-valid {
+    border-left: 6px solid #42A948; /* green */
+}
+
+.form-control.ng-invalid.ng-touched  {
+    border-left: 6px solid #a94442; /* red */
+}
+

@@ -18,6 +18,7 @@ import { StudentListComponent } from './components/student/student-list/student-
 import { StudentDetailComponent } from './components/student/student-detail/student-detail.component';
 import { LessonListComponent } from './components/lesson/lesson-list/lesson-list.component';
 import { LessonDetailComponent } from './components/lesson/lesson-detail/lesson-detail.component';
+import { StudentAddComponent } from './components/student/student-add/student-add.component';
 
 
 @NgModule({
@@ -32,6 +33,7 @@ import { LessonDetailComponent } from './components/lesson/lesson-detail/lesson-
     StudentDetailComponent,
     LessonListComponent,
     LessonDetailComponent,
+    StudentAddComponent,
   ],
   imports: [
     BrowserModule,

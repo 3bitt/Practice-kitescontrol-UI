@@ -1,0 +1,210 @@
+<div class="form-container">
+    <div [hidden]="submitted">
+        <h1>Nowy kursant</h1>
+        <form #studentForm="ngForm" (ngSubmit)="onSubmit(studentForm)"> 
+
+            <div class="form-group">
+                <label for="firstName">Imię</label>
+                <input type="text" inputmode="latin-name"
+                required
+                minlength="2"
+                maxlength="30"
+                ngModel
+                name="firstName"
+                #firstName="ngModel"
+                id="name"
+                class="form-control" 
+                [class.is-valid]=firstName.valid 
+                [class.is-invalid]="!firstName.valid && firstName.touched">
+                <!-- <div *ngIf="!firstName.valid && firstName.touched" >
+                    <div class="name-validation-error" *ngIf="firstName.errors.required">To pole jest wymagane</div>                    
+                </div> -->
+            </div>
+
+            <div class="form-group">
+                <label for="lastName">Nazwisko</label>
+                <input  type="text" 
+                inputmode="latin-name"
+                required
+                minlength="2"
+                maxlength="60"
+                ngModel
+                name="lastName"
+                #lastName="ngModel"
+                id="lastName"
+                class="form-control" 
+                [class.is-valid]=lastName.valid
+                [class.is-invalid]="!lastName.valid && lastName.touched" 
+                >
+                <!-- <div [hidden]="lastName.valid || lastName.pristine" class="alert alert-danger">
+                    To pole jest wymagane
+                </div> -->
+
+            </div>
+
+            <div class="form-group">
+                <label for="birthDate">Data urodzenia</label>
+                <input  type="text" placeholder="DD-MM-YYYY"
+                required
+                pattern="([3][0-1]|[1-2][0-9]|[0][1-9])-([1][0-2]|[0][1-9])-(19[4-9][0-9]|20[0-2][0-9])"
+                ngModel
+                name="birthDate"
+                #birthDate="ngModel"
+                id="birthDate"
+                class="form-control" 
+                [class.is-valid]=birthDate.valid
+                [class.is-invalid]="!birthDate.valid && birthDate.touched">
+                <div class="" *ngIf="birthDate.touched && !birthDate.valid">
+                </div>
+                <!-- <div [hidden]="birthDate.valid || birthDate.pristine" class="alert alert-danger">
+                    To pole jest wymagane
+                </div> -->
+            </div>
+        
+            <div class="form-group">
+                <label for="weight">Waga</label>
+                <input  type="text" placeholder="min. 25"
+                required
+                pattern="([2-9][5-9]|[3-9][0-9]|[1-3][0-9][0-9])"
+                ngModel
+                name="weight"
+                #weight="ngModel"
+                id="weight"
+                class="form-control" 
+                [class.is-valid]=weight.valid
+                [class.is-invalid]="!weight.valid && weight.touched"> 
+                <!-- <div [hidden]="weight.valid || weight.pristine" class="alert alert-danger">
+                    To pole jest wymagane
+                </div> -->
+            </div>
+            <!--  -->
+            <button type="submit" 
+            class="btn btn-success"
+            (click)="onSubmit(studentForm)"
+            [disabled]="!studentForm.form.valid">
+            Zatwierdź</button>
+
+            <button type="button" class="btn btn-default" >Nowy kursant</button>
+            <!-- (click)="newStudent(); studentForm.reset()" -->
+            
+        </form>
+    </div>
+
+    <div class="confirmed-form" [hidden]="!submitted">
+        <h2>{{firstName.value}} {{lastName.value}}</h2>
+        <!-- <div class="row">
+        <div class="col-4">Imię:</div>
+        <div class="col-8 confirmed-form-field">{{ firstName.value }}</div>
+        </div>
+        <div class="row">
+        <div class="col-4">Nazwisko:</div>
+        <div class="col-8 confirmed-form-field">{{ lastName.value }}</div>
+        </div> -->
+        <div class="row">
+        <div class="col-6">Data urodzenia:</div>
+        <div class="col-5 confirmed-form-field">{{ birthDate.value }}</div>
+        </div>
+        <div class="row">
+        <div class="col-7">Waga:</div>
+        <div class="col-5 confirmed-form-field">{{ weight.value }}</div>
+        </div>
+        <br>
+        <div class="confirmed-form-buttons">
+            <button class="confirmed-edit btn btn-primary" (click)="submitted=false">Zmień</button>
+            <button class="confirmed-send btn btn-success" (click)="submitted=false">Zgadza się</button>
+        </div>
+    </div>
+
+</div>
+
+
+<!-- 
+
+
+
+
+<div class="form-container">
+    <div [hidden]="submitted">
+        <h1>Nowy kursant</h1>
+        <form (ngSubmit)="onSubmit()" #studentForm="ngForm">
+
+            
+            <div class="form-group">
+                <label for="name">Imię</label>
+                <input type="text" class="form-control" id="name"
+                required
+                [(ngModel)]="student.name" name="name"
+                #name="ngModel"
+                #spy>
+                <div [hidden]="name.valid || name.pristine" class="alert alert-danger">
+                    To pole jest wymagane
+                    
+                </div>
+            </div>
+            {{spy.className}}
+            <div class="form-group">
+                <label for="surname">Nazwisko</label>
+                <input  type="text" class="form-control" id="surname"
+                required                
+                [(ngModel)]="student.surname" name="surname"
+                #surname="ngModel">
+                <div [hidden]="surname.valid || surname.pristine" class="alert alert-danger">
+                    To pole jest wymagane
+                </div>
+
+            </div>
+
+            <div class="form-group">
+                <label for="birth_date">Data urodzenia np. 27-06-1985</label>
+                <input type="datetime-local" class="form-control" id="birth_date" 
+                pattern="[0-9]{2}-[([0][1-9])([1][0-2])]-[0-9]{4}"
+                placeholder="Dzień - Miesiąc - Rok"
+                required
+                [(ngModel)]="student.birth_date" name="birth_date"
+                #birth_date="ngModel">
+                <div [hidden]="birth_date.valid || birth_date.pristine" class="alert alert-danger">
+                    To pole jest wymagane
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="weight">Waga</label>
+                <input type="number" class="form-control" id="weight"
+                required
+                [(ngModel)]="student.weight" name="weight"
+                #weight="ngModel">
+                <div [hidden]="weight.valid || weight.pristine" class="alert alert-danger">
+                    To pole jest wymagane
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-success" [disabled]="!studentForm.form.valid">Zatwierdź</button>
+            <button type="button" class="btn btn-default" (click)="newStudent(); studentForm.reset()">Nowy kursant</button>
+                
+            
+        </form>
+    </div>
+
+    <div [hidden]="!submitted">
+        <h2>Wyszło coś takiego:</h2>
+        <div class="row">
+        <div class="col-xs-3">Imię</div>
+        <div class="col-xs-9">{{ student.name }}</div>
+        </div>
+        <div class="row">
+        <div class="col-xs-3">Nazwisko</div>
+        <div class="col-xs-9">{{ student.surname }}</div>
+        </div>
+        <div class="row">
+        <div class="col-xs-3">Data urodzenia</div>
+        <div class="col-xs-9">{{ student.birth_date }}</div>
+        </div>
+        <div class="row">
+        <div class="col-xs-3">Waga</div>
+        <div class="col-xs-9">{{ student.birth_date }}</div>
+        </div>
+        <br>
+        <button class="btn btn-primary" (click)="submitted=false">Edit</button>
+    </div>
+
+</div> -->
