@@ -19,6 +19,7 @@ import { StudentDetailComponent } from './components/student/student-detail/stud
 import { LessonListComponent } from './components/lesson/lesson-list/lesson-list.component';
 import { LessonDetailComponent } from './components/lesson/lesson-detail/lesson-detail.component';
 import { StudentAddComponent } from './components/student/student-add/student-add.component';
+import { StudentModule } from './components/student.module';
 
 
 @NgModule({
@@ -29,17 +30,15 @@ import { StudentAddComponent } from './components/student/student-add/student-ad
     InstructorListComponent,
     InstructorDetailComponent,
     NavigationComponent,
-    StudentListComponent,
-    StudentDetailComponent,
     LessonListComponent,
     LessonDetailComponent,
-    StudentAddComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    StudentModule,
+    AppRoutingModule,
   ],
   providers: [InstructorService, StudentService, LessonService],
   bootstrap: [AppComponent]

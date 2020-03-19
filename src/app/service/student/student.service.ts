@@ -1,3 +1,4 @@
+import { Student } from './../../components/student/model/student';
 import { IStudent } from './../../models/studentModel';
 import { IpagingResponse, IgetStudentByIdResponse, IgetStudentListResponse } from './../../models/response';
 import { catchError, map } from 'rxjs/operators';
@@ -23,6 +24,7 @@ export class StudentService {
 
   private _getStudentURL: string = this.baseUrl + "students/?orderBy=register_date"
   private _getStudentByIdURL: string = this.baseUrl + "students/"
+  private _postStudent: string = this.baseUrl + "students/create/"
 
   private handleError<T> (operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {  
@@ -41,11 +43,15 @@ export class StudentService {
   };
 
 
-  getStudentById(id: Number): Observable<IgetStudentByIdResponse>{
+  getStudentById(id: number): Observable<IgetStudentByIdResponse>{
     let studentId = `${this._getStudentByIdURL}${id}`
     return this.http.get<any>(studentId)
       .pipe(
         catchError(this.handleError('getStudentById', []))
       );
   };
+
+  postStudent(student: Student){
+    return this.http.post<any>(this._postStudent, student);
+  }
 }

@@ -1,8 +1,5 @@
-import { StudentAddComponent } from './components/student/student-add/student-add.component';
 import { LessonDetailComponent } from './components/lesson/lesson-detail/lesson-detail.component';
 import { LessonListComponent } from './components/lesson/lesson-list/lesson-list.component';
-import { StudentDetailComponent } from './components/student/student-detail/student-detail.component';
-import { StudentListComponent } from './components/student/student-list/student-list.component';
 import { InstructorDetailComponent } from './components/instructor/instructor-detail/instructor-detail.component';
 import { InstructorListComponent } from './components/instructor/instructor-list/instructor-list.component';
 
@@ -20,12 +17,6 @@ const routes: Routes = [
   {path: 'dashboard', component: DashboardComponent},
   {path: 'instructors', component: InstructorListComponent},
   {path: 'instructors/:id', component: InstructorDetailComponent},
-  
-  
-  {path: 'students', component: StudentListComponent},
-  
-  {path: 'students/add-student', component: StudentAddComponent},
-  {path: 'students/:id', component: StudentDetailComponent},
 
   {path: 'lessons', component: LessonListComponent},
   {path: 'lessons/:id', component: LessonDetailComponent},
