@@ -13,6 +13,7 @@ import { SelectorMatcher } from '@angular/compiler';
   templateUrl: './student-list.component.html',
   styleUrls: ['./student-list.component.css']
 })
+
 export class StudentListComponent implements OnInit {
 
   public students;
