@@ -8,13 +8,15 @@ import { StudentRoutingModule } from './student-routing.module';
 
 
 @NgModule({
-  declarations: [],
-  imports: [
-    CommonModule,
-    StudentRoutingModule,
+  declarations: [
     StudentListComponent,
     StudentDetailComponent,
     StudentAddComponent,
+  ],
+  imports: [
+    CommonModule,
+    StudentRoutingModule,
+
   ]
 })
 export class StudentModule { }
