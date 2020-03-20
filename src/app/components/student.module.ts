@@ -1,3 +1,6 @@
+import { StudentAddComponent } from './student/student-add/student-add.component';
+import { StudentDetailComponent } from './student/student-detail/student-detail.component';
+import { StudentListComponent } from './student/student-list/student-list.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -8,7 +11,10 @@ import { StudentRoutingModule } from './student-routing.module';
   declarations: [],
   imports: [
     CommonModule,
-    StudentRoutingModule
+    StudentRoutingModule,
+    StudentListComponent,
+    StudentDetailComponent,
+    StudentAddComponent,
   ]
 })
 export class StudentModule { }
