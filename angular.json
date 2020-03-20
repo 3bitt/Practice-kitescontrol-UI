@@ -1,9 +1,16 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+<<<<<<< HEAD
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
     "Kitescontrol": {
+=======
+  "version": 1, 
+  "newProjectRoot": "projects",
+  "projects": {
+    "kitescontrol-UI": {
+>>>>>>> initial commit
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +20,11 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+<<<<<<< HEAD
             "outputPath": "dist/Kitescontrol",
+=======
+            "outputPath": "dist/kitescontrol-UI",
+>>>>>>> initial commit
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -24,6 +35,7 @@
               "src/assets"
             ],
             "styles": [
+<<<<<<< HEAD
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/styles.css"
             ],
@@ -32,6 +44,11 @@
               "node_modules/bootstrap/dist/js/bootstrap.min.js",
               "node_modules/@fortawesome/fontawesome-free/js/all.js"
             ]
+=======
+              "src/styles.css"
+            ],
+            "scripts": []
+>>>>>>> initial commit
           },
           "configurations": {
             "production": {
@@ -67,19 +84,31 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
+<<<<<<< HEAD
             "browserTarget": "Kitescontrol:build",
             "proxyConfig": "src/proxy.conf.json"
           },
           "configurations": {
             "production": {
               "browserTarget": "Kitescontrol:build:production"
+=======
+            "browserTarget": "kitescontrol-UI:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "kitescontrol-UI:build:production"
+>>>>>>> initial commit
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
+<<<<<<< HEAD
             "browserTarget": "Kitescontrol:build"
+=======
+            "browserTarget": "kitescontrol-UI:build"
+>>>>>>> initial commit
           }
         },
         "test": {
@@ -116,15 +145,28 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
+<<<<<<< HEAD
             "devServerTarget": "Kitescontrol:serve"
           },
           "configurations": {
             "production": {
               "devServerTarget": "Kitescontrol:serve:production"
+=======
+            "devServerTarget": "kitescontrol-UI:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "kitescontrol-UI:serve:production"
+>>>>>>> initial commit
             }
           }
         }
       }
     }},
+<<<<<<< HEAD
   "defaultProject": "Kitescontrol"
 }
+=======
+  "defaultProject": "kitescontrol-UI"
+}
+>>>>>>> initial commit
