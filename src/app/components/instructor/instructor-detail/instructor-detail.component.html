@@ -1,11 +1,13 @@
 <!-- <router-outlet></router-outlet> -->
 
-<h2>Instructors detail </h2>
+<div *ngIf="instructor">
+  <h2>Instructors detail </h2>
 
-<a routerLink="/instructors">Back</a>
-<ul>
-    <li>{{instructor.name}}</li>
-    <li>{{instructor.surname}}</li>
-    <li>{{instructor.birth_date}}</li>
-    <li>{{instructor.weight}}</li>
-</ul>
+  <a routerLink="/instructors">Back</a>
+  <ul>
+      <li>{{instructor.name}}</li>
+      <li>{{instructor.surname}}</li>
+      <li>{{instructor.birth_date}}</li>
+      <li>{{instructor.weight}}</li>
+  </ul>
+</div>

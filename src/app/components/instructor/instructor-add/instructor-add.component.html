@@ -1,0 +1,130 @@
+<div class="form-container">
+  <!-- (ngSubmit)="onSubmit(instructorForm) -->
+  <form #instructorForm="ngForm">
+      <div [hidden]="formReady">
+          <h1>Nowy instruktor</h1>
+
+
+          <div class="form-group">
+              <label for="firstName">Imię</label>
+              <input type="text" class="form-control" inputmode="latin-name"
+              required
+              minlength="2"
+              maxlength="30"
+              ngModel
+              name="firstName"
+              #firstName="ngModel"
+              id="name"
+              [class.is-valid]=firstName.valid
+              [class.is-invalid]="!firstName.valid && firstName.touched">
+              <div *ngIf="!firstName.valid && firstName.touched" >
+                  <span class="field-validation-error" *ngIf="firstName.errors.required">
+                  <small>To pole jest wymagane</small></span>
+              </div>
+          </div>
+
+          <div class="form-group">
+              <label for="lastName">Nazwisko</label>
+              <input  type="text" class="form-control"
+              inputmode="latin-name"
+              required
+              minlength="2"
+              maxlength="60"
+              ngModel
+              name="lastName"
+              #lastName="ngModel"
+              id="lastName"
+              [class.is-valid]=lastName.valid
+              [class.is-invalid]="!lastName.valid && lastName.touched">
+              <div *ngIf="!lastName.valid && lastName.touched" >
+                  <span class="field-validation-error" *ngIf="lastName.errors.required">
+                  <small>To pole jest wymagane</small></span>
+              </div>
+          </div>
+
+
+
+          <div class="form-group">
+              <label for="birthDate">Data urodzenia</label>
+              <input  type="text" class="form-control" placeholder="DD-MM-YYYY"
+              required
+              pattern="([3][0-1]|[1-2][0-9]|[0][1-9])-([1][0-2]|[0][1-9])-(19[0-9][0-9]|20[0-2][0-9])"
+              ngModel
+              name="birthDate"
+              #birthDate="ngModel"
+              id="birthDate"
+              [class.is-valid]=birthDate.valid
+              [class.is-invalid]="!birthDate.valid && birthDate.touched">
+              <div *ngIf="!birthDate.valid && birthDate.touched" >
+                  <span class="field-validation-error" *ngIf="birthDate.errors.required">
+                  <small>To pole jest wymagane</small></span>
+              </div>
+          </div>
+
+          <div class="form-group">
+              <label for="weight">Waga</label>
+              <input  type="text" class="form-control" placeholder="min. 25"
+              required
+              pattern="([2-9][5-9]|[3-9][0-9]|[1-3][0-9][0-9])"
+              ngModel
+              name="weight"
+              #weight="ngModel"
+              id="weight"
+              [class.is-valid]=weight.valid
+              [class.is-invalid]="!weight.valid && weight.touched">
+              <div *ngIf="!weight.valid && weight.touched" >
+                  <span class="field-validation-error" *ngIf="weight.errors.required">
+                  <small>To pole jest wymagane</small></span>
+              </div>
+          </div>
+          <!--  -->
+          <div class="form-buttons">
+              <button type="submit"
+              class="btn btn-success"
+              (click)="formReady=true; makeForm(instructorForm)"
+              [disabled]="!instructorForm.form.valid">       Zatwierdź</button>
+
+              <button type="button"
+              class="btn btn-default"
+              (click)="instructorForm.reset()">            Reset</button>
+          </div>
+
+      </div>
+                      <!-- CONFIRMED FORM -->
+                                                      <!-- *ngIf="!formSubmitted" -->
+      <div class="confirmed-form" [hidden]="!formReady || (formReady && formSubmitted)" >
+          <h2>{{firstName.value}} {{lastName.value}}</h2>
+          <div class="confirmed-form-fields">
+
+              <div class="field">
+                  <span>Data urodzenia:</span>
+                  <span>{{ birthDate.value }}</span>
+              </div>
+              <div class="field">
+                  <span>Waga:</span>
+                  <span id="value">{{ weight.value }}</span>
+              </div>
+          </div>
+          <div class="confirmed-form-buttons">
+              <button type="button"
+              class="confirmed-edit btn btn-labeled btn-primary"
+              (click)="formReady=false">
+                  <span class="btn-label">
+                      <i class="fas fa-edit"></i>
+
+                  </span>Zmień</button>
+
+              <button type="button"
+              class="confirmed-send btn btn-labeled btn-success"
+              (click)="onSubmit(); instructorForm.reset()">
+                  <span class="btn-label">
+                      <i class="fas fa-check"></i>
+
+                  </span>Zgadza się!</button>
+          </div>
+      </div>
+  </form>
+
+
+</div>
+

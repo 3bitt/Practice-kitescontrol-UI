@@ -1,7 +1,7 @@
-import { IgetInstructorByIdResponse } from '../../../models/response';
 import { Component, OnInit } from '@angular/core';
-import { InstructorService } from 'src/app/service/instructor/instructor.service';
 import { ActivatedRoute, ParamMap } from '@angular/router';
+import { InstructorService } from '../service/instructor.service';
+import { switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-instructor-detail',
@@ -20,19 +20,13 @@ export class InstructorDetailComponent implements OnInit {
 
 
   ngOnInit() {
-    // Get id from URL
-    this.route.paramMap.subscribe((params: ParamMap) => {
-      let id = parseInt(params.get('id'));
-      this.instructorId = id;
-    })
-    // Call API
-    this._instructorService.getInstructorById(this.instructorId)
-    .subscribe((data: any) => { this.instructor = data
-    }, err => {
-      console.log(err);
-    });
+    // ----- Reuse view if there would be student previous/next buttons ----
+
+    this.route.paramMap.pipe(
+      switchMap((params: ParamMap) =>
+        this._instructorService.getInstructorById( parseInt(params.get('id') )
+        )))
+        .subscribe(data => this.instructor = data);
+    }
   }
 
-
-
-}

@@ -1,10 +1,9 @@
+import { IpagingResponse } from './../../../models/response';
 
-import { IpagingResponse } from '../../../models/response';
-import { IInstructor } from '../../../models/instructorModel';
 import { Component, OnInit } from '@angular/core';
-import { InstructorService } from 'src/app/service/instructor/instructor.service';
-import { Router, ActivatedRoute } from '@angular/router';
-import { JsonPipe } from '@angular/common';
+import { ActivatedRoute, Router } from '@angular/router';
+import { InstructorService } from '../service/instructor.service';
+
 
 
 @Component({
@@ -15,21 +14,29 @@ import { JsonPipe } from '@angular/common';
 export class InstructorListComponent implements OnInit {
 
   public instructors;
+  public searchList = [];
+  public searchValue = '';
 
   constructor(private _instructorService: InstructorService,
               private router: Router,
               private route: ActivatedRoute) { }
 
-  // ngOnInit() {
-  //   this._instructorService.getInstructors()
-  //   .subscribe(data => this.instructors = data);
-  // }
 
+
+  public search(term: string){
+    let regexp = new RegExp(term, 'gi')
+    if (!term.trim()){
+      this.searchList=[]
+    } else {
+    this.searchList = this.instructors.results
+      .filter(e => e.surname.match(regexp) || e.name.match(regexp));
+    }
+  }
 
   ngOnInit() {
     this._instructorService.getInstructors()
-    .subscribe((data: any) => { this.instructors = data
-    }, err => {
+    .subscribe((data: IpagingResponse) => { this.instructors = data },
+    err => {
       console.log(err);
     });
   };
