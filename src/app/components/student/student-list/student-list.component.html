@@ -9,9 +9,9 @@
   <input  #inputBox [ngModel]='searchValue' (input)="search(inputBox.value)" type="text"  placeholder="Szukaj kursanta..."/>
 </div>
   <div class="search-list-container">
-    <ul class="search-ul-Parent">
+    <ul class="search-ul-Parent" *ngIf="searchList.length">
       <li class="searchElement" *ngFor="let student of searchList" >
-        <a routerLink="/students/{{student.id}}">
+        <a [routerLink]="['/students', student.id]">
           {{student.name}} {{student.surname}}
         </a>
       </li>
@@ -44,7 +44,7 @@
                 <td>{{student.weight}}</td>
                 <td>{{student.register_date | date: 'dd-MM-yyyy' }}</td>
                 <td><a [routerLink]="['/students', student.id]">Szczegóły</a></td>
-                
+
             </tr>
         </tbody>
     </table>

@@ -1,8 +1,8 @@
 import { JsonPipe } from '@angular/common';
 import { IStudent } from './../../../models/studentModel';
-import { IpagingResponse, IgetStudentListResponse } from './../../../models/response';
+import { IpagingResponse } from './../../../models/response';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { StudentService } from 'src/app/service/student/student.service';
 import { Subject, Observable, of } from 'rxjs';
 import { debounceTime, distinctUntilChanged, switchMap, toArray } from 'rxjs/operators';
@@ -14,9 +14,10 @@ import { SelectorMatcher } from '@angular/compiler';
   styleUrls: ['./student-list.component.css']
 })
 
-export class StudentListComponent implements OnInit {
+export class StudentListComponent implements OnInit, OnDestroy {
 
   public students;
+  public students$;
   public searchList = [];
   public searchValue = '';
 
@@ -24,7 +25,7 @@ export class StudentListComponent implements OnInit {
               private router: Router,
               private route: ActivatedRoute,
               ) { }
-    
+
 
   public search(term: string){
     let regexp = new RegExp(term, 'gi')
@@ -38,13 +39,16 @@ export class StudentListComponent implements OnInit {
 
 
   ngOnInit() {
-    this._studentService.getStudents()
+    this.students$ = this._studentService.getStudents()
     .subscribe((data) => { this.students = data
     }, err => {
       console.log('ERR:', err);
       });
     }
 
+    ngOnDestroy(){
+      this.students$.unsubscribe();
+    }
 
   }
 

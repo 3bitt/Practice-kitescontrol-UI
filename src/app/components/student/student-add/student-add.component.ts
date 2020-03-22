@@ -21,7 +21,7 @@ export class StudentAddComponent implements OnInit {
   public formSubmitted = false
   newStudent: Student;
 
-  public postError = false;
+  public postSuccess = false;
 
   makeForm(form: NgForm){
 
@@ -34,18 +34,21 @@ export class StudentAddComponent implements OnInit {
       console.log(this.newStudent);
     }
 
-    onSubmit(student: Student){
+    onSubmit(){
       this._studentService.postStudent(this.newStudent).
       subscribe(
         data => (console.log('Success: ', data),
-                this.postError=false),
+                this.formReady = false,
+                this.formSubmitted = false,
+                this.postSuccess = true),
+
         (error: HttpErrorResponse) => (console.log('Error: ', error),
-                  this.postError=true
+                  this.postSuccess=false
                   ),
       )
-    } 
-    
-  
+    }
+
+
   ngOnInit() {
   }
 }

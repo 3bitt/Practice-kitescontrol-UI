@@ -1,6 +1,7 @@
+import { Subscription } from 'rxjs';
 import { IpagingResponse } from './../../../models/response';
 
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { InstructorService } from '../service/instructor.service';
 
@@ -11,9 +12,10 @@ import { InstructorService } from '../service/instructor.service';
   templateUrl: './instructor-list.component.html',
   styleUrls: ['./instructor-list.component.css']
 })
-export class InstructorListComponent implements OnInit {
+export class InstructorListComponent implements OnInit, OnDestroy {
 
   public instructors;
+  private instructors$: Subscription;
   public searchList = [];
   public searchValue = '';
 
@@ -34,11 +36,15 @@ export class InstructorListComponent implements OnInit {
   }
 
   ngOnInit() {
-    this._instructorService.getInstructors()
+    this.instructors$ = this._instructorService.getInstructors()
     .subscribe((data: IpagingResponse) => { this.instructors = data },
     err => {
       console.log(err);
     });
+  };
+
+  ngOnDestroy(){
+    this.instructors$.unsubscribe();
   };
 
   // Function used in template - place instructor.id in relative path /instructors/{id}

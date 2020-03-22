@@ -1,6 +1,6 @@
+import { InstructorModule } from './components/instructor/instructor.module';
 import { LessonService } from './service/lesson/lesson.service';
 import { StudentService } from './service/student/student.service';
-import { InstructorService } from './service/instructor/instructor.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule} from '@angular/forms';
@@ -19,7 +19,8 @@ import { StudentDetailComponent } from './components/student/student-detail/stud
 import { LessonListComponent } from './components/lesson/lesson-list/lesson-list.component';
 import { LessonDetailComponent } from './components/lesson/lesson-detail/lesson-detail.component';
 import { StudentAddComponent } from './components/student/student-add/student-add.component';
-import { StudentModule } from './components/student.module';
+import { StudentModule } from './components/student/student.module';
+import { InstructorService } from './components/instructor/service/instructor.service';
 
 
 @NgModule({
@@ -27,8 +28,6 @@ import { StudentModule } from './components/student.module';
     AppComponent,
     LoginComponent,
     DashboardComponent,
-    InstructorListComponent,
-    InstructorDetailComponent,
     NavigationComponent,
     LessonListComponent,
     LessonDetailComponent,
@@ -38,6 +37,7 @@ import { StudentModule } from './components/student.module';
     HttpClientModule,
     FormsModule,
     StudentModule,
+    InstructorModule,
     AppRoutingModule,
   ],
   providers: [InstructorService, StudentService, LessonService],

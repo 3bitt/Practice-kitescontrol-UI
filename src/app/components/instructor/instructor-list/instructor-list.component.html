@@ -11,7 +11,7 @@
   <div class="search-list-container">
     <ul class="search-ul-Parent" *ngIf="searchList.length">
       <li class="searchElement" *ngFor="let instructor of searchList" >
-        <a routerLink="/instructors/{{instructor.id}}">
+        <a [routerLink]="['/instructors', instructor.id]">
           {{instructor.name}} {{instructor.surname}}
         </a>
       </li>

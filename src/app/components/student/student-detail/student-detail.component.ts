@@ -1,8 +1,8 @@
 import { switchMap } from 'rxjs/operators';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
-import { IgetInstructorByIdResponse } from './../../../models/response';
-import { Component, OnInit } from '@angular/core';
+import { IDetailResponse } from './../../../models/response';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { StudentService } from 'src/app/service/student/student.service';
 import { Student } from '../model/student';
 import { IIStudent } from '../model/student-interface';
@@ -12,12 +12,10 @@ import { IIStudent } from '../model/student-interface';
   templateUrl: './student-detail.component.html',
   styleUrls: ['./student-detail.component.css']
 })
-export class StudentDetailComponent implements OnInit {
+export class StudentDetailComponent implements OnInit, OnDestroy {
 
   public student;
-  public studentId;
-
-  student$: Observable<IIStudent>;
+  private student$: Subscription;
 
   constructor(private _studentService: StudentService,
               private route: ActivatedRoute,
@@ -27,8 +25,13 @@ export class StudentDetailComponent implements OnInit {
     ngOnInit(){
       this.student$ = this.route.paramMap.pipe(
         switchMap((params: ParamMap) =>
-        this._studentService.getStudentById(params.get('id')))
-      );
+        this.student = this._studentService.getStudentById(params.get('id')))
+      ).subscribe(data => this.student = data);
+    }
+
+
+    ngOnDestroy(){
+      this.student$.unsubscribe();
     }
 
   // ngOnInit() {

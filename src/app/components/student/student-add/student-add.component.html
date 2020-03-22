@@ -3,7 +3,7 @@
     <form #studentForm="ngForm">
         <div [hidden]="formReady">
             <h1>Nowy kursant</h1>
-         
+
 
             <div class="form-group">
                 <label for="firstName">Imię</label>
@@ -15,18 +15,18 @@
                 name="firstName"
                 #firstName="ngModel"
                 id="name"
-                class="form-control" 
-                [class.is-valid]=firstName.valid 
+                class="form-control"
+                [class.is-valid]=firstName.valid
                 [class.is-invalid]="!firstName.valid && firstName.touched">
                 <div *ngIf="!firstName.valid && firstName.touched" >
                     <span class="field-validation-error" *ngIf="firstName.errors.required">
-                    <small>To pole jest wymagane</small></span>                    
+                    <small>To pole jest wymagane</small></span>
                 </div>
             </div>
 
             <div class="form-group">
                 <label for="lastName">Nazwisko</label>
-                <input  type="text" 
+                <input  type="text"
                 inputmode="latin-name"
                 required
                 minlength="2"
@@ -35,16 +35,16 @@
                 name="lastName"
                 #lastName="ngModel"
                 id="lastName"
-                class="form-control" 
+                class="form-control"
                 [class.is-valid]=lastName.valid
                 [class.is-invalid]="!lastName.valid && lastName.touched">
                 <div *ngIf="!lastName.valid && lastName.touched" >
                     <span class="field-validation-error" *ngIf="lastName.errors.required">
-                    <small>To pole jest wymagane</small></span>                    
-                </div>                    
+                    <small>To pole jest wymagane</small></span>
+                </div>
             </div>
 
-            
+
 
             <div class="form-group">
                 <label for="birthDate">Data urodzenia</label>
@@ -55,15 +55,15 @@
                 name="birthDate"
                 #birthDate="ngModel"
                 id="birthDate"
-                class="form-control" 
+                class="form-control"
                 [class.is-valid]=birthDate.valid
                 [class.is-invalid]="!birthDate.valid && birthDate.touched">
                 <div *ngIf="!birthDate.valid && birthDate.touched" >
                     <span class="field-validation-error" *ngIf="birthDate.errors.required">
-                    <small>To pole jest wymagane</small></span>                    
-                </div> 
+                    <small>To pole jest wymagane</small></span>
+                </div>
             </div>
-        
+
             <div class="form-group">
                 <label for="weight">Waga</label>
                 <input  type="text" placeholder="min. 25"
@@ -73,33 +73,33 @@
                 name="weight"
                 #weight="ngModel"
                 id="weight"
-                class="form-control" 
+                class="form-control"
                 [class.is-valid]=weight.valid
                 [class.is-invalid]="!weight.valid && weight.touched">
                 <div *ngIf="!weight.valid && weight.touched" >
                     <span class="field-validation-error" *ngIf="weight.errors.required">
-                    <small>To pole jest wymagane</small></span>                    
-                </div>  
+                    <small>To pole jest wymagane</small></span>
+                </div>
             </div>
             <!--  -->
             <div class="form-buttons">
                 <button type="submit"
                 class="btn btn-success"
-                (click)="formReady=true; makeForm(studentForm)"            
+                (click)="formReady=true; makeForm(studentForm)"
                 [disabled]="!studentForm.form.valid">       Zatwierdź</button>
 
-                <button type="button" 
-                class="btn btn-default" 
+                <button type="button"
+                class="btn btn-default"
                 (click)="studentForm.reset()">            Reset</button>
             </div>
-        
+
         </div>
                         <!-- CONFIRMED FORM -->
                                                         <!-- *ngIf="!formSubmitted" -->
         <div class="confirmed-form" [hidden]="!formReady || (formReady && formSubmitted)" >
             <h2>{{firstName.value}} {{lastName.value}}</h2>
             <div class="confirmed-form-fields">
-                
+
                 <div class="field">
                     <span>Data urodzenia:</span>
                     <span>{{ birthDate.value }}</span>
@@ -110,22 +110,22 @@
                 </div>
             </div>
             <div class="confirmed-form-buttons">
-                <button type="button" 
-                class="confirmed-edit btn btn-labeled btn-primary" 
+                <button type="button"
+                class="confirmed-edit btn btn-labeled btn-primary"
                 (click)="formReady=false">
                     <span class="btn-label">
                         <i class="fas fa-edit"></i>
 
                     </span>Zmień</button>
 
-                <button type="button" 
+                <button type="button"
                 class="confirmed-send btn btn-labeled btn-success"
-                (click)="onSubmit()">
+                (click)="onSubmit(); studentForm.reset()">
                     <span class="btn-label">
                         <i class="fas fa-check"></i>
 
                     </span>Zgadza się!</button>
-            </div>        
+            </div>
         </div>
     </form>
 
@@ -133,13 +133,13 @@
 
 
 
-<!-- 
+<!--
 <div class="form-container">
     <div [hidden]="submitted">
         <h1>Nowy kursant</h1>
         <form (ngSubmit)="onSubmit()" #studentForm="ngForm">
 
-            
+
             <div class="form-group">
                 <label for="name">Imię</label>
                 <input type="text" class="form-control" id="name"
@@ -149,14 +149,14 @@
                 #spy>
                 <div [hidden]="name.valid || name.pristine" class="alert alert-danger">
                     To pole jest wymagane
-                    
+
                 </div>
             </div>
             {{spy.className}}
             <div class="form-group">
                 <label for="surname">Nazwisko</label>
                 <input  type="text" class="form-control" id="surname"
-                required                
+                required
                 [(ngModel)]="student.surname" name="surname"
                 #surname="ngModel">
                 <div [hidden]="surname.valid || surname.pristine" class="alert alert-danger">
@@ -167,7 +167,7 @@
 
             <div class="form-group">
                 <label for="birth_date">Data urodzenia np. 27-06-1985</label>
-                <input type="datetime-local" class="form-control" id="birth_date" 
+                <input type="datetime-local" class="form-control" id="birth_date"
                 pattern="[0-9]{2}-[([0][1-9])([1][0-2])]-[0-9]{4}"
                 placeholder="Dzień - Miesiąc - Rok"
                 required
@@ -191,8 +191,8 @@
 
             <button type="submit" class="btn btn-success" [disabled]="!studentForm.form.valid">Zatwierdź</button>
             <button type="button" class="btn btn-default" (click)="newStudent(); studentForm.reset()">Nowy kursant</button>
-                
-            
+
+
         </form>
     </div>
 

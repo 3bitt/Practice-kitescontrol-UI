@@ -1,6 +1,6 @@
 import { Student } from './../../components/student/model/student';
 import { IStudent } from './../../models/studentModel';
-import { IpagingResponse, IgetStudentByIdResponse, IgetStudentListResponse } from './../../models/response';
+import { IpagingResponse, IDetailResponse } from './../../models/response';
 import { catchError, map } from 'rxjs/operators';
 import { Observable, of } from 'rxjs';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
@@ -27,15 +27,15 @@ export class StudentService {
   private _postStudent: string = this.baseUrl + "students/create/"
 
   private handleError<T> (operation = 'operation', result?: T) {
-    return (error: any): Observable<T> => {  
+    return (error: any): Observable<T> => {
       // TODO: send the error to remote logging infrastructure
-      console.error(error); // log to console instead  
+      console.error(error); // log to console instead
       // Let the app keep running by returning an empty result.
       return of(result as T);
     };
   }
 
-  getStudents(): Observable<any>{
+  getStudents(): Observable<IpagingResponse>{
     return this.http.get<any>(this._getStudentURL)
       .pipe(
         catchError(this.handleError('getStudents', []))
@@ -43,7 +43,7 @@ export class StudentService {
   };
 
 
-  getStudentById(id: number): Observable<IgetStudentByIdResponse>{
+  getStudentById(id: number | string){
     let studentId = `${this._getStudentByIdURL}${id}`
     return this.http.get<any>(studentId)
       .pipe(
