@@ -20,7 +20,7 @@ import { LessonListComponent } from './components/lesson/lesson-list/lesson-list
 import { LessonDetailComponent } from './components/lesson/lesson-detail/lesson-detail.component';
 import { StudentAddComponent } from './components/student/student-add/student-add.component';
 import { StudentModule } from './components/student/student.module';
-import { InstructorService } from './components/instructor/service/instructor.service';
+import { InstructorService } from './service/instructor/instructor.service';
 
 
 @NgModule({

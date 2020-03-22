@@ -1,9 +1,9 @@
 import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import { InstructorService } from '../service/instructor.service';
 import { Instructor } from '../model/instructor';
 import { NgForm } from '@angular/forms';
 import { HttpErrorResponse } from '@angular/common/http';
+import { InstructorService } from 'src/app/service/instructor/instructor.service';
 
 
 @Component({

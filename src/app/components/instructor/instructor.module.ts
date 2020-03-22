@@ -6,7 +6,6 @@ import { CommonModule } from '@angular/common';
 
 import { InstructorRoutingModule } from './instructor-routing.module';
 import { InstructorAddComponent } from './instructor-add/instructor-add.component';
-import { InstructorService } from './service/instructor.service';
 
 
 @NgModule({
@@ -20,6 +19,7 @@ import { InstructorService } from './service/instructor.service';
     FormsModule,
     InstructorRoutingModule
   ],
-  providers: [InstructorService]
+  // It seems like it's sufficient to declare InstructorService in AppModule - it works
+  // providers: [InstructorService]
 })
 export class InstructorModule { }

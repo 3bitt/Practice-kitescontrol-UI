@@ -1,10 +1,9 @@
-import { IDetailResponse } from './../../../models/response';
+import { Instructor } from './../../components/instructor/model/instructor';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Observable, of, throwError } from 'rxjs';
 import { catchError, tap, map } from 'rxjs/operators';
-import { Instructor } from '../model/instructor';
-import { IpagingResponse } from 'src/app/models/response';
+import { IpagingResponse, IDetailResponse } from 'src/app/models/response';
 
 
 @Injectable({

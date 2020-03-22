@@ -1,8 +1,8 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
-import { InstructorService } from '../service/instructor.service';
-import { switchMap } from 'rxjs/operators';
 import { Subscription } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
+import { InstructorService } from 'src/app/service/instructor/instructor.service';
 
 @Component({
   selector: 'app-instructor-detail',

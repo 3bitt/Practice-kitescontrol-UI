@@ -3,7 +3,7 @@ import { IpagingResponse } from './../../../models/response';
 
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { InstructorService } from '../service/instructor.service';
+import { InstructorService } from 'src/app/service/instructor/instructor.service';
 
 
 
