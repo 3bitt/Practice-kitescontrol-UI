@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import { StudentListComponent } from './components/student/student-list/student-list.component';
 import { StudentModule } from './components/student/student.module';
 import { StudentAddComponent } from './components/student/student-add/student-add.component';
@@ -23,13 +22,6 @@ const routes: Routes = [
   // {path: 'lessons/:id', component: LessonDetailComponent},
 
 ];
-=======
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-
-
-const routes: Routes = [];
->>>>>>> initial commit
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

@@ -44,9 +44,6 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
-<<<<<<< HEAD
 
 #CUSTOM
 TODO.txt
-=======
->>>>>>> initial commit

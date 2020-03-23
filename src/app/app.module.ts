@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import { AuthModule } from './components/auth/auth.module';
 import { InstructorModule } from './components/instructor/instructor.module';
 import { LessonService } from './service/lesson/lesson.service';
@@ -44,23 +43,6 @@ import { InstructorService } from './service/instructor/instructor.service';
     AppRoutingModule,
   ],
   providers: [InstructorService, StudentService, LessonService],
-=======
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-
-@NgModule({
-  declarations: [
-    AppComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule
-  ],
-  providers: [],
->>>>>>> initial commit
   bootstrap: [AppComponent]
 })
 export class AppModule { }
