@@ -1,3 +1,4 @@
+import { AuthModule } from './components/auth/auth.module';
 import { InstructorModule } from './components/instructor/instructor.module';
 import { LessonService } from './service/lesson/lesson.service';
 import { StudentService } from './service/student/student.service';
@@ -38,6 +39,7 @@ import { InstructorService } from './service/instructor/instructor.service';
     FormsModule,
     StudentModule,
     InstructorModule,
+    AuthModule,
     AppRoutingModule,
   ],
   providers: [InstructorService, StudentService, LessonService],
