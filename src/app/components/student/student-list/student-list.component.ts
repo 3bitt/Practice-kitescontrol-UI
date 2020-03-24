@@ -1,12 +1,6 @@
-import { JsonPipe } from '@angular/common';
-import { IStudent } from './../../../models/studentModel';
-import { IpagingResponse } from './../../../models/response';
-import { Router, ActivatedRoute } from '@angular/router';
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { StudentService } from 'src/app/service/student/student.service';
-import { Subject, Observable, of } from 'rxjs';
-import { debounceTime, distinctUntilChanged, switchMap, toArray } from 'rxjs/operators';
-import { SelectorMatcher } from '@angular/compiler';
 
 @Component({
   selector: 'app-student-list',

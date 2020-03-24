@@ -1,3 +1,5 @@
+import { AuthGuard } from './../auth/guard/auth.guard';
+import { AuthService } from './../auth/service/auth.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -5,11 +7,12 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './navigation.component.html',
   styleUrls: ['./navigation.component.css']
 })
-export class NavigationComponent implements OnInit {
+export class NavigationComponent {
 
-  constructor() { }
+  constructor(public authService: AuthService) { }
 
-  ngOnInit() {
+  logout(){
+    this.authService.logout();
   }
 
 }

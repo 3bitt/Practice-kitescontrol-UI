@@ -3,7 +3,7 @@
 <div *ngIf="student">
 <h2>Student detail </h2>
 
-<a routerLink="/students">Back</a>
+<a [routerLink]="['..']">Back</a>
 <ul>
     <li>{{student.name}}</li>
     <li>{{student.surname}}</li>

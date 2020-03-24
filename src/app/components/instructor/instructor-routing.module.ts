@@ -7,9 +7,9 @@ import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
 
-  {path: 'instructors', component: InstructorListComponent},
-  {path: 'instructors/add-instructor', component: InstructorAddComponent},
-  {path: 'instructors/:id', component: InstructorDetailComponent},
+  {path: '', component: InstructorListComponent},
+  {path: 'add-instructor', component: InstructorAddComponent},
+  {path: ':id', component: InstructorDetailComponent},
 
 
 ];

@@ -1,7 +1,5 @@
-
-
 <nav class="navbar navbar-dark bg-dark">
-    <a routerLink='/dashboard' class="navbar-dashboard-btn btn btn-outline-info" type="button">Strona główna</a>
+    <a [routerLink]="['./dashboard']" class="navbar-dashboard-btn btn btn-outline-info" type="button">Strona główna</a>
     <div class="dropdown navbar-student-dropdown">
         <a class="btn btn-outline-success dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Kursant
@@ -34,4 +32,6 @@
           <a class="dropdown-item" [routerLink]="['./lessons']" routerLinkActive="router-link-active" >Baza [=]</a>
         </div>
       </div>
+
+      <button class="btn btn-outline-info" (click)="logout()">Wyloguj</button>
   </nav>

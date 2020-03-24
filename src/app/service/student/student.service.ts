@@ -44,7 +44,7 @@ export class StudentService {
 
 
   getStudentById(id: number | string){
-    let studentId = `${this._getStudentByIdURL}${id}`
+    let studentId = `${this._getStudentByIdURL}${id}/`
     return this.http.get<any>(studentId)
       .pipe(
         catchError(this.handleError('getStudentById', []))

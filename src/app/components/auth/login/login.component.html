@@ -11,9 +11,7 @@
         <input type="password">
     </div>
 
-    <button class="login-button"
-            [routerLink]="['../dashboard']"
-            routerLinkActive='active'>
+    <button class="login-button" (click)="login()">
             Zaloguj
     </button>
 
