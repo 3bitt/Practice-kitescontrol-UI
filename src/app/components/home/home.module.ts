@@ -1,3 +1,4 @@
+import { RouterModule } from '@angular/router';
 import { StudentListComponent } from './../student/student-list/student-list.component';
 import { InstructorModule } from './../instructor/instructor.module';
 import { StudentModule } from './../student/student.module';
@@ -18,6 +19,7 @@ import { HomeComponent } from './home.component';
   imports: [
     CommonModule,
     HomeRoutingModule,
-  ]
+  ],
+  exports: [RouterModule]
 })
 export class HomeModule { }

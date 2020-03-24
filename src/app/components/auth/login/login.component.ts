@@ -13,8 +13,8 @@ export class LoginComponent {
 
 
   constructor(public authService: AuthService,
-              public router: Router )
-              {
+              public router: Router ) {
+
                 this.setMessage();
               }
 

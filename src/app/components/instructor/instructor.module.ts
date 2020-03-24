@@ -1,3 +1,4 @@
+import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { InstructorDetailComponent } from './instructor-detail/instructor-detail.component';
 import { InstructorListComponent } from './instructor-list/instructor-list.component';
@@ -17,7 +18,7 @@ import { InstructorAddComponent } from './instructor-add/instructor-add.componen
   imports: [
     CommonModule,
     FormsModule,
-    InstructorRoutingModule
+    InstructorRoutingModule,
   ],
   // It seems like it's sufficient to declare InstructorService in AppModule - it works
   // providers: [InstructorService]

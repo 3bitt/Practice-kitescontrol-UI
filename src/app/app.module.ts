@@ -28,6 +28,8 @@ import { StudentService } from './service/student/student.service';
     BrowserModule,
     HttpClientModule,
     FormsModule,
+    HomeModule,
+    AuthModule,
     AppRoutingModule,
   ],
   providers: [InstructorService, StudentService, LessonService, AuthGuard],

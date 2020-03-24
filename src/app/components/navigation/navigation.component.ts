@@ -1,3 +1,4 @@
+import { Router, ActivatedRoute } from '@angular/router';
 import { AuthGuard } from './../auth/guard/auth.guard';
 import { AuthService } from './../auth/service/auth.service';
 import { Component, OnInit } from '@angular/core';
@@ -9,10 +10,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavigationComponent {
 
-  constructor(public authService: AuthService) { }
+  constructor(public authService: AuthService,
+              public router: Router,
+              public route: ActivatedRoute) { }
 
   logout(){
     this.authService.logout();
+    this.router.navigateByUrl ('/login');
   }
 
 }
