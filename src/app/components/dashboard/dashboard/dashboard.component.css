@@ -1,18 +1,39 @@
 :host {
     display: grid;
     grid-template-columns: 80px repeat(6, 1fr) 80px;
-    grid-template-rows: 80px 240px 240px 240px 100px;
+    grid-template-rows: 30px repeat(6, 200px) 100px;
+
+    row-gap: 40px;
 
     background-color: #76a9b3;
 
 }
 
-app-navigation {
+
+/* app-navigation {
     grid-column: 1 / -1;
     grid-row: 1;
+} */
+
+app-forecast {
+  grid-column: 2 / 8;
+  grid-row: 2 / 4;
 }
 
 
+
+.lessons-schedule{
+  display: grid;
+  grid-column: 2 / 8;
+  grid-row: 4 /8 ;
+
+  outline: 1px dashed rgb(255, 255, 255);
+
+  place-content: center;
+}
+
+
+/* DEPRECATED BELOW */
 /*
     ----- DASHBOARD -----
  */

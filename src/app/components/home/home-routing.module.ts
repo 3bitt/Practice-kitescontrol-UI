@@ -11,11 +11,11 @@ const homeRoutes: Routes = [
   {
     path: '',
     component: HomeComponent,
-    canActivate: [AuthGuard],
+    // canActivate: [AuthGuard],
     children: [
       {
         path: '',
-        canActivateChild: [AuthGuard],
+        // canActivateChild: [AuthGuard],
         children: [
 
           { path: 'dashboard', loadChildren: () => import('../dashboard/dashboard.module').then(m => m.DashboardModule) },
