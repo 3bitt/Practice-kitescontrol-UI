@@ -1,6 +1,7 @@
+import { Subscription } from 'rxjs';
 import { LessonService } from './../../../service/lesson/lesson.service';
 import { Lesson } from './../model/lesson';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { HttpErrorResponse } from '@angular/common/http';
 
@@ -9,7 +10,7 @@ import { HttpErrorResponse } from '@angular/common/http';
   templateUrl: './lesson-add.component.html',
   styleUrls: ['./lesson-add.component.css']
 })
-export class LessonAddComponent implements OnInit {
+export class LessonAddComponent implements OnInit, OnDestroy {
 
   constructor(
     private _lessonService: LessonService
@@ -19,6 +20,7 @@ export class LessonAddComponent implements OnInit {
   public formSubmitted = false
   newLesson: Lesson;
   public postSuccess = false;
+  private postLesson$: Subscription;
 
   makeForm(form: NgForm){
 
@@ -32,7 +34,7 @@ export class LessonAddComponent implements OnInit {
     }
 
   onSubmit(){
-    this._lessonService.postLesson(this.newLesson).
+    this.postLesson$ = this._lessonService.postLesson(this.newLesson).
     subscribe(
       data => (console.log('Success: ', data),
               this.formReady = false,
@@ -46,6 +48,10 @@ export class LessonAddComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  }
+
+  ngOnDestroy(){
+    this.postLesson$.unsubscribe();
   }
 
 }

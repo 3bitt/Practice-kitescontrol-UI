@@ -28,7 +28,7 @@ export class LessonListComponent implements OnInit, OnDestroy {
   // }
 
 
-
+// Using async in template
   ngOnInit(){
     this.lessons$ = this._lessonService.lessons$
     .pipe(

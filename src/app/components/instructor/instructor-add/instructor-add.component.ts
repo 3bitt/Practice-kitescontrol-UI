@@ -1,3 +1,4 @@
+import { Subscription } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { Instructor } from '../model/instructor';
@@ -20,6 +21,7 @@ export class InstructorAddComponent {
   public formReady = false
   public formSubmitted = false
   newInstructor: Instructor;
+  newInstructor$: Subscription;
 
   public postSuccess = false;
 
@@ -35,7 +37,7 @@ export class InstructorAddComponent {
     }
 
   onSubmit(){
-    this._instructorService.postInstructor(this.newInstructor)
+    this.newInstructor$ = this._instructorService.postInstructor(this.newInstructor)
     .subscribe(
       data => (console.log('Success: ', data),
               this.postSuccess = true,
@@ -46,6 +48,9 @@ export class InstructorAddComponent {
                 this.postSuccess=false
                 ),
     );
+    setTimeout(() => this.newInstructor$.unsubscribe(), 3000)
+    ;
+
   }
 
 }

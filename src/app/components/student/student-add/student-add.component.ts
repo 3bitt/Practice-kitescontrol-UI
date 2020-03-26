@@ -5,7 +5,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgModel, NgForm } from '@angular/forms';
 import { NgClass, formatDate, getLocaleDateFormat } from '@angular/common';
 import { format } from 'util';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
@@ -20,6 +20,7 @@ export class StudentAddComponent implements OnInit {
   public formReady = false
   public formSubmitted = false
   newStudent: Student;
+  newStudent$: Subscription;
 
   public postSuccess = false;
 
@@ -35,7 +36,7 @@ export class StudentAddComponent implements OnInit {
     }
 
     onSubmit(){
-      this._studentService.postStudent(this.newStudent).
+      this.newStudent$ = this._studentService.postStudent(this.newStudent).
       subscribe(
         data => (console.log('Success: ', data),
                 this.formReady = false,
@@ -45,7 +46,9 @@ export class StudentAddComponent implements OnInit {
         (error: HttpErrorResponse) => (console.log('Error: ', error),
                   this.postSuccess=false
                   ),
-      )
+      );
+      setTimeout(() => this.newStudent$.unsubscribe(), 3000)
+      ;
     }
 
 
