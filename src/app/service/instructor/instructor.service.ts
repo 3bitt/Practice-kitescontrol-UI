@@ -61,5 +61,10 @@ export class InstructorService {
     return this.http.post<Instructor>(this._postInstructor, instructor)
     .pipe(catchError(this.handleError))
   };
+
+  deleteInstructor(id: number){
+    let instructorId = `${this._getInstructorURL}${id}/delete/`
+    return this.http.delete<any>(instructorId)
+  };
 }
 

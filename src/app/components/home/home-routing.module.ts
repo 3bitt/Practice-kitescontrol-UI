@@ -1,3 +1,4 @@
+import { LessonComponent } from './../lesson/lesson.component';
 import { AuthGuard } from './../auth/guard/auth.guard';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
@@ -20,6 +21,7 @@ const homeRoutes: Routes = [
           { path: 'dashboard', loadChildren: () => import('../dashboard/dashboard.module').then(m => m.DashboardModule) },
           { path: 'students', loadChildren: () => import('../student/student.module').then(m => m.StudentModule) },
           { path: 'instructors', loadChildren: () => import('../instructor/instructor.module').then(m => m.InstructorModule) },
+          { path: 'lessons', loadChildren: () => import('../lesson/lesson.module').then(m => m.LessonModule) },
           { path: '', redirectTo: 'dashboard', pathMatch: 'full'},
 
     ]}

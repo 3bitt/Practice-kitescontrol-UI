@@ -27,7 +27,7 @@
           Lekcja
         </a>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-          <a class="dropdown-item" href="#">Dodaj [+]</a>
+          <a class="dropdown-item" [routerLink]="['./lessons/add-lesson']" routerLinkActive="router-link-active"  >Dodaj [+]</a>
           <a class="dropdown-item" href="#">Znajdź [O]</a>
           <a class="dropdown-item" [routerLink]="['./lessons']" routerLinkActive="router-link-active" >Baza [=]</a>
         </div>

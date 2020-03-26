@@ -43,6 +43,16 @@ export class InstructorListComponent implements OnInit, OnDestroy {
     });
   };
 
+  deleteInstructor(id: number){
+    this.instructors$ = this._instructorService.deleteInstructor(id)
+    .subscribe( (data) => { this.instructors.results = data;
+      console.log(data);
+
+    }, err => {
+      console.log('ERR:', err);
+    });
+  }
+
   ngOnDestroy(){
     this.instructors$.unsubscribe();
   };

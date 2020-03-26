@@ -25,6 +25,7 @@ export class StudentService {
   private _getStudentURL: string = this.baseUrl + "students/?orderBy=register_date"
   private _getStudentByIdURL: string = this.baseUrl + "students/"
   private _postStudent: string = this.baseUrl + "students/create/"
+  // private _deleteStudentURL: string = this.baseUrl + "students"
 
   private handleError<T> (operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
@@ -53,5 +54,10 @@ export class StudentService {
 
   postStudent(student: Student){
     return this.http.post<any>(this._postStudent, student);
+  }
+
+  deleteStudent(id: number){
+    let studentId = `${this._getStudentByIdURL}${id}/delete/`
+    return this.http.delete<any>(studentId)
   }
 }

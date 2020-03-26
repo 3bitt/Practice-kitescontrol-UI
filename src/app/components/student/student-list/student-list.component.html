@@ -43,7 +43,13 @@
                 <td>{{student.birth_date | date: 'dd-MM-yyyy'}}</td>
                 <td>{{student.weight}}</td>
                 <td>{{student.register_date | date: 'dd-MM-yyyy' }}</td>
-                <td><a [routerLink]="['.', student.id]">Szczegóły</a></td>
+                <td class="table-details-col">
+                  <a [routerLink]="['.', student.id]">Szczegóły</a>
+                  <span (click)="deleteStudent(student.id)" title="Usuń">
+                    <i  class="fas fa-user-times"></i>
+                  </span>
+
+                </td>
 
             </tr>
         </tbody>

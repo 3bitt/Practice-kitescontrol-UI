@@ -1,3 +1,4 @@
+import { IpagingResponse } from './../../../models/response';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { StudentService } from 'src/app/service/student/student.service';
@@ -10,7 +11,7 @@ import { StudentService } from 'src/app/service/student/student.service';
 
 export class StudentListComponent implements OnInit, OnDestroy {
 
-  public students;
+  public students: IpagingResponse;
   public students$;
   public searchList = [];
   public searchValue = '';
@@ -34,11 +35,23 @@ export class StudentListComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.students$ = this._studentService.getStudents()
-    .subscribe((data) => { this.students = data
+    .subscribe((data) => { this.students = data,
+      console.log(this.students$)
     }, err => {
       console.log('ERR:', err);
       });
     }
+
+  deleteStudent(id: number){
+    this.students$ = this._studentService.deleteStudent(id)
+    .subscribe( (data) => { this.students.results = data;
+      console.log(data);
+
+    }, err => {
+      console.log('ERR:', err);
+    });
+
+  }
 
     ngOnDestroy(){
       this.students$.unsubscribe();
