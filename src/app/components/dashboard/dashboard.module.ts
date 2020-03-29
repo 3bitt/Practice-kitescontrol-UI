@@ -1,3 +1,4 @@
+import { ScheduleComponent } from './schedule/schedule.component';
 import { SafePipe } from './forecast/safe.pipe';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
@@ -14,6 +15,7 @@ import { ForecastComponent } from './forecast/forecast.component';
     DashboardComponent,
     ForecastComponent,
     SafePipe,
+    ScheduleComponent
   ],
   imports: [
     CommonModule,

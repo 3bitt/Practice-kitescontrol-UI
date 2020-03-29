@@ -37,7 +37,7 @@ export class LessonListComponent implements OnInit, OnDestroy {
         this.errorMessage = error;
         return of(null);
       })
-    )
+    );
 
   }
 
