@@ -5,6 +5,7 @@ import { catchError, map } from 'rxjs/operators';
 import { Observable, of } from 'rxjs';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { IStudentPagingResponse, IStudentDetailResponse } from 'src/app/shared/API-response/IStudentResponse';
 
 @Injectable({
   providedIn: 'root'
@@ -36,7 +37,7 @@ export class StudentService {
     };
   }
 
-  getStudents(): Observable<IpagingResponse>{
+  getStudents(): Observable<IStudentPagingResponse>{
     return this.http.get<any>(this._getStudentURL)
       .pipe(
         catchError(this.handleError('getStudents', []))
@@ -44,7 +45,7 @@ export class StudentService {
   };
 
 
-  getStudentById(id: number | string){
+  getStudentById(id: number | string): Observable<IStudentDetailResponse>{
     let studentId = `${this._getStudentByIdURL}${id}/`
     return this.http.get<any>(studentId)
       .pipe(

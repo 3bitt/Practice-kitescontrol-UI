@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
 import { catchError, tap } from 'rxjs/operators';
 import { Observable, of } from 'rxjs';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
+import { ILessonPagingResponse } from 'src/app/shared/API-response/ILessonResponse';
 
 
 
@@ -37,7 +38,7 @@ export class LessonService {
   }
 
 
-  lessons$ = this.http.get<IpagingResponse>(this._getLessonURL)
+  lessons$ = this.http.get<ILessonPagingResponse>(this._getLessonURL)
     .pipe(
       catchError(this.handleError)
       );

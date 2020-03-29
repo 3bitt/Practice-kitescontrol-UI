@@ -4,6 +4,7 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
 import { Observable, of, throwError } from 'rxjs';
 import { catchError, tap, map } from 'rxjs/operators';
 import { IpagingResponse, IDetailResponse } from 'src/app/models/response';
+import { IInstructorPagingResponse } from 'src/app/shared/API-response/IInstructorResponse';
 
 
 @Injectable({
@@ -43,7 +44,7 @@ export class InstructorService {
 
 
   getInstructors() {
-    return this.http.get<IpagingResponse>(this._getInstructorURL)
+    return this.http.get<IInstructorPagingResponse>(this._getInstructorURL)
       .pipe(
         catchError(this.handleError)
       );

@@ -2,6 +2,7 @@ import { IpagingResponse } from './../../../models/response';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { StudentService } from 'src/app/service/student/student.service';
+import { IStudentPagingResponse } from 'src/app/shared/API-response/IStudentResponse';
 
 @Component({
   selector: 'app-student-list',
@@ -11,7 +12,7 @@ import { StudentService } from 'src/app/service/student/student.service';
 
 export class StudentListComponent implements OnInit, OnDestroy {
 
-  public students: IpagingResponse;
+  public students: IStudentPagingResponse;
   public students$;
   public searchList = [];
   public searchValue = '';

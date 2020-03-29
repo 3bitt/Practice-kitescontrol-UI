@@ -3,6 +3,7 @@ import { Observable, Subscription, of } from 'rxjs';
 import { IpagingResponse } from 'src/app/models/response';
 import { LessonService } from './../../../service/lesson/lesson.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import { ILessonPagingResponse } from 'src/app/shared/API-response/ILessonResponse';
 
 @Component({
   selector: 'app-lesson-list',
@@ -15,7 +16,7 @@ export class LessonListComponent implements OnInit, OnDestroy {
     private _lessonService: LessonService
   ) { }
 
-  public lessons: IpagingResponse;
+  public lessons: ILessonPagingResponse;
   public lessons$: Observable<IpagingResponse>;
 
   public errorMessage;

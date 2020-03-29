@@ -1,3 +1,4 @@
+import { IStudentDetailResponse } from './../../../shared/API-response/IStudentResponse';
 import { switchMap } from 'rxjs/operators';
 import { Observable, Subscription } from 'rxjs';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
@@ -14,7 +15,7 @@ import { IIStudent } from '../model/student-interface';
 })
 export class StudentDetailComponent implements OnInit, OnDestroy {
 
-  public student;
+  public student: IStudentDetailResponse;
   private student$: Subscription;
 
   constructor(private _studentService: StudentService,
@@ -25,7 +26,7 @@ export class StudentDetailComponent implements OnInit, OnDestroy {
     ngOnInit(){
       this.student$ = this.route.paramMap.pipe(
         switchMap((params: ParamMap) =>
-        this.student = this._studentService.getStudentById(+params.get('id')))
+        this._studentService.getStudentById(+params.get('id')))
       ).subscribe(data => this.student = data);
     }
 

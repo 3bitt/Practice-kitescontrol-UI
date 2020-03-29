@@ -3,6 +3,7 @@ import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import { InstructorService } from 'src/app/service/instructor/instructor.service';
+import { IInstructorDetailResponse } from 'src/app/shared/API-response/IInstructorResponse';
 
 @Component({
   selector: 'app-instructor-detail',
@@ -12,7 +13,7 @@ import { InstructorService } from 'src/app/service/instructor/instructor.service
 export class InstructorDetailComponent implements OnInit, OnDestroy {
 
   private instructor$: Subscription;
-  public instructor;  //: IgetInstructorByIdResponse;
+  public instructor: IInstructorDetailResponse;  //: IgetInstructorByIdResponse;
   public instructorId;
 
   constructor(private _instructorService: InstructorService,
