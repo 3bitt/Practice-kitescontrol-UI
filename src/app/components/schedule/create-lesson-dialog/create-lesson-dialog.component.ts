@@ -1,4 +1,5 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { Component, OnInit, Inject, OnDestroy } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ScheduleService } from 'src/app/service/schedule/schedule.service';
 import { HttpErrorResponse } from '@angular/common/http';
@@ -8,7 +9,7 @@ import { HttpErrorResponse } from '@angular/common/http';
   templateUrl: './create-lesson-dialog.component.html',
   styleUrls: ['./create-lesson-dialog.component.css']
 })
-export class CreateLessonDialogComponent implements OnInit {
+export class CreateLessonDialogComponent implements OnInit, OnDestroy {
 
   // currentDate = new Date().toISOString().slice(0, 10);
 
@@ -19,9 +20,16 @@ export class CreateLessonDialogComponent implements OnInit {
   ) { }
 
 
-  private sub;
+  public subscription$: Subscription;
+
   ngOnInit(): void {
 
+  }
+
+  ngOnDestroy(){
+    if (this.subscription$){
+      this.subscription$.unsubscribe();
+    }
   }
 
   onClickDialog(lessonForm){
@@ -30,14 +38,13 @@ export class CreateLessonDialogComponent implements OnInit {
   }
 
   createLesson(lesson){
-    this.sub = this.scheduleService.createLesson(lesson.value).
+    this.subscription$ = this.scheduleService.createLesson(lesson.value).
     subscribe(
       data => (console.log('CREATED:', data),
 
       (error: HttpErrorResponse) => (console.log('Error: ', error)
       ))
     );
-    setTimeout(() => this.sub.unsubscribe(), 3000);
   };
 
 }

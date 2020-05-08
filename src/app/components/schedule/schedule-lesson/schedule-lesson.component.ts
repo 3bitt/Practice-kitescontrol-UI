@@ -14,7 +14,7 @@ export class ScheduleLessonComponent implements OnInit, OnDestroy {
     private scheduleService: ScheduleService
   ) { }
 
-  private subscription$: Subscription;
+  public subscription$: Subscription;
   @Input() instructor
 
 
@@ -25,7 +25,9 @@ export class ScheduleLessonComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(){
-    this.subscription$.unsubscribe();
+    if (this.subscription$){
+      this.subscription$.unsubscribe();
+    }
   }
 
   lessonAction(lesson){

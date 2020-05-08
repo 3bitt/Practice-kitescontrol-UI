@@ -2,3 +2,7 @@
   display: grid;
 }
 
+mat-divider{
+  background-color: black;
+}
+

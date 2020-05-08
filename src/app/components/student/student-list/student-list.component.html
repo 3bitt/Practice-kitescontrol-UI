@@ -6,7 +6,10 @@
 
 
 <div class="search-field" >
-  <input  #inputBox [ngModel]='searchValue' (input)="search(inputBox.value)" type="text"  placeholder="Szukaj kursanta..."/>
+  <input type="text" placeholder="Szukaj kursanta..."
+  #inputBox
+  [ngModel]='searchValue'
+  (input)="search(inputBox.value)"   />
 </div>
   <div class="search-list-container">
     <ul class="search-ul-Parent" *ngIf="searchList.length">
