@@ -1,7 +1,7 @@
 :host {
     display: grid;
-    grid-template-columns: 80px repeat(6, 1fr) 80px;
-    grid-template-rows: 30px repeat(6, 200px) 100px;
+    grid-template-columns: 30px repeat(6, 1fr) 30px;
+    grid-template-rows: 30px 200px auto 100px;
 
     row-gap: 40px;
 
@@ -22,7 +22,7 @@ app-forecast {
 
 app-schedule {
   grid-column: 2 / 8;
-  grid-row: 3 / 7 ;
+  grid-row: 3 / 4 ;
 }
 
 

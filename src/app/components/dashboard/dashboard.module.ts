@@ -1,4 +1,4 @@
-import { ScheduleComponent } from './schedule/schedule.component';
+import { ScheduleModule } from './../schedule/schedule.module';
 import { SafePipe } from './forecast/safe.pipe';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
@@ -8,6 +8,8 @@ import { DashboardRoutingModule } from './dashboard-routing.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ForecastComponent } from './forecast/forecast.component';
 
+// Material Table
+import { MatTableModule} from '@angular/material/table';
 
 
 @NgModule({
@@ -15,11 +17,13 @@ import { ForecastComponent } from './forecast/forecast.component';
     DashboardComponent,
     ForecastComponent,
     SafePipe,
-    ScheduleComponent
   ],
   imports: [
     CommonModule,
-    DashboardRoutingModule
+    ScheduleModule,
+    DashboardRoutingModule,
+    MatTableModule,
+    ScheduleModule,
   ]
 })
 export class DashboardModule { }

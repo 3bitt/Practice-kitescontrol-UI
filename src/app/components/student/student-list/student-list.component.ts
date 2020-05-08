@@ -36,8 +36,7 @@ export class StudentListComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.students$ = this._studentService.getStudents()
-    .subscribe((data) => { this.students = data,
-      console.log(this.students$)
+    .subscribe((data) => { this.students = data
     }, err => {
       console.log('ERR:', err);
       });

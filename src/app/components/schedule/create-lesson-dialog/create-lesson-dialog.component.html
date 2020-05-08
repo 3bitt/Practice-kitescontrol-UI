@@ -1,0 +1,134 @@
+<p>create-lesson-dialog works!</p>
+
+
+<h2 mat-dialog-title>Nowa lekcja</h2>
+<mat-dialog-content class="dialog-content">
+
+  <form id="lessonForm" #lessonForm="ngForm" >
+
+  <mat-form-field>
+    <mat-label>Data</mat-label>
+    <input matInput
+    type="date"
+    required="true"
+    ngModel
+    name="date">
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Kursant</mat-label>
+    <input matInput
+    type="text"
+    ngModel
+    name="student">
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Instruktor</mat-label>
+    <input matInput
+    type="text"
+    ngModel
+    name="instructor">
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Godzina (12h format)</mat-label>
+    <input matInput
+    type="time"
+    ngModel
+    name="time">
+  </mat-form-field>
+
+  <!-- CSS for dropdown in style.css file -->
+  <mat-form-field>
+    <mat-label>Czas lekcji w godzinach</mat-label>
+    <mat-select
+    [disableOptionCentering]="true"
+    panelClass="dialog-dropdown"
+    ngModel
+    name="lessonDuration"
+    >
+      <mat-option value="30">0.5</mat-option>
+      <mat-option value="60">1</mat-option>
+      <mat-option value="90">1.5</mat-option>
+      <mat-option value="120">2</mat-option>
+      <mat-option value="150">2.5</mat-option>
+      <mat-option value="180">3</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field >
+    <mat-label>Sprzęt</mat-label>
+    <mat-select
+    [disableOptionCentering]="true"
+    panelClass="dialog-dropdown"
+    ngModel
+    name="equipment">
+      <mat-option value="Szkółka">Szkółka</mat-option>
+      <mat-option value="Własny">Własny</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <div>
+    <mat-checkbox ngModel name="paid" >Zapłacona ?</mat-checkbox>
+  </div>
+
+  <mat-form-field >
+    <mat-label>Status</mat-label>
+    <mat-select
+    [disableOptionCentering]="true"
+    panelClass="dialog-dropdown"
+    ngModel
+    name="status">
+      <mat-option value="Niepotwierdzona">Niepotwierdzona</mat-option>
+      <mat-option value="Potwierdzona">Potwierdzona</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field >
+    <mat-label>Dodatkowe informacje</mat-label>
+    <textarea matInput
+    type="text"
+    ngModel
+    name="comment"></textarea>
+  </mat-form-field>
+
+  <mat-divider></mat-divider>
+  <mat-divider></mat-divider>
+  <mat-divider></mat-divider>
+
+    <mat-form-field >
+      <mat-label>Latawiec</mat-label>
+      <input matInput
+      type="text"
+      ngModel
+      name="kite">
+    </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Rozmiar</mat-label>
+    <input matInput
+    type="number"
+    ngModel
+    name="kiteSize">
+  </mat-form-field>
+
+  <mat-form-field >
+    <mat-label>Deska</mat-label>
+    <input matInput
+    type="number"
+    ngModel
+    name="kiteBoard">
+  </mat-form-field>
+
+  <mat-dialog-actions>
+    <button mat-stroked-button (click)="onClickDialog(lessonForm)">
+      Print
+    </button>
+    <button mat-stroked-button (click)="createLesson(lessonForm)">
+      Submit
+    </button>
+  </mat-dialog-actions>
+</form>
+
+</mat-dialog-content>

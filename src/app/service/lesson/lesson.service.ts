@@ -43,13 +43,13 @@ export class LessonService {
       catchError(this.handleError)
       );
 
-
-  // getLessons(){
-  //   return this.http.get<any>(this._getLessonURL)
-  //     .pipe(
-  //       catchError(this.handleError('getLessons', []))
-  //     );
-  // };
+// Used by Schedule component only
+  getLessons(): Observable<ILessonPagingResponse>{
+    return this.http.get<any>(this._getLessonURL)
+      .pipe(
+        catchError(this.handleError('getLessons', []))
+      );
+  };
 
   getLessonById(id: Number): Observable<any>{
     let lessonId = `${this._getLessonURL}${id}/`

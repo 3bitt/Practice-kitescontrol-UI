@@ -1,0 +1,116 @@
+
+
+<div class="instr-cell">
+  <div class="d">
+  <span>{{instructor.name}}</span>
+</div>
+</div>
+
+
+<div class="lessons-time-grid">
+
+  <div class="background-grid">
+  <div class="background-block"></div>
+  <div class="background-block"></div>
+  <div class="background-block"></div>
+  <div class="background-block"></div>
+  <div class="background-block"></div>
+  <div class="background-block"></div>
+  <div class="background-block"></div>
+  <div class="background-block"></div>
+  <div class="background-block"></div>
+  <div class="background-block"></div>
+  <div class="background-block"></div>
+  <div class="background-block"></div>
+  <div class="background-block"></div>
+  <div class="background-block"></div>
+  <div class="background-block"></div>
+  <div class="background-block"></div>
+  <div class="background-block"></div>
+  <div class="background-block"></div>
+  <div class="background-block"></div>
+  <div class="background-block"></div>
+  <div class="background-block"></div>
+  <div class="background-block"></div>
+  <div class="background-block"></div>
+  <div class="background-block"></div>
+  <div class="background-block"></div>
+  <div class="background-block"></div>
+  <div class="background-block"></div>
+  <div class="background-block"></div>
+  <div class="background-block"></div>
+  <div class="background-block"></div>
+  <div class="background-block"></div>
+  <div class="background-block"></div>
+
+</div>
+  <!-- ^([1-9][0-9]:[0-3]+) - Regexp for lesson time. ex. 12:30 -->
+  <!-- (^[1-9][0-9]|(?<=0)[0-9]) - gets only first digits -->
+
+
+  <div class="lesson-cell" *ngFor="let lesson of instructor.lessons"
+    [style.grid-column]="(lesson.time | timeToPosition) + '/ span '+ (lesson.duration / 60) * 2">
+
+    <div class="lesson-header">
+      <div class="lesson-inner-time">
+        {{lesson.time | slice:0:5}}
+      </div>
+
+      <div class="lesson-student-name"
+      *ngFor="let student of lesson.student">
+        {{student.name}} {{student.surname[0]}}
+      </div>
+
+      <div class="lesson-action" >
+
+        <div class="lesson-action-button" >
+          <mat-icon (click)="lessonAction(lesson)">more_vert</mat-icon>
+        </div>
+
+        <div class="actions-menu" *ngIf="lesson.clicked">
+
+          <button class="delete-lesson-btn" (click)="deleteLesson(lesson.id)">
+            <fa-icon class="icon-confirmed"
+            [icon]="faCheck">
+          </fa-icon>
+        </button>
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- Lesson duration condition - if smaller width then smaller font siez -->
+    <div *ngIf="((lesson.duration / 60) * 2) >= 3" class="lesson-info">
+
+      <div *ngIf="lesson.status == 'Potwierdzona'"
+      class="lesson-confirmed">
+      <fa-icon class="icon-confirmed" [icon]="faCheck"></fa-icon>
+      </div>
+
+      <div class="lesson-equipment">
+        <span>{{lesson.kite_brand}} {{lesson.kite_size}} {{lesson.board}}
+        </span>
+      </div>
+    </div>
+      <!-- else -->
+    <div *ngIf="((lesson.duration / 60) * 2) < 3" class="lesson-info-smaller">
+
+      <div *ngIf="lesson.status == 'Potwierdzona'"
+      class="lesson-confirmed">
+      <fa-icon class="icon-confirmed-smaller" [icon]="faCheck"></fa-icon>
+      </div>
+
+      <div class="lesson-equipment-smaller">
+        <span>{{lesson.kite_brand}} {{lesson.kite_size}} </span>
+        <span>{{lesson.board}}</span>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+
