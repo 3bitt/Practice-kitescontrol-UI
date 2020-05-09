@@ -6,3 +6,34 @@ mat-divider{
   background-color: black;
 }
 
+.student-input{
+  position: relative;
+}
+
+.search-list-container{
+  position: absolute;
+  background-color: rgb(141, 141, 141);
+  z-index: 5;
+}
+.search-ul-Parent{
+  list-style: none;
+  width: 230px;
+  height: 150px;
+  padding: 2px 1px 1px 2px;
+  margin: 2px 0 2px 0;
+
+  overflow-y: scroll;
+
+}
+
+.search-list-container li{
+  color: black;
+  cursor: pointer;
+  padding-top: 3px;
+
+}
+
+.searchElement:hover{
+  background: #b3d7df;
+
+}

@@ -13,28 +13,50 @@
     name="date">
   </mat-form-field>
 
-  <mat-form-field>
+  <mat-form-field class="student-input">
     <mat-label>Kursant</mat-label>
-    <input matInput
-    type="text"
-    [ngModel]
-    name="student">
+    <input matInput #studentNameInput type="text" name="student" [value]='selectedStudent' [ngModel]='studentId'
+    (input)="search(studentNameInput)" (focus)="search(studentNameInput)"
+    (blur)="hideList()">
+
+    <div class="search-list-container">
+      <ul class="search-ul-Parent" *ngIf="studentsDisplayList.length">
+        <li class="searchElement" *ngFor="let student of studentsDisplayList"
+        (mousedown)="getNameValue(student, studentNameInput)">
+
+            {{student.name}} {{student.surname}}
+
+        </li>
+      </ul>
+    </div>
+
   </mat-form-field>
 
   <mat-form-field>
     <mat-label>Instruktor</mat-label>
-    <input matInput
-    type="text"
-    ngModel
-    name="instructor">
+    <input matInput #instructorNameInput type="text" name="instructor" [value]='selectedInstructor' [ngModel]='instructorId'
+    (input)="search(instructorNameInput)" (focus)="search(instructorNameInput)"
+    (blur)="hideList()">
+
+    <div class="search-list-container">
+      <ul class="search-ul-Parent" *ngIf="instructorDisplayList.length">
+        <li class="searchElement" *ngFor="let instructor of instructorDisplayList"
+        (mousedown)="getNameValue(instructor, instructorNameInput)">
+
+            {{instructor.name}} {{instructor.surname}}
+
+        </li>
+      </ul>
+    </div>
   </mat-form-field>
 
   <mat-form-field>
-    <mat-label>Godzina (12h format)</mat-label>
+    <mat-label>Godzina (24h) np. 14:30</mat-label>
     <input matInput
-    type="time"
+    type="text"
     ngModel
     name="time">
+
   </mat-form-field>
 
   <!-- CSS for dropdown in style.css file -->
@@ -44,7 +66,7 @@
     [disableOptionCentering]="true"
     panelClass="dialog-dropdown"
     ngModel
-    name="lessonDuration"
+    name="duration"
     >
       <mat-option value="30">0.5</mat-option>
       <mat-option value="60">1</mat-option>
@@ -95,28 +117,28 @@
   <mat-divider></mat-divider>
   <mat-divider></mat-divider>
 
-    <mat-form-field >
-      <mat-label>Latawiec</mat-label>
-      <input matInput
-      type="text"
-      ngModel
-      name="kite">
-    </mat-form-field>
+  <mat-form-field >
+    <mat-label>Latawiec</mat-label>
+    <input matInput
+    type="text"
+    ngModel
+    name="kite_brand">
+  </mat-form-field>
 
-  <mat-form-field>
+  <!-- <mat-form-field>
     <mat-label>Rozmiar</mat-label>
     <input matInput
     type="number"
     ngModel
-    name="kiteSize">
-  </mat-form-field>
+    name="kite_size">
+  </mat-form-field> -->
 
   <mat-form-field >
     <mat-label>Deska</mat-label>
     <input matInput
     type="number"
     ngModel
-    name="kiteBoard">
+    name="board">
   </mat-form-field>
 
   <mat-dialog-actions>

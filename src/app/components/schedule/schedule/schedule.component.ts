@@ -1,5 +1,6 @@
+import { ScheduleControllerService } from './../schedule-controller/schedule-controller.service';
 import { ISchedule } from './../model/schedule-interface';
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ChangeDetectionStrategy } from '@angular/core';
 import { Subscription } from 'rxjs';
 
 import { MatDialog } from '@angular/material/dialog';
@@ -11,12 +12,13 @@ import { CreateLessonDialogComponent } from '../create-lesson-dialog/create-less
 @Component({
   selector: 'app-schedule',
   templateUrl: './schedule.component.html',
-  styleUrls: ['./schedule.component.css']
+  styleUrls: ['./schedule.component.css'],
 })
 export class ScheduleComponent implements OnInit {
 
   constructor(private scheduleService: ScheduleService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private scheduleNotif: ScheduleControllerService
     ) { }
 
   service$: Subscription;
@@ -30,6 +32,14 @@ export class ScheduleComponent implements OnInit {
 
 
   ngOnInit() {
+    this.getTodaysLessons();
+
+    this.service$ = this.scheduleService.refreshFunc.
+      subscribe( () => { this.getTodaysLessons();
+      });
+  }
+
+  private getTodaysLessons(){
     this.service$ = this.scheduleService.getInstructorsLessons()
         .subscribe((data: ISchedule) => this.instructorsWithLessons = data);
   }

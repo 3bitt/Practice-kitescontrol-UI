@@ -1,7 +1,7 @@
 import { StudentService } from 'src/app/service/student/student.service';
 import { Student } from './../model/student';
 import { IStudent } from './../../../models/studentModel';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { NgModel, NgForm } from '@angular/forms';
 import { NgClass, formatDate, getLocaleDateFormat } from '@angular/common';
 import { format } from 'util';
@@ -13,7 +13,7 @@ import { HttpErrorResponse } from '@angular/common/http';
   templateUrl: './student-add.component.html',
   styleUrls: ['./student-add.component.css']
 })
-export class StudentAddComponent implements OnInit {
+export class StudentAddComponent implements OnInit, OnDestroy {
 
   constructor(private _studentService: StudentService) {  }
 
@@ -47,11 +47,16 @@ export class StudentAddComponent implements OnInit {
                   this.postSuccess=false
                   ),
       );
-      setTimeout(() => this.newStudent$.unsubscribe(), 3000)
-      ;
     }
 
 
   ngOnInit() {
+  }
+
+  ngOnDestroy(){
+    if (this.newStudent$){
+      this.newStudent$.unsubscribe();
+    }
+
   }
 }

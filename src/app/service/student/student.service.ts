@@ -37,7 +37,7 @@ export class StudentService {
     };
   }
 
-  getStudents(): Observable<IStudentPagingResponse>{
+  getStudents(): Observable<IStudentPagingResponse | any>{
     return this.http.get<any>(this._getStudentURL)
       .pipe(
         catchError(this.handleError('getStudents', []))

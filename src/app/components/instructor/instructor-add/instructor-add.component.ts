@@ -1,6 +1,6 @@
 import { Subscription } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Instructor } from '../model/instructor';
 import { NgForm } from '@angular/forms';
 import { HttpErrorResponse } from '@angular/common/http';
@@ -12,7 +12,7 @@ import { InstructorService } from 'src/app/service/instructor/instructor.service
   templateUrl: './instructor-add.component.html',
   styleUrls: ['./instructor-add.component.css']
 })
-export class InstructorAddComponent {
+export class InstructorAddComponent implements OnDestroy {
 
   constructor(private _instructorService: InstructorService,
               private route: ActivatedRoute,
@@ -48,9 +48,12 @@ export class InstructorAddComponent {
                 this.postSuccess=false
                 ),
     );
-    setTimeout(() => this.newInstructor$.unsubscribe(), 3000)
-    ;
+  }
 
+  ngOnDestroy(){
+    if (this.newInstructor$){
+      this.newInstructor$.unsubscribe();
+    }
   }
 
 }

@@ -9,17 +9,19 @@
   <input type="text" placeholder="Szukaj kursanta..."
   #inputBox
   [ngModel]='searchValue'
-  (input)="search(inputBox.value)"   />
+  (input)="search(inputBox.value)"/>
+
 </div>
-  <div class="search-list-container">
-    <ul class="search-ul-Parent" *ngIf="searchList.length">
-      <li class="searchElement" *ngFor="let student of searchList" >
-        <a [routerLink]="['./', student.id]">
-          {{student.name}} {{student.surname}}
-        </a>
-      </li>
-    </ul>
-  </div>
+<div class="search-list-container">
+  <ul class="search-ul-Parent" *ngIf="searchList.length">
+    <li class="searchElement" *ngFor="let student of searchList" >
+      <a [routerLink]="['./', student.id]">
+        {{student.name}} {{student.surname}}
+      </a>
+    </li>
+  </ul>
+</div>
+
 
 
 

@@ -1,3 +1,4 @@
+import { ScheduleService } from './../../service/schedule/schedule.service';
 import { CreateLessonDialogComponent } from './create-lesson-dialog/create-lesson-dialog.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NgModule } from '@angular/core';
@@ -42,7 +43,8 @@ import { MatButtonModule } from '@angular/material/button';
     MatSelectModule,
     MatCheckboxModule,
     MatIconModule,
-    MatButtonModule
+    MatButtonModule,
+    MatInputModule,
     // LessonSchedulePositionPipe
 
   ],
@@ -52,7 +54,8 @@ import { MatButtonModule } from '@angular/material/button';
   providers: [
     LessonService,
     StudentService,
-    InstructorService
+    InstructorService,
+    ScheduleService
   ],
 })
 export class ScheduleModule { }
