@@ -19,8 +19,10 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 
 
+import { registerLocaleData } from '@angular/common';
+import localePl from '@angular/common/locales/pl';
 
-
+registerLocaleData(localePl, 'pl_PL');
 
 
 @NgModule({

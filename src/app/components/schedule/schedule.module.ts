@@ -20,6 +20,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { ScheduleLessonPositionPipe } from 'src/app/shared/pipes/lesson-schedule-position.pipe';
 import {MatIconModule} from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { DateSwitcherComponent } from './date-switcher/date-switcher.component';
 
 @NgModule({
 
@@ -28,7 +29,8 @@ import { MatButtonModule } from '@angular/material/button';
     ScheduleComponent,
     ScheduleLessonComponent,
     CreateLessonDialogComponent,
-    ScheduleLessonPositionPipe
+    ScheduleLessonPositionPipe,
+    DateSwitcherComponent
   ],
 
   imports: [

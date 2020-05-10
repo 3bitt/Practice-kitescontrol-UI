@@ -10,7 +10,6 @@ import { ScheduleService } from 'src/app/service/schedule/schedule.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { MatInput } from '@angular/material/input';
 import { formatDate } from '@angular/common';
-import { ScheduleControllerService } from '../schedule-controller/schedule-controller.service';
 
 @Component({
   selector: 'app-create-lesson-dialog',
@@ -27,7 +26,6 @@ export class CreateLessonDialogComponent implements OnInit, OnDestroy {
     private scheduleService: ScheduleService,
     private studentService: StudentService,
     private instructorService: InstructorService,
-    private scheduleNotif: ScheduleControllerService
   ) { }
 
   public subscription$: Subscription;
@@ -106,6 +104,7 @@ export class CreateLessonDialogComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.students$ = this.studentService.getStudents().
       subscribe((data) => this.studentsSourceList = data);
+
     this.students$ = this.instructorService.getInstructors().
       subscribe( data => this.instructorsSourceList = data);
   }

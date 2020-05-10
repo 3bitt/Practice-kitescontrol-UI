@@ -27,19 +27,19 @@ export class ScheduleService {
 
   private baseUrl = "/api/"
 
-  private _url: string          = "/api/custom?date=2020-04-01";
+  private _url: string          = "/api/custom?date=";
   private _createLesson: string = "/api/lessons/create/"
   private _deleteLesson: string = "/api/lessons/id/delete/"
 
 
-  private refreshSchedule = new Subject<void>();
+  private refreshSchedule = new Subject<any>();
 
   get refreshFunc(){
     return this.refreshSchedule;
   }
 
-  getInstructorsLessons(){
-    return this.http.get(this._url).
+  getInstructorsLessons(date: string){
+    return this.http.get(this._url + date).
     pipe(
       catchError(this.handleError)
     );
@@ -58,6 +58,10 @@ export class ScheduleService {
     pipe(
       catchError(this.handleError)
     );
+  }
+
+  reloadSchedule(date: string){
+    this.refreshSchedule.next(date);
   }
 
 

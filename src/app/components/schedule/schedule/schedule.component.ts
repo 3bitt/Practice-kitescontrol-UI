@@ -1,4 +1,3 @@
-import { ScheduleControllerService } from './../schedule-controller/schedule-controller.service';
 import { ISchedule } from './../model/schedule-interface';
 import { Component, OnInit, Input, ChangeDetectionStrategy } from '@angular/core';
 import { Subscription } from 'rxjs';
@@ -18,12 +17,10 @@ export class ScheduleComponent implements OnInit {
 
   constructor(private scheduleService: ScheduleService,
     private dialog: MatDialog,
-    private scheduleNotif: ScheduleControllerService
     ) { }
 
   service$: Subscription;
-
-
+  currentDate: string;
   public instructorsWithLessons: ISchedule;
 
 
@@ -32,15 +29,20 @@ export class ScheduleComponent implements OnInit {
 
 
   ngOnInit() {
-    this.getTodaysLessons();
+
+    this.currentDate = new Date().toISOString().slice(0,10);
+
+    this.getTodaysLessons(this.currentDate);
 
     this.service$ = this.scheduleService.refreshFunc.
-      subscribe( () => { this.getTodaysLessons();
+      subscribe( (receivedDate) => { this.getTodaysLessons(receivedDate ? receivedDate: this.currentDate);
       });
+      console.log(this.instructorsWithLessons);
+
   }
 
-  private getTodaysLessons(){
-    this.service$ = this.scheduleService.getInstructorsLessons()
+  getTodaysLessons(date: string){
+    this.service$ = this.scheduleService.getInstructorsLessons(date)
         .subscribe((data: ISchedule) => this.instructorsWithLessons = data);
   }
 

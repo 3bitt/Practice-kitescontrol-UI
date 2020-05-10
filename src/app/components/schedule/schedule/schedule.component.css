@@ -1,17 +1,48 @@
 :host{
   display: grid;
+  position: relative;
 
   grid-template-columns: 1fr;
-  grid-template-rows: 100px 600px;
+  grid-template-rows: 80px 600px;
   background-color: rgb(134, 171, 192);
 }
 
+.schedule-btn-container{
+  display: flex;
+  /* position: relative; */
+
+  grid-row: 1;
+  flex-direction: row;
+
+  margin-left: 10px;
+  margin-top: 10px;
+}
+
+.schedule-btn-wrapper{
+  margin-right: 10px;
+}
+
+.schedule-date-switcher{
+  position: absolute;
+  right: 41%;
+}
+
+
+/* Schedule body */
 .scheduler-wrapper {
   grid-column: 1;
   grid-row: 2 / 3;
 
   border: 2px solid rgb(35, 139, 108);
   overflow: hidden;
+}
+
+.empty-schedule{
+  grid-column: 1;
+  grid-row: 2 / 3;
+}
+.empty-info{
+  text-align: center;
 }
 
 .schedule-container{
@@ -28,13 +59,6 @@
   grid-row: 2;
   /* grid-column: 1 / -1; */
   /* grid-row: 1 / 2; */
-}
-
-.schedule-buttons{
-  display: grid;
-  grid-auto-flow: column;
-  column-gap: 40px;
-  margin-left: 20px;
 }
 
 .schedule-icon{
