@@ -1,13 +1,155 @@
 <!-- <router-outlet></router-outlet> -->
 
-<div *ngIf="instructor">
-  <h2>Instructors detail </h2>
+<h1>{{instructor.name}} {{instructor.surname}}</h1>
+
+<div *ngIf="instructor && !editMode">
 
   <a [routerLink]="['..']">Back</a>
-  <ul>
-      <li>{{instructor.name}}</li>
-      <li>{{instructor.surname}}</li>
-      <li>{{instructor.birth_date}}</li>
-      <li>{{instructor.weight}}</li>
-  </ul>
+  <div class="detail-container">
+    <ul class="detail-list">
+
+      <li class="detail-list-item">
+        <div class="detail-list-content">
+          <h3>Imię i nazwisko</h3>
+          <span class="instructor-name">{{instructor.name}} {{instructor.surname}}</span>
+        </div>
+      </li>
+
+      <li class="detail-list-item">
+        <div class="detail-list-content">
+          <h3>Email</h3>
+          <span>{{instructor.email_address}}</span>
+        </div>
+      </li>
+
+      <li class="detail-list-item">
+        <div class="detail-list-content">
+          <h3>Numer telefonu</h3>
+          <span>{{instructor.mobile_number}}</span>
+        </div>
+      </li>
+
+      <li class="detail-list-item">
+        <div class="detail-list-content">
+          <h3>Data urodzenia</h3>
+          <span>{{instructor.birth_date}}</span>
+        </div>
+      </li>
+
+      <li class="detail-list-item">
+        <div class="detail-list-content">
+          <h3>Waga</h3>
+          <span>{{instructor.weight}}</span>
+        </div>
+      </li>
+
+      <li class="detail-list-item">
+        <div class="detail-list-content">
+          <h3>Poziom IKO</h3>
+          <span>{{instructor.iko_level}}</span>
+        </div>
+      </li>
+
+      <li class="detail-list-item">
+        <div class="detail-list-content">
+          <h3>Dostępny od</h3>
+          <span>{{instructor.available_from}}</span>
+        </div>
+      </li>
+
+      <li class="detail-list-item">
+        <div class="detail-list-content">
+          <h3>Dostępny do</h3>
+          <span>{{instructor.available_to}}</span>
+        </div>
+      </li>
+
+      <li class="detail-list-item">
+        <div class="detail-list-content">
+          <h3>Stawka</h3>
+          <span>{{instructor.pay_rate}}</span>
+        </div>
+      </li>
+
+      <li class="detail-list-item">
+        <div class="detail-list-content">
+          <h3>Zajęcia po angielsku</h3>
+          <span *ngIf="instructor.english_lessons">
+            Tak
+            <fa-icon class="fa-icon fa-icon-yes" [icon]="faCheckIcon"></fa-icon>
+          </span>
+          <span *ngIf="!instructor.english_lessons">
+            Nie
+            <fa-icon class="fa-icon fa-icon-no" [icon]="faNoIcon"></fa-icon>
+          </span>
+        </div>
+      </li>
+
+      <li class="detail-list-item">
+        <div class="detail-list-content">
+          <h3>Zajęcia z dziećmi</h3>
+          <span *ngIf="instructor.kids_lessons">
+            Tak
+            <fa-icon class="fa-icon fa-icon-yes" [icon]="faCheckIcon"></fa-icon>
+          </span>
+          <span *ngIf="!instructor.kids_lessons">
+            Nie
+            <fa-icon class="fa-icon fa-icon-no" [icon]="faNoIcon"></fa-icon>
+          </span>
+        </div>
+      </li>
+
+      <li class="detail-list-item">
+        <div class="detail-list-content">
+          <h3>Zajęcia grupowe</h3>
+          <span *ngIf="instructor.group_lessons">
+            Tak
+            <fa-icon class="fa-icon fa-icon-yes" [icon]="faCheckIcon"></fa-icon>
+          </span>
+          <span *ngIf="!instructor.group_lessons">
+            Nie
+            <fa-icon class="fa-icon fa-icon-no" [icon]="faNoIcon"></fa-icon>
+          </span>
+        </div>
+      </li>
+
+      <li class="detail-list-item">
+        <div class="detail-list-content">
+          <h3>Dzienny limit godzin</h3>
+          <span>{{instructor.daily_hour_limit}}</span>
+        </div>
+      </li>
+
+      <li class="detail-list-item">
+        <div class="detail-list-content">
+          <h3>Aktywny</h3>
+          <span *ngIf="instructor.active">
+            Tak
+            <fa-icon class="fa-icon fa-icon-yes" [icon]="faCheckIcon"></fa-icon>
+          </span>
+          <span *ngIf="!instructor.active">
+            Nie
+            <fa-icon class="fa-icon fa-icon-no" [icon]="faNoIcon"></fa-icon>
+          </span>
+        </div>
+      </li>
+
+    </ul>
+
+    <div class="edit-btn">
+      <button mat-raised-button (click)="showEdit()" >Edytuj</button>
+    </div>
+
+  </div>
+
+
+
 </div>
+
+
+<app-instructor-detail-edit
+*ngIf="editMode"
+[instructor]="instructor"
+(editInstructorEmitter)="onReceiveEditForm($event)"
+(cancelEditEmitter)="editMode=false">
+</app-instructor-detail-edit>

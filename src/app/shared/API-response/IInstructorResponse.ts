@@ -14,6 +14,7 @@ export interface IInstructorDetailResponse {
   nickname:         null | string;
   mobile_number:    null | string;
   birth_date:       string;
+  email_address:    string;
   weight:           number;
   available_from:   null | string;
   available_to:     null | string;
@@ -21,7 +22,7 @@ export interface IInstructorDetailResponse {
   pay_rate:         number | null;
   english_lessons:  boolean | null;
   kids_lessons:     boolean | null;
-  group_lessons:    boolean | null;
+  group_lessons:    boolean;
   daily_hour_limit: number | null;
   active:           boolean;
 }
@@ -33,6 +34,7 @@ export interface Result {
   nickname:         null | string;
   mobile_number:    null | string;
   birth_date:       string;
+  email_address:    string;
   weight:           number;
   available_from:   null | string;
   available_to:     null | string;

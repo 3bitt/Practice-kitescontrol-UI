@@ -31,6 +31,7 @@
                 <th scope="col">Nazwisko</th>
                 <th scope="col">Data urodzenia</th>
                 <th scope="col">Waga</th>
+                <th scope="col">Grupowe</th>
                 <th scope="col">Szczegóły</th>
             </tr>
         </thead>
@@ -41,6 +42,7 @@
                 <td>{{instructor.surname}}</td>
                 <td>{{instructor.birth_date}}</td>
                 <td>{{instructor.weight}}</td>
+                <td>{{instructor.group_lessons}}</td>
                 <td class="table-details-col">
                   <a [routerLink]="['./', instructor.id]">Szczegóły</a>
                   <span (click)="deleteInstructor(instructor.id)" title="Usuń">

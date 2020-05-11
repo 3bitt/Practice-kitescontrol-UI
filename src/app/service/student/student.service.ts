@@ -26,7 +26,7 @@ export class StudentService {
   private _getStudentURL: string = this.baseUrl + "students/?orderBy=register_date";
   private _getStudentByIdURL: string = this.baseUrl + "students/";
   private _postStudent: string = this.baseUrl + "students/create/";
-  private _patchStudent: string = this.baseUrl + "students/id/update/";
+  private _putStudent: string = this.baseUrl + "students/id/update/";
   // private _deleteStudentURL: string = this.baseUrl + "students"
 
   private handleError<T> (operation = 'operation', result?: T) {
@@ -65,12 +65,12 @@ export class StudentService {
 
 
   putStudent(id: number|string, student: Student){
-    let url = this._patchStudent.replace('id', id.toString());
+    let url = this._putStudent.replace('id', id.toString());
     return this.http.put<any>(url, student);
   }
 
   patchStudent(id: number|string, student: Student){
-    let url = this._patchStudent.replace('id', id.toString());
+    let url = this._putStudent.replace('id', id.toString());
     return this.http.patch<any>(url, student);
   }
 }

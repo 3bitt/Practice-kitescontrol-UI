@@ -25,13 +25,25 @@ export class InstructorAddComponent implements OnDestroy {
 
   public postSuccess = false;
 
-  makeForm(form: NgForm){
+  makeForm(form){
 
     this.newInstructor = new Instructor (
-      form.value.firstName,
-      form.value.lastName,
-      form.value.birthDate,
-      form.value.weight
+      form.firstName,
+      form.lastName,
+      form.nickname,
+      form.mobile,
+      form.emailAddress,
+      form.birthDate,
+      form.weight,
+      form.availableFrom,
+      form.availableTo,
+      form.ikoLevel,
+      form.payRate,
+      form.englishLessons,
+      form.kidsLessons,
+      form.groupLessons,
+      form.dailyHourLimit,
+      form.active
     );
       console.log(this.newInstructor);
     }

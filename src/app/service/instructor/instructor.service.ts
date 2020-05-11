@@ -22,8 +22,9 @@ export class InstructorService {
 
   constructor(private http: HttpClient) { }
 
-  private _getInstructorURL: string = this.baseUrl + "instructors/"
-  private _postInstructor: string = this.baseUrl + "instructors/create/"
+  private _getInstructorURL: string = this.baseUrl + "instructors/";
+  private _postInstructor: string = this.baseUrl + "instructors/create/";
+  private _putInstructor: string = this.baseUrl + "instructors/id/update/";
 
 
   private handleError(error: HttpErrorResponse) {
@@ -67,5 +68,15 @@ export class InstructorService {
     let instructorId = `${this._getInstructorURL}${id}/delete/`
     return this.http.delete<any>(instructorId)
   };
+
+  putStudent(id: number|string, student: Instructor){
+    let url = this._putInstructor.replace('id', id.toString());
+    return this.http.put<any>(url, student);
+  }
+
+  patchStudent(id: number|string, student: Instructor){
+    let url = this._putInstructor.replace('id', id.toString());
+    return this.http.patch<any>(url, student);
+  }
 }
 
