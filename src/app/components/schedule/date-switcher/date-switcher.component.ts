@@ -12,7 +12,7 @@ import {faChevronLeft, faChevronRight} from '@fortawesome/free-solid-svg-icons';
   templateUrl: './date-switcher.component.html',
   styleUrls: ['./date-switcher.component.css']
 })
-export class DateSwitcherComponent implements OnInit, OnDestroy {
+export class DateSwitcherComponent implements OnInit {
 
   constructor(
     private scheduleService: ScheduleService
@@ -21,7 +21,7 @@ export class DateSwitcherComponent implements OnInit, OnDestroy {
 
   // currentdate = formatDate(new Date().toISOString().slice(0, 10), 'dd-MM-yyyy', 'pl_PL')
 
-  subscription: Subscription;
+  subscription$: Subscription;
 
   currentDate: Date;
   scheduledate: Date;
@@ -34,9 +34,11 @@ export class DateSwitcherComponent implements OnInit, OnDestroy {
     this.scheduledate = new Date();
   }
 
-  ngOnDestroy(): void {
-    this.subscription.unsubscribe()
-  }
+  // ngOnDestroy(): void {
+  //   if (this.subscription$){
+  //     this.subscription$.unsubscribe();
+  //   }
+  // }
 
   nextDay(){
     this.scheduledate = new Date(

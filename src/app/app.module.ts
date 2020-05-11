@@ -21,6 +21,9 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 
 import { registerLocaleData } from '@angular/common';
 import localePl from '@angular/common/locales/pl';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
 
 registerLocaleData(localePl, 'pl_PL');
 
@@ -39,6 +42,19 @@ registerLocaleData(localePl, 'pl_PL');
     HomeModule,
     AuthModule,
     AppRoutingModule,
+
+    MatDialogModule,
+    FormsModule,
+    MatDividerModule,
+    MatInputModule,
+    MatDialogModule,
+    FontAwesomeModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    MatCheckboxModule,
+    MatIconModule,
+    MatButtonModule,
+    MatInputModule,
 
 
   ],

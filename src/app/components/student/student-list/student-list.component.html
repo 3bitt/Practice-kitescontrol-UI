@@ -34,6 +34,10 @@
                 <th scope="col">#</th>
                 <th scope="col">Imię</th>
                 <th scope="col">Nazwisko</th>
+
+                <th scope="col">Email</th>
+                <th scope="col">Telefon</th>
+
                 <th scope="col">Data urodzenia</th>
                 <th scope="col">Waga</th>
                 <th scope="col">Data rejestracji</th>
@@ -45,6 +49,8 @@
                 <td>{{i+1}}</td>
                 <td>{{student.name}}</td>
                 <td>{{student.surname}}</td>
+                <td>{{student.email_address}}</td>
+                <td>{{student.mobile_number}}</td>
                 <td>{{student.birth_date}}</td>
                 <td>{{student.weight}}</td>
                 <td>{{student.register_date | date: 'dd-MM-yyyy'}}</td>

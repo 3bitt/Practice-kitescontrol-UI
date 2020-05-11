@@ -8,7 +8,7 @@ export interface IStudentPagingResponse {
 }
 
 export interface IStudentDetailResponse {
-  id:            number;
+  id?:            number;
   name:          string;
   surname:       string;
   birth_date:    string;
@@ -20,7 +20,7 @@ export interface IStudentDetailResponse {
   arrival_date:  string;
   leave_date:    string;
   comment:       string;
-  register_date: string;
+  register_date?: string;
 }
 
 export interface Result {

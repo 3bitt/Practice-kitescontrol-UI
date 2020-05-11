@@ -1,5 +1,5 @@
 import { ISchedule } from './../model/schedule-interface';
-import { Component, OnInit, Input, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 
 import { MatDialog } from '@angular/material/dialog';

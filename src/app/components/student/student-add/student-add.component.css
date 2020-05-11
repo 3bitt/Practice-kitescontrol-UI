@@ -1,4 +1,4 @@
-:host { 
+:host {
     display: grid;
     grid-template-columns: 50px 400px auto;
 
@@ -10,6 +10,10 @@
 }
 
 /* --------------- FORM --------------- */
+
+input{
+  height: 30px;
+}
 
 .form-group #birthDate{
     width: 150px;
@@ -70,7 +74,7 @@ button{
 .confirmed-form-buttons{
     display: flex;
     place-content: space-evenly;
-     
+
 }
 /* Confirm buttons styling */
 .btn-labeled {
@@ -84,7 +88,7 @@ button{
     padding: 4px 9px;
     background: rgba(0,0,0,0.15);
     border-radius: 3px 0 0 3px;
-} 
+}
 .confirmed-form-buttons.confirmed-edit.btn {
     width: 90px;
 }

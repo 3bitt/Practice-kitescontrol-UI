@@ -1,3 +1,4 @@
+import { IStudentDetailResponse } from './../../../shared/API-response/IStudentResponse';
 import { StudentService } from 'src/app/service/student/student.service';
 import { Student } from './../model/student';
 import { IStudent } from './../../../models/studentModel';
@@ -22,15 +23,25 @@ export class StudentAddComponent implements OnInit, OnDestroy {
   newStudent: Student;
   newStudent$: Subscription;
 
+  stud: IStudentDetailResponse;
+
   public postSuccess = false;
 
   makeForm(form: NgForm){
 
+    // Order of fields matters
     this.newStudent = new Student (
       form.value.firstName,
       form.value.lastName,
+      form.value.emailAddress,
+      form.value.mobile,
       form.value.birthDate,
-      form.value.weight
+      form.value.weight,
+      form.value.stayLocation,
+      form.value.ikoLevel,
+      form.value.arrivalDate,
+      form.value.leaveDate,
+      form.value.comment
     );
       console.log(this.newStudent);
     }
