@@ -3,28 +3,37 @@
 
 <!-- Schedule header buttons -->
 <div class="schedule-btn-container">
-  <div class="schedule-btn-wrapper">
+
+  <div class="schedule-btn-wrapper add-lesson-btn-div">
     <button mat-raised-button class="add-lesson-btn"
     (click)="openDialog()">
       <fa-icon class="lesson-add-icon schedule-icon" [icon]="faPlus"></fa-icon>
         Nowa lekcja
     </button>
-
   </div>
-  <div class="schedule-btn-wrapper">
+<!-- date picker workaround - btn and input overlap each other in CSS -->
+  <div class="schedule-btn-wrapper history-btn-div">
     <button mat-raised-button>
       <fa-icon class="lesson-history-icon schedule-icon" [icon]="faCalendar"></fa-icon>
       Historia
+      <div class="history-div">
+        <input #date class="history-input"
+        type="date"  (change)="showScheduleByDate(date.value)" >
+      </div>
     </button>
+
+
+
   </div>
 
   <div class="schedule-date-switcher">
-    <app-date-switcher></app-date-switcher>
+    <app-date-switcher  [scheduleDate]="currDateAsDate"></app-date-switcher>
   </div>
+
 </div>
 
 <!-- Schedule body -->
-<div class="scheduler-wrapper" *ngIf="instructorsWithLessons.instructors.length > 0">
+<div class="scheduler-wrapper" *ngIf="instructorsWithLessons?.instructors.length > 0">
   <div class="schedule-container">
 
 <!-- Schedule header >->->-> Date + hours -->
@@ -67,7 +76,7 @@
 </div>
 
 <!-- If no lessons -->
-<div class="empty-schedule" *ngIf="instructorsWithLessons.instructors.length == 0">
+<div class="empty-schedule" *ngIf="instructorsWithLessons?.instructors.length == 0">
   <div class="empty-info">
     <h2>Tego dnia nie ma żadnych lekcji</h2>
     <h3>Użyj przycisku "Nowa lekcja" żeby dodać lekcje </h3>

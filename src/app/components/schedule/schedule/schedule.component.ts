@@ -1,5 +1,5 @@
 import { ISchedule } from './../model/schedule-interface';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Subscription } from 'rxjs';
 
 import { MatDialog } from '@angular/material/dialog';
@@ -20,25 +20,23 @@ export class ScheduleComponent implements OnInit {
     ) { }
 
   service$: Subscription;
-  currentDate: string;
   public instructorsWithLessons: ISchedule;
 
+  currDateAsString: string;
+  currDateAsDate: Date;
 
   faPlus = faPlus;
   faCalendar = faCalendarAlt;
 
-
   ngOnInit() {
 
-    this.currentDate = new Date().toISOString().slice(0,10);
+    this.currDateAsString = new Date().toISOString().slice(0,10);
 
-    this.getTodaysLessons(this.currentDate);
+    this.getTodaysLessons(this.currDateAsString);
 
     this.service$ = this.scheduleService.refreshFunc.
-      subscribe( (receivedDate) => { this.getTodaysLessons(receivedDate ? receivedDate: this.currentDate);
+      subscribe( (receivedDate) => { this.getTodaysLessons(receivedDate ? receivedDate: this.currDateAsString);
       });
-      console.log(this.instructorsWithLessons);
-
   }
 
   getTodaysLessons(date: string){
@@ -53,6 +51,13 @@ export class ScheduleComponent implements OnInit {
         height: "auto",
         width: "350px"
     } );
+  }
+
+  showScheduleByDate(date){
+    this.service$ = this.scheduleService.getInstructorsLessons(date)
+        .subscribe((data: ISchedule) => this.instructorsWithLessons = data);
+
+    this.currDateAsDate = new Date(date);
   }
 
   ngOnDestroy(): void {
