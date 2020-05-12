@@ -32,8 +32,10 @@ export class ScheduleComponent implements OnInit {
 
     this.currDateAsString = new Date().toISOString().slice(0,10);
 
+    // Get lessons for given date (default: today)
     this.getTodaysLessons(this.currDateAsString);
 
+    // Subscribe to refresh view requests
     this.service$ = this.scheduleService.refreshFunc.
       subscribe( (receivedDate) => { this.getTodaysLessons(receivedDate ? receivedDate: this.currDateAsString);
       });
@@ -48,8 +50,7 @@ export class ScheduleComponent implements OnInit {
     let dialogRef = this.dialog.open(
       CreateLessonDialogComponent,
       {
-        height: "auto",
-        width: "350px"
+        panelClass: 'dialog'
     } );
   }
 

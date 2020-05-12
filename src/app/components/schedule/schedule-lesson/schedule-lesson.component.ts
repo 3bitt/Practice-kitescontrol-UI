@@ -1,7 +1,9 @@
 import { Subscription } from 'rxjs';
-import { Component, OnInit, Input, OnDestroy } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy, ElementRef } from '@angular/core';
 import { ScheduleService } from 'src/app/service/schedule/schedule.service';
 import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
+import { ISchedule, IScheduleInstructor } from '../model/schedule-interface';
+
 
 @Component({
   selector: 'app-schedule-lesson',
@@ -15,7 +17,7 @@ export class ScheduleLessonComponent implements OnInit, OnDestroy {
   ) { }
 
   public subscription$: Subscription;
-  @Input() instructor
+  @Input() instructor: IScheduleInstructor;
 
 
 
@@ -24,17 +26,16 @@ export class ScheduleLessonComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
   }
 
-  ngOnDestroy(){
-    if (this.subscription$){
-      this.subscription$.unsubscribe();
-    }
-  }
 
-  lessonAction(lesson){
-    if (lesson['clicked'] == undefined || lesson['clicked'] == false){
-      lesson['clicked'] = true
+  showLessonActionsMenu(elementRef: HTMLElement){
+    if (elementRef.classList.contains('clicked')){
+      elementRef.style['visibility']='hidden';
+      elementRef.classList.remove('clicked');
+      elementRef.parentElement.style.backgroundColor = 'transparent';
     } else {
-      lesson['clicked'] = false
+      elementRef.style['visibility']='visible';
+      elementRef.classList.add('clicked');
+      elementRef.parentElement.style.backgroundColor = '#baa8fa';
     }
   }
 
@@ -46,7 +47,12 @@ export class ScheduleLessonComponent implements OnInit, OnDestroy {
     }, err => {
       console.log('ERR:', err);
     });
+  }
 
+  ngOnDestroy(){
+    if (this.subscription$){
+      this.subscription$.unsubscribe();
+    }
   }
 
 }

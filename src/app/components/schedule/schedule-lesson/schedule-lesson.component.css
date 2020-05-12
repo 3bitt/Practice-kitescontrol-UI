@@ -69,6 +69,8 @@
 }
 
 .lesson-header{
+  position: relative;
+  white-space: nowrap;
   display: grid;
   grid-auto-columns: auto auto 17px;
   grid-template-rows: auto;
@@ -157,10 +159,11 @@
   place-content: center;
   position: relative;
 
+  border-radius: 2px 3px 0px 2px;
+
 }
 .lesson-action:hover{
-  background-color: rgb(186, 168, 250);
-  border-radius: 3px;
+  background-color: #baa8fa;
 }
 .lesson-action-button{
   cursor: pointer;
@@ -172,10 +175,38 @@
   position: absolute;
 }
 
-.actions-menu{
+.actionsMenu{
   position: absolute;
-  /* width: 100px;
-  height: 100px; */
-  left: 20px;
+  visibility: hidden;
+  left: 110%;
+  top: -20%;
+  height: 4rem;
+  display: flex;
+  flex-direction: column;
+  place-content: space-between;
+
+}
+
+.clicked{
+  /* background-color: red; */
+}
+.edit-lesson-icon{
+  font-size: 1.7rem;
+  color: rgb(54, 54, 54);
+}
+.edit-lesson-icon:hover{
+  font-size: 1.9rem;
+  color: black;
+  cursor: pointer;
+}
+
+.delete-lesson-icon{
+  font-size: 1.7rem;
+  color: rgb(155, 0, 0);
+}
+.delete-lesson-icon:hover{
+  font-size: 1.9rem;
+  color: rgb(236, 22, 22);
+  cursor: pointer;
 }
 

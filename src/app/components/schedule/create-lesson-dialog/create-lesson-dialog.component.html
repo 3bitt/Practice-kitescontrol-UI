@@ -2,153 +2,148 @@
 <h2 mat-dialog-title>Nowa lekcja</h2>
 <mat-dialog-content class="dialog-content">
 
-  <form id="lessonForm" #lessonForm="ngForm" >
+  <form class="dialog-form" autocomplete="off" id="lessonForm" #lessonForm="ngForm" >
 
-  <mat-form-field>
-    <mat-label>Data</mat-label>
-    <input matInput
-    type="date"
-    required="true"
-    ngModel
-    name="date">
-  </mat-form-field>
+    <div class="lesson-time-group">
+      <div class="form-field date-field">
+        <label for="date">Data</label>
+        <input class="date-field-input"
+        type="date"
+        required="true"
+        ngModel
+        name="date">
+      </div>
 
-  <mat-form-field class="student-input">
-    <mat-label>Kursant</mat-label>
-    <input matInput #studentNameInput type="text" name="student" [value]='selectedStudent' [ngModel]='studentId'
-    (input)="search(studentNameInput)" (focus)="search(studentNameInput)"
-    (blur)="hideList()">
+      <div class="form-field time-field">
+        <label for="time">Godzina lekcji</label>
+        <input
+        placeholder="np. 15:30"
+        type="text"
+        ngModel
+        name="time">
+      </div>
 
-    <div class="search-list-container">
-      <ul class="search-ul-Parent" *ngIf="studentsDisplayList.length">
-        <li class="searchElement" *ngFor="let student of studentsDisplayList"
-        (mousedown)="getNameValue(student, studentNameInput)">
-
-            {{student.name}} {{student.surname}}
-
-        </li>
-      </ul>
+      <div class="form-field duration-field">
+        <label for="duration">Czas [h]</label>
+        <select
+        ngModel
+        name="duration">
+          <option value="30">0.5</option>
+          <option value="60">1</option>
+          <option value="90">1.5</option>
+          <option value="120">2</option>
+          <option value="150">2.5</option>
+          <option value="180">3</option>
+        </select>
+      </div>
     </div>
 
-  </mat-form-field>
+    <div class="form-field student-field">
+      <label for="student">Kursant</label>
+      <input  #studentNameInput type="text" name="student" [value]='selectedStudent' [ngModel]='studentId'
+      (input)="search(studentNameInput)" (focus)="search(studentNameInput)"
+      (blur)="hideList()">
 
-  <mat-form-field>
-    <mat-label>Instruktor</mat-label>
-    <input matInput #instructorNameInput type="text" name="instructor" [value]='selectedInstructor' [ngModel]='instructorId'
-    (input)="search(instructorNameInput)" (focus)="search(instructorNameInput)"
-    (blur)="hideList()">
+      <div class="search-list-container">
+        <ul class="search-ul-Parent" *ngIf="studentsDisplayList.length">
+          <li class="searchElement" *ngFor="let student of studentsDisplayList"
+          (mousedown)="getNameValue(student, studentNameInput)">
 
-    <div class="search-list-container">
-      <ul class="search-ul-Parent" *ngIf="instructorDisplayList.length">
-        <li class="searchElement" *ngFor="let instructor of instructorDisplayList"
-        (mousedown)="getNameValue(instructor, instructorNameInput)">
+              {{student.name}} {{student.surname}}
 
-            {{instructor.name}} {{instructor.surname}}
+          </li>
+        </ul>
+      </div>
 
-        </li>
-      </ul>
     </div>
-  </mat-form-field>
 
-  <mat-form-field>
-    <mat-label>Godzina (24h) np. 14:30</mat-label>
-    <input matInput
-    type="text"
-    ngModel
-    name="time">
+    <div class="form-field instructor-field">
+      <label for="instructor">Instruktor</label>
+      <input  #instructorNameInput type="text" name="instructor" [value]='selectedInstructor' [ngModel]='instructorId'
+      (input)="search(instructorNameInput)" (focus)="search(instructorNameInput)"
+      (blur)="hideList()">
 
-  </mat-form-field>
+      <div class="search-list-container">
+        <ul class="search-ul-Parent" *ngIf="instructorDisplayList.length">
+          <li class="searchElement" *ngFor="let instructor of instructorDisplayList"
+          (mousedown)="getNameValue(instructor, instructorNameInput)">
 
-  <!-- CSS for dropdown in style.css file -->
-  <mat-form-field>
-    <mat-label>Czas lekcji w godzinach</mat-label>
-    <mat-select
-    [disableOptionCentering]="true"
-    panelClass="dialog-dropdown"
-    ngModel
-    name="duration"
-    >
-      <mat-option value="30">0.5</mat-option>
-      <mat-option value="60">1</mat-option>
-      <mat-option value="90">1.5</mat-option>
-      <mat-option value="120">2</mat-option>
-      <mat-option value="150">2.5</mat-option>
-      <mat-option value="180">3</mat-option>
-    </mat-select>
-  </mat-form-field>
+              {{instructor.name}} {{instructor.surname}}
 
-  <mat-form-field >
-    <mat-label>Sprzęt</mat-label>
-    <mat-select
-    [disableOptionCentering]="true"
-    panelClass="dialog-dropdown"
-    ngModel
-    name="equipment">
-      <mat-option value="Szkółka">Szkółka</mat-option>
-      <mat-option value="Własny">Własny</mat-option>
-    </mat-select>
-  </mat-form-field>
+          </li>
+        </ul>
+      </div>
+    </div>
 
-  <div>
-    <mat-checkbox ngModel name="paid" >Zapłacona ?</mat-checkbox>
-  </div>
+    <div class="form-field status-field">
+      <label for="status">Status</label>
+      <select
+      class="dialog-dropdown"
+      ngModel
+      name="status">
+        <option value="Niepotwierdzona">Niepotwierdzona</option>
+        <option value="Potwierdzona">Potwierdzona</option>
+      </select>
+    </div>
 
-  <mat-form-field >
-    <mat-label>Status</mat-label>
-    <mat-select
-    [disableOptionCentering]="true"
-    panelClass="dialog-dropdown"
-    ngModel
-    name="status">
-      <mat-option value="Niepotwierdzona">Niepotwierdzona</mat-option>
-      <mat-option value="Potwierdzona">Potwierdzona</mat-option>
-    </mat-select>
-  </mat-form-field>
+    <div class="form-field paid-field">
+      <mat-checkbox ngModel name="paid" >Zapłacona</mat-checkbox>
+    </div>
 
-  <mat-form-field >
-    <mat-label>Dodatkowe informacje</mat-label>
-    <textarea matInput
-    type="text"
-    ngModel
-    name="comment"></textarea>
-  </mat-form-field>
+    <hr>
 
-  <mat-divider></mat-divider>
-  <mat-divider></mat-divider>
-  <mat-divider></mat-divider>
+    <div class="form-field equipment-field">
+      <label for="equipment">Sprzęt</label>
+      <select
+      class="dialog-dropdown"
+      ngModel
+      name="equipment">
+        <option value="Szkółka">Szkółka</option>
+        <option value="Własny">Własny</option>
+      </select>
+    </div>
 
-  <mat-form-field >
-    <mat-label>Latawiec</mat-label>
-    <input matInput
-    type="text"
-    ngModel
-    name="kite_brand">
-  </mat-form-field>
+    <div class="form-field comment-field">
+      <label for="comment">Dodatkowe informacje</label>
+      <textarea
+      type="text"
+      ngModel
+      name="comment"></textarea>
+    </div>
 
-  <!-- <mat-form-field>
-    <mat-label>Rozmiar</mat-label>
-    <input matInput
-    type="number"
-    ngModel
-    name="kite_size">
-  </mat-form-field> -->
 
-  <mat-form-field >
-    <mat-label>Deska</mat-label>
-    <input matInput
-    type="number"
-    ngModel
-    name="board">
-  </mat-form-field>
+    <div class="form-field kite-field">
+      <label for="kite_brand">Latawiec</label>
+      <input
+      type="text"
+      ngModel
+      name="kite_brand">
+    </div>
 
-  <mat-dialog-actions>
-    <button mat-stroked-button (click)="onClickDialog(lessonForm)">
-      Print
-    </button>
-    <button mat-stroked-button (click)="createLesson(lessonForm)">
-      Submit
-    </button>
-  </mat-dialog-actions>
-</form>
+    <!-- <div>
+      <label>Rozmiar</label>
+      <input
+      type="number"
+      ngModel
+      name="kite_size">
+    </div> -->
+
+    <div class="form-field board-field">
+      <label for="board">Deska</label>
+      <input
+      type="text"
+      ngModel
+      name="board">
+    </div>
+
+    <mat-dialog-actions>
+      <button mat-stroked-button (click)="onClickDialog(lessonForm)">
+        Print
+      </button>
+      <button mat-stroked-button (click)="createLesson(lessonForm)">
+        Submit
+      </button>
+    </mat-dialog-actions>
+  </form>
 
 </mat-dialog-content>

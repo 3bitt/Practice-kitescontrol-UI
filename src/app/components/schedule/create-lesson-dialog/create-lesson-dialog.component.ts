@@ -4,7 +4,7 @@ import { IInstructorPagingResponse } from 'src/app/shared/API-response/IInstruct
 import { IStudentPagingResponse } from './../../../shared/API-response/IStudentResponse';
 import { StudentService } from 'src/app/service/student/student.service';
 import { Subscription } from 'rxjs';
-import { Component, OnInit, Inject, OnDestroy, Pipe, ElementRef } from '@angular/core';
+import { Component, OnInit, Inject, OnDestroy, Pipe, ElementRef, ViewEncapsulation } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ScheduleService } from 'src/app/service/schedule/schedule.service';
 import { HttpErrorResponse } from '@angular/common/http';
@@ -14,7 +14,8 @@ import { formatDate } from '@angular/common';
 @Component({
   selector: 'app-create-lesson-dialog',
   templateUrl: './create-lesson-dialog.component.html',
-  styleUrls: ['./create-lesson-dialog.component.css']
+  styleUrls: ['./create-lesson-dialog.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
 export class CreateLessonDialogComponent implements OnInit, OnDestroy {
 
@@ -114,6 +115,8 @@ export class CreateLessonDialogComponent implements OnInit, OnDestroy {
       this.subscription$.unsubscribe();
     }
     this.students$.unsubscribe();
+    console.log('destroy');
+
   }
 
   onClickDialog(lessonForm){

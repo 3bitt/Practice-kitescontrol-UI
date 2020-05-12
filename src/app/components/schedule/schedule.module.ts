@@ -21,6 +21,7 @@ import { ScheduleLessonPositionPipe } from 'src/app/shared/pipes/lesson-schedule
 import {MatIconModule} from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { DateSwitcherComponent } from './date-switcher/date-switcher.component';
+import { EditLessonDialogComponent } from './edit-lesson-dialog/edit-lesson-dialog.component';
 
 @NgModule({
 
@@ -30,7 +31,8 @@ import { DateSwitcherComponent } from './date-switcher/date-switcher.component';
     ScheduleLessonComponent,
     CreateLessonDialogComponent,
     ScheduleLessonPositionPipe,
-    DateSwitcherComponent
+    DateSwitcherComponent,
+    EditLessonDialogComponent
   ],
 
   imports: [

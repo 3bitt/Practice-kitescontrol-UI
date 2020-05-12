@@ -7,7 +7,7 @@
 </div>
 
 
-<div class="lessons-time-grid">
+<div class="lessons-time-grid" *ngIf="instructor">
 
   <div class="background-grid">
   <div class="background-block"></div>
@@ -48,7 +48,7 @@
   <!-- (^[1-9][0-9]|(?<=0)[0-9]) - gets only first digits -->
 
 
-  <div class="lesson-cell" *ngFor="let lesson of instructor.lessons"
+  <div class="lesson-cell" #lessonCell *ngFor="let lesson of instructor.lessons"
     [style.grid-column]="(lesson.time | timeToPosition) + '/ span '+ (lesson.duration / 60) * 2">
 
     <div class="lesson-header">
@@ -63,22 +63,29 @@
 
       <div class="lesson-action" >
 
-        <div class="lesson-action-button" >
-          <mat-icon (click)="lessonAction(lesson)">more_vert</mat-icon>
+        <div class="lesson-action-button"
+          (click)="showLessonActionsMenu(actionsMenu)" >
+          <mat-icon >more_vert</mat-icon>
         </div>
 
-        <div class="actions-menu" *ngIf="lesson.clicked">
+        <div #actionsMenu class="actionsMenu" >
+          <!-- (click)="deleteLesson(lesson.id)" -->
 
-          <button class="delete-lesson-btn" (click)="deleteLesson(lesson.id)">
-            <fa-icon class="icon-confirmed"
-            [icon]="faCheck">
-          </fa-icon>
-        </button>
+          <span class="material-icons md-48 edit-lesson-icon" >
+            settings
+          </span>
+
+          <span class="material-icons md-48 delete-lesson-icon"
+            (click)="deleteLesson(lesson.id)">
+          delete_forever
+          </span>
+
         </div>
 
       </div>
-
     </div>
+
+
 
 
     <!-- Lesson duration condition - if smaller width then smaller font siez -->
