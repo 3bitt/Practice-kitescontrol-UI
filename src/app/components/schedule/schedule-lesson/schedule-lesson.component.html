@@ -71,7 +71,8 @@
         <div #actionsMenu class="actionsMenu" >
           <!-- (click)="deleteLesson(lesson.id)" -->
 
-          <span class="material-icons md-48 edit-lesson-icon" >
+          <span class="material-icons md-48 edit-lesson-icon"
+          (click)="editLesson(lesson)">
             settings
           </span>
 

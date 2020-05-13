@@ -40,17 +40,26 @@
 
     <div class="form-field student-field">
       <label for="student">Kursant</label>
-      <input  #studentNameInput type="text" name="student" [value]='selectedStudent' [ngModel]='studentId'
+      <input  #studentNameInput type="text" name="student"
+      [ngModel]='studentIdsList'
       (input)="search(studentNameInput)" (focus)="search(studentNameInput)"
       (blur)="hideList()">
 
       <div class="search-list-container">
-        <ul class="search-ul-Parent" *ngIf="studentsDisplayList.length">
-          <li class="searchElement" *ngFor="let student of studentsDisplayList"
+        <ul class="search-ul-Parent" *ngIf="studentsDropdownList.length">
+          <li class="searchElement" *ngFor="let student of studentsDropdownList"
           (mousedown)="getNameValue(student, studentNameInput)">
 
               {{student.name}} {{student.surname}}
 
+          </li>
+        </ul>
+      </div>
+      <div class="student-display-list-div">
+        <ul class="student-display-list">
+          <li class="student-list-item" *ngFor="let stud of studentDisplayList">
+            <span>{{stud.name}}</span>
+            <fa-icon [icon]="faTimesIcon" (click)="removeStudent(stud.id)"></fa-icon>
           </li>
         </ul>
       </div>
@@ -59,17 +68,26 @@
 
     <div class="form-field instructor-field">
       <label for="instructor">Instruktor</label>
-      <input  #instructorNameInput type="text" name="instructor" [value]='selectedInstructor' [ngModel]='instructorId'
+      <input  #instructorNameInput type="text" name="instructor"
+      [ngModel]='instructorIdsList'
       (input)="search(instructorNameInput)" (focus)="search(instructorNameInput)"
       (blur)="hideList()">
 
       <div class="search-list-container">
-        <ul class="search-ul-Parent" *ngIf="instructorDisplayList.length">
-          <li class="searchElement" *ngFor="let instructor of instructorDisplayList"
+        <ul class="search-ul-Parent" *ngIf="instructorsDropdownList.length">
+          <li class="searchElement" *ngFor="let instructor of instructorsDropdownList"
           (mousedown)="getNameValue(instructor, instructorNameInput)">
 
               {{instructor.name}} {{instructor.surname}}
 
+          </li>
+        </ul>
+      </div>
+      <div class="instructor-display-list-div">
+        <ul class="instructor-display-list">
+          <li class="instructor-list-item" *ngFor="let instr of instructorDisplayList">
+            <span>{{instr.name}}</span>
+            <fa-icon [icon]="faTimesIcon" (click)="removeInstructor(instr.id)"></fa-icon>
           </li>
         </ul>
       </div>

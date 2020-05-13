@@ -8,7 +8,7 @@
 .dialog-form{
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: 55px 55px 55px 30px 55px 55px 55px 40px ;
+  grid-template-rows: 55px auto 55px 30px 55px 55px 55px 40px ;
 
   column-gap: 15px;
   row-gap: 8px;
@@ -58,16 +58,49 @@
 .duration-field{
   width: 100px;
 }
-
+/* STUDENT */
 .student-field{
   position: relative;
   grid-column: 1;
   grid-row: 2;
 }
+.student-display-list{
+  list-style: none;
+  padding: 0;
+  margin-top: 4px;
+}
+.student-list-item{
+  display: flex;
+  place-content: space-between;
+}
+.student-list-item:hover{
+  background-color: rgb(97, 97, 97);
+}
+.student-list-item fa-icon{
+  color: rgb(207, 0, 0);
+  cursor: pointer;
+}
 
+/* INSTRUCTOR */
 .instructor-field{
   grid-column: 2;
   grid-row: 2;
+}
+.instructor-display-list{
+  list-style: none;
+  padding: 0;
+  margin-top: 4px;
+}
+.instructor-list-item{
+  display: flex;
+  place-content: space-between;
+}
+.instructor-list-item:hover{
+  background-color: rgb(97, 97, 97);
+}
+.instructor-list-item fa-icon{
+  color: rgb(207, 0, 0);
+  cursor: pointer;
 }
 
 .status-field{

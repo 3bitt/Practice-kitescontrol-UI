@@ -10,6 +10,7 @@ import { ScheduleService } from 'src/app/service/schedule/schedule.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { MatInput } from '@angular/material/input';
 import { formatDate } from '@angular/common';
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-create-lesson-dialog',
@@ -32,48 +33,68 @@ export class CreateLessonDialogComponent implements OnInit, OnDestroy {
   public subscription$: Subscription;
 
   private students$;
+  faTimesIcon = faTimes;
 
   studentsSourceList: IStudentPagingResponse;
   instructorsSourceList: IInstructorPagingResponse;
 
-  studentsDisplayList = []
+  studentsDropdownList = []
   selectedStudent = '';
-  studentId: number[] = [];
+  studentIdsList: number[] = [];
 
-  instructorDisplayList = [];
+  instructorsDropdownList = [];
   selectedInstructor = '';
-  instructorId: number[] = [];
+  instructorIdsList: number[] = [];
 
   toggleList = false;
 
+  studentDisplayList = [];
+  instructorDisplayList= [];
+
+
 
   hideList(){
-    this.studentsDisplayList = [];
-    this.instructorDisplayList = [];
+    this.studentsDropdownList = [];
+    this.instructorsDropdownList = [];
     this.toggleList = false;
   }
 
   getNameValue(row, inputFieldRef){
     if (inputFieldRef.name == 'student'){
       this.studentsSourceList.results.forEach(item=>{
-        if(item.name === row.name){
-
-          this.studentId.push(row.id);
-          this.selectedStudent = row.name + ' ' + row.surname;
-
+        if(item.name === row.name && !this.studentIdsList.includes(item.id) ){
+          this.studentIdsList.push(row.id);
+          this.selectedStudent = '';
+          this.studentDisplayList.push(
+            {
+              id: row.id,
+              name: row.name.concat(' ', row.surname)
+            });
         }
-      })
-      this.studentsDisplayList = [];
+      });
+      console.log(this.studentIdsList);
+
+      this.studentsDropdownList = [];
 
     } else if (inputFieldRef.name == 'instructor'){
 
       this.instructorsSourceList.results.forEach(item=>{
-        if(item.name === row.name){
-          this.instructorId.push(row.id);
-          this.selectedInstructor = row.name + ' ' + row.surname;
+        if(item.name === row.name && !this.instructorIdsList.includes(item.id) &&
+        // ONE INSTRUCTOR ONLY
+        (this.instructorIdsList.length < 1)
+        ){
+          this.instructorIdsList.push(row.id);
+          this.selectedInstructor = '';
+          this.instructorDisplayList.push(
+            {
+              id: row.id,
+              name: row.name.concat(' ', row.surname)
+            });
         }
       })
-      this.instructorDisplayList = [];
+      console.log(this.instructorIdsList);
+
+      this.instructorsDropdownList = [];
     }
   }
 
@@ -82,23 +103,32 @@ export class CreateLessonDialogComponent implements OnInit, OnDestroy {
 
     if (inputField.name == 'student'){
       if (!inputField.value.trim()){
-        // this.studentsDisplayList=[]
-        this.studentsDisplayList = this.studentsSourceList.results;
+        // this.studentsDropdownList=[]
+        this.studentsDropdownList = this.studentsSourceList.results;
       } else {
-        this.studentsDisplayList = this.studentsSourceList.results
+        this.studentsDropdownList = this.studentsSourceList.results
           .filter(e => e.surname.match(regexp) || e.name.match(regexp));
       }
 
     } else if (inputField.name == 'instructor'){
 
       if (!inputField.value.trim()){
-        // this.studentsDisplayList=[]
-        this.instructorDisplayList = this.instructorsSourceList.results;
+        // this.studentsDropdownList=[]
+        this.instructorsDropdownList = this.instructorsSourceList.results;
       } else {
-        this.instructorDisplayList = this.instructorsSourceList.results
+        this.instructorsDropdownList = this.instructorsSourceList.results
           .filter(e => e.surname.match(regexp) || e.name.match(regexp));
       }
     }
+  }
+
+  removeStudent(studentId: string){
+    this.studentDisplayList = this.studentDisplayList.filter(item => item.id != studentId)
+    this.studentIdsList = this.studentIdsList.filter(item => item != +studentId)
+  }
+  removeInstructor(instructorId: string){
+    this.instructorDisplayList = this.instructorDisplayList.filter(item => item.id != instructorId)
+    this.instructorIdsList = this.instructorIdsList.filter(item => item != +instructorId)
   }
 
   ngOnInit(): void {
@@ -118,7 +148,7 @@ export class CreateLessonDialogComponent implements OnInit, OnDestroy {
 
   onClickDialog(lessonForm){
     console.log(lessonForm.value);
-    console.log(this.studentId);
+    console.log(this.studentIdsList);
   }
 
   createLesson(lesson){

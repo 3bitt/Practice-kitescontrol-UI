@@ -1,8 +1,10 @@
+import { EditLessonDialogComponent } from './../edit-lesson-dialog/edit-lesson-dialog.component';
 import { Subscription } from 'rxjs';
 import { Component, OnInit, Input, OnDestroy, ElementRef } from '@angular/core';
 import { ScheduleService } from 'src/app/service/schedule/schedule.service';
 import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
 import { ISchedule, IScheduleInstructor } from '../model/schedule-interface';
+import { MatDialog } from '@angular/material/dialog';
 
 
 @Component({
@@ -13,7 +15,8 @@ import { ISchedule, IScheduleInstructor } from '../model/schedule-interface';
 export class ScheduleLessonComponent implements OnInit, OnDestroy {
 
   constructor(
-    private scheduleService: ScheduleService
+    private scheduleService: ScheduleService,
+    private dialog: MatDialog,
   ) { }
 
   public subscription$: Subscription;
@@ -26,7 +29,6 @@ export class ScheduleLessonComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
   }
 
-
   showLessonActionsMenu(elementRef: HTMLElement){
     if (elementRef.classList.contains('clicked')){
       elementRef.style['visibility']='hidden';
@@ -37,6 +39,15 @@ export class ScheduleLessonComponent implements OnInit, OnDestroy {
       elementRef.classList.add('clicked');
       elementRef.parentElement.style.backgroundColor = '#baa8fa';
     }
+  }
+
+  editLesson(lessonObj: IScheduleInstructor): void{
+    let dialogRef = this.dialog.open(
+      EditLessonDialogComponent,
+      {
+        data: lessonObj
+      }
+    );
   }
 
   deleteLesson(id: number){
