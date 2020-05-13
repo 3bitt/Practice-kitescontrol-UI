@@ -20,6 +20,8 @@ export class ScheduleComponent implements OnInit {
     ) { }
 
   service$: Subscription;
+  dialogCloseEvent$: Subscription;
+  schedUpdate$: Subscription;
   public instructorsWithLessons: ISchedule;
 
   currDateAsString: string;
@@ -29,16 +31,20 @@ export class ScheduleComponent implements OnInit {
   faCalendar = faCalendarAlt;
 
   ngOnInit() {
+    console.log('Schedule init');
 
     this.currDateAsString = new Date().toISOString().slice(0,10);
+    this.currDateAsDate = new Date();
 
     // Get lessons for given date (default: today)
     this.getTodaysLessons(this.currDateAsString);
 
     // Subscribe to refresh view requests
-    this.service$ = this.scheduleService.refreshFunc.
-      subscribe( (receivedDate) => { this.getTodaysLessons(receivedDate ? receivedDate: this.currDateAsString);
-      });
+    this.schedUpdate$ = this.scheduleService.subject$.subscribe(
+      (date) => this.service$ = this.scheduleService.getInstructorsLessons(date ? date: this.currDateAsString).
+      subscribe((data: ISchedule) => this.instructorsWithLessons = data)
+    )
+
   }
 
   getTodaysLessons(date: string){
@@ -46,22 +52,30 @@ export class ScheduleComponent implements OnInit {
         .subscribe((data: ISchedule) => this.instructorsWithLessons = data);
   }
 
+
   openDialog(): void{
     let dialogRef = this.dialog.open(
       CreateLessonDialogComponent,
       {
         panelClass: 'dialog'
-    } );
+      });
   }
+
 
   showScheduleByDate(date){
     this.service$ = this.scheduleService.getInstructorsLessons(date)
         .subscribe((data: ISchedule) => this.instructorsWithLessons = data);
 
     this.currDateAsDate = new Date(date);
+    this.currDateAsString = new Date(date).toISOString().slice(0,10);;
   }
 
   ngOnDestroy(): void {
     this.service$.unsubscribe();
+    this.dialogCloseEvent$.unsubscribe();
+    this.schedUpdate$.unsubscribe();
+    console.log('Schedule OnDestroy');
+
   }
+
 }

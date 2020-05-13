@@ -1,7 +1,7 @@
 import { catchError, tap } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
-import { Observable, of, Subject } from 'rxjs';
+import { Observable, of, Subject, BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -32,11 +32,9 @@ export class ScheduleService {
   private _deleteLesson: string = "/api/lessons/id/delete/"
 
 
-  private refreshSchedule = new Subject<any>();
+  public scheduleSubject = new BehaviorSubject(null);
+  subject$ = this.scheduleSubject.asObservable();
 
-  get refreshFunc(){
-    return this.refreshSchedule;
-  }
 
   getInstructorsLessons(date: string){
     return this.http.get(this._url + date).
@@ -48,7 +46,7 @@ export class ScheduleService {
   createLesson(lesson){
     return this.http.post(this._createLesson, lesson).
     pipe(
-      tap( () => {this.refreshSchedule.next()}),
+      // tap( () => {this.refreshSchedule.next()}),
       catchError(this.handleError)
     );;
   }
@@ -61,7 +59,7 @@ export class ScheduleService {
   }
 
   reloadSchedule(date: string){
-    this.refreshSchedule.next(date);
+    this.scheduleSubject.next(date);
   }
 
 

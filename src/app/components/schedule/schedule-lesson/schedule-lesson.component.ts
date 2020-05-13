@@ -40,13 +40,13 @@ export class ScheduleLessonComponent implements OnInit, OnDestroy {
   }
 
   deleteLesson(id: number){
-    console.log(id);
-
     this.subscription$ = this.scheduleService.deleteLesson(id)
-    .subscribe( (data) => {console.log(data);
-    }, err => {
-      console.log('ERR:', err);
-    });
+    .subscribe(
+      (data) => { console.log(data) },
+       err =>   { console.log('ERR:', err) },
+       () => { this.scheduleService.scheduleSubject.next(null) }
+    );
+
   }
 
   ngOnDestroy(){

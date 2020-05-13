@@ -38,7 +38,6 @@ export class CreateLessonDialogComponent implements OnInit, OnDestroy {
 
   studentsDisplayList = []
   selectedStudent = '';
-  model
   studentId: number[] = [];
 
   instructorDisplayList = [];
@@ -115,8 +114,6 @@ export class CreateLessonDialogComponent implements OnInit, OnDestroy {
       this.subscription$.unsubscribe();
     }
     this.students$.unsubscribe();
-    console.log('destroy');
-
   }
 
   onClickDialog(lessonForm){
@@ -131,9 +128,11 @@ export class CreateLessonDialogComponent implements OnInit, OnDestroy {
     subscribe(
       (data) => (console.log('CREATED:', data)),
       (error: HttpErrorResponse) => (console.log('Error: ', error)),
-      () => this.dialogRef.close()
-
-
+      // Broadcast to refresh schedule
+      () => (
+        this.scheduleService.scheduleSubject.next(null),
+        this.dialogRef.close()
+        )
     );
   }
 

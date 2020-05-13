@@ -43,9 +43,9 @@ export class DateSwitcherComponent implements OnInit, OnChanges {
         this.scheduledate.getDate() + 1)
       );
 
-
-    this.scheduleService.reloadSchedule(
-      this.scheduledate.toISOString().slice(0,10));
+    // Send schedule refresh 'request' with date
+    this.scheduleService.scheduleSubject.next(
+      this.scheduledate.toISOString().slice(0,10))
   }
 
   previousDay(){
@@ -53,8 +53,10 @@ export class DateSwitcherComponent implements OnInit, OnChanges {
       this.scheduledate.setDate(
         this.scheduledate.getDate() - 1)
       );
-    this.scheduleService.reloadSchedule(
-      this.scheduledate.toISOString().slice(0,10));
+
+    // Send schedule refresh 'request' with date
+    this.scheduleService.scheduleSubject.next(
+      this.scheduledate.toISOString().slice(0,10))
   }
 
   ngOnChanges(){
