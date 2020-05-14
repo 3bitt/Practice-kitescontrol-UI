@@ -46,7 +46,7 @@ export class InstructorDetailComponent implements OnInit, OnDestroy {
   }
 
   onReceiveEditForm(event: NgForm, instructorId?: number){
-    this.instructor$ = this._instructorService.putStudent(this.instructor.id, event.value).
+    this.instructor$ = this._instructorService.putInstructor(this.instructor.id, event.value).
     subscribe(
       data => (console.log('Success: ', data),
               this.editMode = false,

@@ -69,7 +69,8 @@
     <div class="form-field instructor-field">
       <label for="instructor">Instruktor</label>
       <input  #instructorNameInput type="text" name="instructor"
-      [ngModel]='instructorIdsList'
+      ngModel='instructorIdsList'
+      value=""
       (input)="search(instructorNameInput)" (focus)="search(instructorNameInput)"
       (blur)="hideList()">
 
@@ -105,7 +106,7 @@
     </div>
 
     <div class="form-field paid-field">
-      <mat-checkbox aria-checked="checked" ngModel name="paid" >Zapłacona</mat-checkbox>
+      <!-- <mat-checkbox ngModel name="paid" >Zapłacona</mat-checkbox> -->
     </div>
 
     <hr>
@@ -155,7 +156,7 @@
     </div>
 
     <mat-dialog-actions>
-      <button mat-stroked-button (click)="onClickDialog(lessonForm)">
+      <button mat-stroked-button (click)="onClickDialog(lessonForm.value)">
         Print
       </button>
       <button mat-stroked-button (click)="createLesson(lessonForm)">

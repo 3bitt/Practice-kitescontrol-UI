@@ -69,12 +69,12 @@ export class InstructorService {
     return this.http.delete<any>(instructorId)
   };
 
-  putStudent(id: number|string, student: Instructor){
+  putInstructor(id: number|string, student: Instructor){
     let url = this._putInstructor.replace('id', id.toString());
     return this.http.put<any>(url, student);
   }
 
-  patchStudent(id: number|string, student: Instructor){
+  patchInstructor(id: number|string, student: Instructor){
     let url = this._putInstructor.replace('id', id.toString());
     return this.http.patch<any>(url, student);
   }

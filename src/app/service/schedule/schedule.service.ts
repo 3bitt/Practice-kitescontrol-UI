@@ -1,3 +1,4 @@
+import { Lesson } from './../../components/schedule/model/schedule-interface';
 import { catchError, tap } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
@@ -28,8 +29,9 @@ export class ScheduleService {
   private baseUrl = "/api/"
 
   private _url: string          = "/api/custom?date=";
-  private _createLesson: string = "/api/lessons/create/"
-  private _deleteLesson: string = "/api/lessons/id/delete/"
+  private _createLesson: string = "/api/lessons/create/";
+  private _deleteLesson: string = "/api/lessons/id/delete/";
+  private _putLesson: string    = '/api/lessons/id/update/';
 
 
   public scheduleSubject = new BehaviorSubject(null);
@@ -56,6 +58,11 @@ export class ScheduleService {
     pipe(
       catchError(this.handleError)
     );
+  }
+
+  editLesson(id: number|string, lesson: Lesson){
+    let url = this._putLesson.replace('id', id.toString());
+    return this.http.put<any>(url, lesson);
   }
 
   reloadSchedule(date: string){

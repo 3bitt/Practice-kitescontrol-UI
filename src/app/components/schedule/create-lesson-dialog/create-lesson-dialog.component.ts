@@ -1,3 +1,4 @@
+import { Lesson } from './../model/schedule-interface';
 import { IStudent } from './../../../models/studentModel';
 import { InstructorService } from 'src/app/service/instructor/instructor.service';
 import { IInstructorPagingResponse } from 'src/app/shared/API-response/IInstructorResponse';
@@ -24,7 +25,7 @@ export class CreateLessonDialogComponent implements OnInit, OnDestroy {
 
   constructor(
     public dialogRef: MatDialogRef<CreateLessonDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any,
+    @Inject(MAT_DIALOG_DATA) public data: Lesson,
     private scheduleService: ScheduleService,
     private studentService: StudentService,
     private instructorService: InstructorService,
@@ -98,7 +99,7 @@ export class CreateLessonDialogComponent implements OnInit, OnDestroy {
     }
   }
 
-  public search(inputField: string | any){
+  search(inputField: string | any){
     let regexp = new RegExp(inputField.value, 'gi')
 
     if (inputField.name == 'student'){
@@ -146,9 +147,9 @@ export class CreateLessonDialogComponent implements OnInit, OnDestroy {
     this.students$.unsubscribe();
   }
 
-  onClickDialog(lessonForm){
-    console.log(lessonForm.value);
-    console.log(this.studentIdsList);
+  onClickDialog(lessonForm: Lesson){
+    console.log(lessonForm);
+
   }
 
   createLesson(lesson){
