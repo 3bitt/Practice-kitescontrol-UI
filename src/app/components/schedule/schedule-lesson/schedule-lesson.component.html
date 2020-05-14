@@ -52,7 +52,7 @@
     [style.grid-column]="(lesson.time | timeToPosition) + '/ span '+ (lesson.duration / 60) * 2">
 
     <div class="lesson-header">
-      <div class="lesson-inner-time">
+      <div class="lesson-inner-time" *ngIf="lesson.duration > 60">
         {{lesson.time | slice:0:5}}
       </div>
 
@@ -71,12 +71,22 @@
         <div #actionsMenu class="actionsMenu" >
           <!-- (click)="deleteLesson(lesson.id)" -->
 
-          <span class="material-icons md-48 edit-lesson-icon"
+          <span class="material-icons md-48 action-icon start-lesson-icon"
+          (click)="startLesson(lesson.id, lesson.in_progress)">
+            play_circle_outline
+          </span>
+
+          <span class="material-icons md-48 action-icon pay-lesson-icon"
+          (click)="payLesson(lesson.id, lesson.paid)">
+          attach_money
+          </span>
+
+          <span class="material-icons md-48 action-icon edit-lesson-icon"
           (click)="editLesson(lesson)">
             settings
           </span>
 
-          <span class="material-icons md-48 delete-lesson-icon"
+          <span class="material-icons md-48 action-icon delete-lesson-icon"
             (click)="deleteLesson(lesson.id)">
           delete_forever
           </span>
@@ -90,28 +100,56 @@
 
 
     <!-- Lesson duration condition - if smaller width then smaller font siez -->
-    <div *ngIf="((lesson.duration / 60) * 2) >= 3" class="lesson-info">
+
+    <div class="lesson-info" *ngIf="lesson.duration >= 90"
+      [class.lesson-info-paid]="lesson.paid"
+      [class.lesson-info-inProgress]="lesson.in_progress" >
 
       <div *ngIf="lesson.status == 'Potwierdzona'"
-      class="lesson-confirmed">
+      class="lesson-info-item lesson-confirmed">
       <fa-icon class="icon-confirmed" [icon]="faCheck"></fa-icon>
       </div>
-
-      <div class="lesson-equipment">
-        <span>{{lesson.kite_brand}} {{lesson.kite_size}} {{lesson.board}}
-        </span>
+      <div *ngIf="lesson.status == 'Niepotwierdzona'"
+      class="lesson-info-item lesson-not-confirmed">
+      <fa-icon class="icon-not-confirmed" [icon]="faQuestion"></fa-icon>
       </div>
+
+      <div class="lesson-info-item lesson-equipment img-container"
+      *ngIf="lesson.kite_brand">
+        <div class="kite-image"></div>
+        <span>{{lesson.kite_brand}}</span>
+      </div>
+
+      <div class="lesson-info-item lesson-equipment img-container"
+      *ngIf="lesson.board">
+        <div class="board-image"></div>
+        <span>{{lesson.board}}</span>
+      </div>
+
     </div>
       <!-- else -->
-    <div *ngIf="((lesson.duration / 60) * 2) < 3" class="lesson-info-smaller">
+    <div class="lesson-info-smaller" *ngIf="lesson.duration < 90"
+      [class.lesson-info-paid]="lesson.paid"
+      [class.lesson-info-inProgress]="lesson.in_progress">
 
       <div *ngIf="lesson.status == 'Potwierdzona'"
-      class="lesson-confirmed">
+      class="lesson-info-item lesson-not-confirmed">
       <fa-icon class="icon-confirmed-smaller" [icon]="faCheck"></fa-icon>
       </div>
+      <div *ngIf="lesson.status == 'Niepotwierdzona'"
+      class="lesson-info-item lesson-not-confirmed">
+      <fa-icon class="icon-not-confirmed-smaller" [icon]="faQuestion"></fa-icon>
+      </div>
 
-      <div class="lesson-equipment-smaller">
-        <span>{{lesson.kite_brand}} {{lesson.kite_size}} </span>
+      <div class="lesson-info-item lesson-equipment-smaller img-container"
+      *ngIf="lesson.kite_brand">
+        <div class="kite-image-smaller"></div>
+        <span>{{lesson.kite_brand}}</span>
+      </div>
+
+      <div class="lesson-info-item lesson-equipment-smaller img-container"
+      *ngIf="lesson.board">
+        <div class="board-image-smaller"></div>
         <span>{{lesson.board}}</span>
       </div>
 

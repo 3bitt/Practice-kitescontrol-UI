@@ -63,4 +63,16 @@ export class LessonService {
   postLesson(lesson: Lesson){
     return this.http.post<any>(this._postLessonURL, lesson);
   }
+
+  // TODO: To be implemented
+
+  // putInstructor(id: number|string, student: Instructor){
+  //   let url = this._putInstructor.replace('id', id.toString());
+  //   return this.http.put<any>(url, student);
+  // }
+
+  // patchInstructor(id: number|string, student: Instructor){
+  //   let url = this._putInstructor.replace('id', id.toString());
+  //   return this.http.patch<any>(url, student);
+  // }
 }

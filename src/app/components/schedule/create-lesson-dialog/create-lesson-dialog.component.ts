@@ -1,3 +1,4 @@
+import { NgForm } from '@angular/forms';
 import { Lesson } from './../model/schedule-interface';
 import { IStudent } from './../../../models/studentModel';
 import { InstructorService } from 'src/app/service/instructor/instructor.service';
@@ -40,11 +41,11 @@ export class CreateLessonDialogComponent implements OnInit, OnDestroy {
   instructorsSourceList: IInstructorPagingResponse;
 
   studentsDropdownList = []
-  selectedStudent = '';
+  selectedStudent = ' ';
   studentIdsList: number[] = [];
 
   instructorsDropdownList = [];
-  selectedInstructor = '';
+  selectedInstructor = ' ';
   instructorIdsList: number[] = [];
 
   toggleList = false;
@@ -147,11 +148,6 @@ export class CreateLessonDialogComponent implements OnInit, OnDestroy {
     this.students$.unsubscribe();
   }
 
-  onClickDialog(lessonForm: Lesson){
-    console.log(lessonForm);
-
-  }
-
   createLesson(lesson){
     lesson.value.date = formatDate(lesson.value.date, 'dd-MM-yyyy', 'en_US')
 
@@ -165,6 +161,11 @@ export class CreateLessonDialogComponent implements OnInit, OnDestroy {
         this.dialogRef.close()
         )
     );
+  }
+
+  exitDialog(){
+    this.dialogRef.close();
+
   }
 
 }

@@ -62,6 +62,7 @@
 
   /* height: 100%; TEST */
   align-self: center;
+  margin: 0 2px 0 2px;
 
   border-radius: 4px 4px;
   background-color: whitesmoke;
@@ -72,13 +73,14 @@
   position: relative;
   white-space: nowrap;
   display: grid;
-  grid-auto-columns: auto auto 17px;
+  grid-auto-columns: max-content auto 17px;
   grid-template-rows: auto;
 
 }
 .lesson-inner-time{
   padding-left: 3px;
   grid-column: 1;
+  margin-right: 15px;
 }
 
 .lesson-student-name{
@@ -86,66 +88,9 @@
   font-size: 1rem;
   font-weight: bold;
   align-self: center;
-
-}
-
-.lesson-info{
-  display: grid;
-  grid-template-columns: 40px auto;
-
-  width: 100%;
-  height: auto;
-  /* align-items: flex-end; */
-
   padding-left: 5px;
+  /* overflow: scroll; */
 
-  overflow: hidden;
-  grid-auto-flow: column;
-  align-content: end;
-
-  background-color: rgb(222, 219, 250);
-  border-radius: 0px 0px 3px 3px;
-}
-.lesson-info-smaller{
-  display: grid;
-  grid-template-columns: 19px auto;
-
-  width: 100%;
-  height: auto;
-  /* align-items: flex-end; */
-
-  padding-left: 2px;
-
-  overflow: hidden;
-  grid-auto-flow: column;
-  align-content: end;
-  background-color: rgb(222, 219, 250);
-  border-radius: 0px 0px 3px 3px;
-
-}
-
-.lesson-confirmed{
-  align-self: end;
-}
-.icon-confirmed{
-  font-size: 20px;
-  color: green;
-}
-.icon-confirmed-smaller{
-  font-size: 17px;
-  color: green;
-}
-.lesson-equipment{
-  grid-column: 2;
-  align-self: center;
-
-  font-size: 15px;
-}
-.lesson-equipment-smaller{
-  grid-column: 2;
-  align-self: center;
-
-  font-size: 0.7vw;
 }
 
 
@@ -163,7 +108,10 @@
 
 }
 .lesson-action:hover{
-  background-color: #baa8fa;
+  /* background-color: #baa8fa; */
+  background-color: #267dff;
+
+
 }
 .lesson-action-button{
   cursor: pointer;
@@ -180,16 +128,43 @@
   visibility: hidden;
   left: 110%;
   top: -20%;
-  height: 4rem;
+  /* height: calc(max-content + 7px);
+  width: calc(max-content + 7px); */
+  height: auto;
   display: flex;
   flex-direction: column;
   place-content: space-between;
+  z-index: 5;
+
+  background-color: rgb(230, 243, 255);
+  border: 2px solid rgb(0, 86, 214)
 
 }
 
-.clicked{
-  /* background-color: red; */
+.action-icon{
+  margin: 3px 0 3px 0;
 }
+
+.start-lesson-icon{
+  font-size: 1.7rem;
+  color: rgb(187, 112, 0);
+}
+.start-lesson-icon:hover{
+  font-size: 1.9rem;
+  color: rgb(223, 152, 0);
+  cursor: pointer;
+}
+
+.pay-lesson-icon{
+  font-size: 1.7rem;
+  color: rgb(27, 133, 0);
+}
+.pay-lesson-icon:hover{
+  font-size: 1.9rem;
+  color: rgb(17, 204, 0);
+  cursor: pointer;
+}
+
 .edit-lesson-icon{
   font-size: 1.7rem;
   color: rgb(54, 54, 54);
@@ -209,4 +184,116 @@
   color: rgb(236, 22, 22);
   cursor: pointer;
 }
+
+
+
+.lesson-info{
+  display: flex;
+  width: 100%;
+  height: 25px;
+  overflow: hidden;
+
+  border-top: 1px solid black;
+  background-color: rgb(230, 243, 255);
+  border-radius: 0px 0px 3px 3px;
+}
+.lesson-info-smaller{
+  display: flex;
+  width: 100%;
+  height: auto;
+
+  overflow: hidden;
+  border-top: 1px solid black;
+  background-color: rgb(230, 243, 255);
+  border-radius: 0px 0px 3px 3px;
+}
+
+.lesson-info-inProgress{
+  background-color: rgb(219, 171, 82);
+  border-radius: 0px 0px 3px 3px;
+}
+.lesson-info-paid{
+  background-color: rgb(71, 170, 71);
+  border-radius: 0px 0px 3px 3px;
+}
+
+
+.lesson-info-item{
+  padding-left: 3px;
+  align-self: center;
+}
+
+/* .lesson-confirmed{
+  align-self: end;
+} */
+.icon-confirmed{
+  font-size: 19px;
+  color: green;
+  vertical-align: middle;
+}
+.icon-confirmed-smaller{
+  font-size: 17px;
+  color: green;
+  vertical-align: middle;
+}
+.icon-not-confirmed{
+  font-size: 19px;
+  color: rgb(74, 74, 74);
+  vertical-align: middle;
+}
+.icon-not-confirmed-smaller{
+  font-size: 17px;
+  color: rgb(74, 74, 74);
+  vertical-align: middle;
+}
+
+
+.lesson-equipment{
+  align-self: center;
+  padding-left: 10px;
+  font-size: 15px;
+}
+.lesson-equipment-smaller{
+  align-self: center;
+  padding-left: 5px;
+  font-size: 0.8vw;
+}
+.img-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.kite-image{
+  height: 18px;
+  width: 18px;
+  background-repeat: no-repeat;
+  background-image: url('../../../../assets/kite-final.svg');
+}
+
+.kite-image-smaller{
+  height: 14px;
+  width: 14px;
+  background-repeat: no-repeat;
+  background-image: url('../../../../assets/kite-final.svg');
+  background-size: 16px;
+}
+
+.board-image-smaller{
+  height: 15px;
+  width: 13px;
+  background-repeat: no-repeat;
+  background-image: url('../../../../assets/board.svg');
+  background-size: 16px;
+}
+
+
+
+.board-image{
+  height: 19px;
+  width: 16px;
+  background-repeat: no-repeat;
+  background-image: url('../../../../assets/board.svg');
+}
+
 

@@ -159,14 +159,14 @@
       name="board">
     </div>
 
-    <mat-dialog-actions>
-      <button mat-stroked-button (click)="elo(editLessonForm.value)">
+    <div class="dialog-action-buttons">
+      <button mat-stroked-button type="button" class="cancel-button" (click)="exitDialog()">
         Anuluj
       </button>
-      <button mat-stroked-button (click)="editLesson(data.id, editLessonForm.value)">
+      <button mat-stroked-button class="submit-button" (click)="editLesson(data.id, editLessonForm.value)">
         Zapisz
       </button>
-    </mat-dialog-actions>
+    </div>
   </form>
 
 </mat-dialog-content>

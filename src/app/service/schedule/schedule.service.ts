@@ -31,7 +31,8 @@ export class ScheduleService {
   private _url: string          = "/api/custom?date=";
   private _createLesson: string = "/api/lessons/create/";
   private _deleteLesson: string = "/api/lessons/id/delete/";
-  private _putLesson: string    = '/api/lessons/id/update/';
+  private _editLesson: string    = '/api/lessons/id/update/';
+
 
 
   public scheduleSubject = new BehaviorSubject(null);
@@ -61,8 +62,13 @@ export class ScheduleService {
   }
 
   editLesson(id: number|string, lesson: Lesson){
-    let url = this._putLesson.replace('id', id.toString());
+    let url = this._editLesson.replace('id', id.toString());
     return this.http.put<any>(url, lesson);
+  }
+
+  patchLesson(id: number|string, lesson){
+    let url = this._editLesson.replace('id', id.toString());
+    return this.http.patch<any>(url, lesson);
   }
 
   reloadSchedule(date: string){

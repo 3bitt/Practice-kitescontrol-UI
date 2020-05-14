@@ -2,14 +2,16 @@
 <h2 mat-dialog-title>Nowa lekcja</h2>
 <mat-dialog-content class="dialog-content">
 
-  <form class="dialog-form" autocomplete="off" id="lessonForm" #lessonForm="ngForm" >
+  <form class="dialog-form"
+  autocomplete="off" id="lessonForm"
+  #lessonForm="ngForm" (ngSubmit)="createLesson(lessonForm)">
 
     <div class="lesson-time-group">
       <div class="form-field date-field">
         <label for="date">Data</label>
         <input class="date-field-input"
         type="date"
-        required="true"
+        required
         ngModel
         name="date">
       </div>
@@ -19,6 +21,7 @@
         <input
         placeholder="np. 15:30"
         type="text"
+        required
         ngModel
         name="time">
       </div>
@@ -26,6 +29,7 @@
       <div class="form-field duration-field">
         <label for="duration">Czas [h]</label>
         <select
+        required
         ngModel
         name="duration">
           <option value="30">0.5</option>
@@ -40,7 +44,8 @@
 
     <div class="form-field student-field">
       <label for="student">Kursant</label>
-      <input  #studentNameInput type="text" name="student"
+      <input  #studentNameInput type="text" name="student" id="student"
+      required
       [ngModel]='studentIdsList'
       (input)="search(studentNameInput)" (focus)="search(studentNameInput)"
       (blur)="hideList()">
@@ -68,9 +73,9 @@
 
     <div class="form-field instructor-field">
       <label for="instructor">Instruktor</label>
-      <input  #instructorNameInput type="text" name="instructor"
-      ngModel='instructorIdsList'
-      value=""
+      <input  #instructorNameInput type="text" name="instructor" id="instructor"
+      required
+      [ngModel]='instructorIdsList'
       (input)="search(instructorNameInput)" (focus)="search(instructorNameInput)"
       (blur)="hideList()">
 
@@ -97,6 +102,7 @@
     <div class="form-field status-field">
       <label for="status">Status</label>
       <select
+      required
       class="dialog-dropdown"
       ngModel
       name="status">
@@ -114,6 +120,7 @@
     <div class="form-field equipment-field">
       <label for="equipment">Sprzęt</label>
       <select
+      required="false"
       class="dialog-dropdown"
       ngModel
       name="equipment">
@@ -122,18 +129,11 @@
       </select>
     </div>
 
-    <div class="form-field comment-field">
-      <label for="comment">Dodatkowe informacje</label>
-      <textarea
-      type="text"
-      ngModel
-      name="comment"></textarea>
-    </div>
-
 
     <div class="form-field kite-field">
       <label for="kite_brand">Latawiec</label>
       <input
+      required="false"
       type="text"
       ngModel
       name="kite_brand">
@@ -150,19 +150,32 @@
     <div class="form-field board-field">
       <label for="board">Deska</label>
       <input
+      required="false"
       type="text"
       ngModel
       name="board">
     </div>
 
-    <mat-dialog-actions>
-      <button mat-stroked-button (click)="onClickDialog(lessonForm.value)">
-        Print
+    <div class="form-field comment-field">
+      <label for="comment">Dodatkowe informacje</label>
+      <textarea
+      required="false"
+      type="text"
+      ngModel
+      name="comment"></textarea>
+    </div>
+
+    <div class="dialog-action-buttons">
+      <button mat-stroked-button type="button"
+      class="cancel-button" (click)="exitDialog()">
+        Anuluj
       </button>
-      <button mat-stroked-button (click)="createLesson(lessonForm)">
-        Submit
+      <button mat-stroked-button
+      class="submit-button" type="submit" (click)="createLesson(lessonForm)">
+        Dodaj
       </button>
-    </mat-dialog-actions>
+    </div>
+
   </form>
 
 </mat-dialog-content>

@@ -19,6 +19,7 @@ export interface Lesson {
   duration:     number;
   paid:         boolean;
   status:       string;
+  in_progress:   boolean;
   equipment:    string;
   kite_brand:   string;
   kite_size:    number;

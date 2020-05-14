@@ -170,10 +170,8 @@ export class EditLessonDialogComponent implements OnInit, OnDestroy {
       () => this.scheduleService.scheduleSubject.next(null),
     );
   }
-  elo(elo){
-    elo.student = this.studentIdsList;
-    console.log(elo);
-
+  exitDialog(){
+    this.dialogRef.close();
   }
   ngOnDestroy(): void {
     this.students$.unsubscribe();
