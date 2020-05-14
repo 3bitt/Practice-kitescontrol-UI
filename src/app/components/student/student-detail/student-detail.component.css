@@ -1,0 +1,50 @@
+
+.detail-container{
+  width: 530px;
+  margin-left: 30px;
+}
+
+.detail-list{
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.detail-list-item{
+  padding-bottom: 7px;
+  margin-bottom: 7px;
+
+  border-bottom: 1px solid rgb(33, 84, 143);
+
+}
+
+
+.detail-list-content{
+  display: flex;
+  align-items: center;
+}
+
+.detail-list-content h3{
+  font-weight: bold;
+  float: left;
+  width: 130px;
+  margin: 0;
+}
+
+.detail-list-content span{
+  margin-left: 90px;
+  font-size: 1rem;
+}
+
+.student-name{
+  font-weight: bold;
+}
+
+.edit-btn{
+  display: flex;
+}
+
+button{
+  margin-top: 20px;
+}
+

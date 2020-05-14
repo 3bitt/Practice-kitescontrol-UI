@@ -1,12 +1,8 @@
-import { JsonPipe } from '@angular/common';
-import { IStudent } from './../../../models/studentModel';
 import { IpagingResponse } from './../../../models/response';
-import { Router, ActivatedRoute } from '@angular/router';
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { StudentService } from 'src/app/service/student/student.service';
-import { Subject, Observable, of } from 'rxjs';
-import { debounceTime, distinctUntilChanged, switchMap, toArray } from 'rxjs/operators';
-import { SelectorMatcher } from '@angular/compiler';
+import { IStudentPagingResponse } from 'src/app/shared/API-response/IStudentResponse';
 
 @Component({
   selector: 'app-student-list',
@@ -16,7 +12,7 @@ import { SelectorMatcher } from '@angular/compiler';
 
 export class StudentListComponent implements OnInit, OnDestroy {
 
-  public students;
+  public students: IStudentPagingResponse;
   public students$;
   public searchList = [];
   public searchValue = '';
@@ -38,6 +34,8 @@ export class StudentListComponent implements OnInit, OnDestroy {
   }
 
 
+
+
   ngOnInit() {
     this.students$ = this._studentService.getStudents()
     .subscribe((data) => { this.students = data
@@ -45,6 +43,17 @@ export class StudentListComponent implements OnInit, OnDestroy {
       console.log('ERR:', err);
       });
     }
+
+  deleteStudent(id: number){
+    this.students$ = this._studentService.deleteStudent(id)
+    .subscribe( (data) => { this.students.results = data;
+      console.log(data);
+
+    }, err => {
+      console.log('ERR:', err);
+    });
+
+  }
 
     ngOnDestroy(){
       this.students$.unsubscribe();

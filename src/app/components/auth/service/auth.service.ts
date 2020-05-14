@@ -20,6 +20,11 @@ export class AuthService {
   }
 
   logout(): void {
+    console.log('Logged out');
+
     this.isLoggedIn = false;
+    console.log(this.isLoggedIn);
+
+    this.redirectUrl = '/login'
   }
 }

@@ -1,10 +1,11 @@
+import { MatDialogModule } from '@angular/material/dialog';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 
 const routes: Routes = [
-  {path: 'dashboardaaa', component: DashboardComponent}
+  {path: '', component: DashboardComponent}
 ];
 
 @NgModule({

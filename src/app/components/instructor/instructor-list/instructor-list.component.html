@@ -11,7 +11,7 @@
   <div class="search-list-container">
     <ul class="search-ul-Parent" *ngIf="searchList.length">
       <li class="searchElement" *ngFor="let instructor of searchList" >
-        <a [routerLink]="['/instructors', instructor.id]">
+        <a [routerLink]="['./', instructor.id]">
           {{instructor.name}} {{instructor.surname}}
         </a>
       </li>
@@ -31,6 +31,7 @@
                 <th scope="col">Nazwisko</th>
                 <th scope="col">Data urodzenia</th>
                 <th scope="col">Waga</th>
+                <th scope="col">Grupowe</th>
                 <th scope="col">Szczegóły</th>
             </tr>
         </thead>
@@ -39,9 +40,15 @@
                 <td>{{i+1}}</td>
                 <td>{{instructor.name}}</td>
                 <td>{{instructor.surname}}</td>
-                <td>{{instructor.birth_date | date: 'dd-MM-yyyy'}}</td>
+                <td>{{instructor.birth_date}}</td>
                 <td>{{instructor.weight}}</td>
-                <td><a [routerLink]="['/instructors', instructor.id]">Szczegóły</a></td>
+                <td>{{instructor.group_lessons}}</td>
+                <td class="table-details-col">
+                  <a [routerLink]="['./', instructor.id]">Szczegóły</a>
+                  <span (click)="deleteInstructor(instructor.id)" title="Usuń">
+                    <i  class="fas fa-user-times"></i>
+                  </span>
+                </td>
 
             </tr>
         </tbody>
