@@ -71,22 +71,32 @@
         <div #actionsMenu class="actionsMenu" >
           <!-- (click)="deleteLesson(lesson.id)" -->
 
+          <span class="material-icons md-48 action-icon confirm-lesson-icon"
+          (click)="confirmLesson(lesson.id, lesson.status)"
+          title="Potwierdź">
+          check_circle_outline
+          </span>
+
           <span class="material-icons md-48 action-icon start-lesson-icon"
-          (click)="startLesson(lesson.id, lesson.in_progress)">
+          (click)="startLesson(lesson.id, lesson.in_progress)"
+          title="Rozpocznij">
             play_circle_outline
           </span>
 
           <span class="material-icons md-48 action-icon pay-lesson-icon"
+          title="Rozlicz"
           (click)="payLesson(lesson.id, lesson.paid)">
           attach_money
           </span>
 
           <span class="material-icons md-48 action-icon edit-lesson-icon"
+          title="Edytuj"
           (click)="editLesson(lesson)">
             settings
           </span>
 
           <span class="material-icons md-48 action-icon delete-lesson-icon"
+          title="Usuń"
             (click)="deleteLesson(lesson.id)">
           delete_forever
           </span>
@@ -125,6 +135,13 @@
         <div class="board-image"></div>
         <span>{{lesson.board}}</span>
       </div>
+
+      <!-- SPINNER if lesson in progress -->
+
+      <!-- <div class="lesson-info-item lesson-equipment img-container spinner-container"
+      *ngIf="lesson.in_progress">
+        <div class="spinner"></div>
+      </div> -->
 
     </div>
       <!-- else -->

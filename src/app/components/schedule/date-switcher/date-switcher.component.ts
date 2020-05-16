@@ -1,7 +1,7 @@
 import { Subscription } from 'rxjs';
 import { ScheduleService } from 'src/app/service/schedule/schedule.service';
 import { formatDate } from '@angular/common';
-import { Component, OnInit, OnDestroy, Input, OnChanges } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input, OnChanges, Output, EventEmitter } from '@angular/core';
 
 import {faChevronLeft, faChevronRight} from '@fortawesome/free-solid-svg-icons';
 
@@ -22,6 +22,7 @@ export class DateSwitcherComponent implements OnInit, OnChanges {
   subscription$: Subscription;
 
   @Input('scheduleDate') dateFromParent: Date;
+  @Output() dateChangedEvent = new EventEmitter();
   scheduledate: Date;
 
   leftArrow = faChevronLeft;
@@ -42,10 +43,12 @@ export class DateSwitcherComponent implements OnInit, OnChanges {
       this.scheduledate.setDate(
         this.scheduledate.getDate() + 1)
       );
+    this.dateChangedEvent.emit(this.scheduledate)
 
     // Send schedule refresh 'request' with date
     this.scheduleService.scheduleSubject.next(
-      this.scheduledate.toISOString().slice(0,10))
+      formatDate(this.scheduledate.toLocaleDateString().slice(0,10), 'yyyy-MM-dd', 'pl_PL'))
+
   }
 
   previousDay(){
@@ -53,10 +56,11 @@ export class DateSwitcherComponent implements OnInit, OnChanges {
       this.scheduledate.setDate(
         this.scheduledate.getDate() - 1)
       );
+      this.dateChangedEvent.emit(this.scheduledate)
 
     // Send schedule refresh 'request' with date
     this.scheduleService.scheduleSubject.next(
-      this.scheduledate.toISOString().slice(0,10))
+      formatDate(this.scheduledate.toLocaleDateString().slice(0,10), 'yyyy-MM-dd', 'pl_PL'))
   }
 
   ngOnChanges(){

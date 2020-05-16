@@ -22,8 +22,6 @@ import { faTimes } from '@fortawesome/free-solid-svg-icons';
 })
 export class CreateLessonDialogComponent implements OnInit, OnDestroy {
 
-  // currentDate = new Date().toISOString().slice(0, 10);
-
   constructor(
     public dialogRef: MatDialogRef<CreateLessonDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: Lesson,

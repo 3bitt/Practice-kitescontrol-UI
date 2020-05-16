@@ -23,7 +23,7 @@
   </div>
 
   <div class="schedule-date-switcher">
-    <app-date-switcher  [scheduleDate]="currDateAsDate">
+    <app-date-switcher (dateChangedEvent)="switcherUpdateDate($event)"  [scheduleDate]="currDateAsDate">
     </app-date-switcher>
   </div>
 

@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { EditLessonDialogComponent } from './../edit-lesson-dialog/edit-lesson-dialog.component';
 import { Subscription } from 'rxjs';
 import { Component, OnInit, Input, OnDestroy, ElementRef } from '@angular/core';
@@ -43,6 +44,23 @@ export class ScheduleLessonComponent implements OnInit, OnDestroy {
       elementRef.classList.add('clicked');
       elementRef.parentElement.style.backgroundColor = '#267dff';
     }
+  }
+
+  confirmLesson(lessonId, lessonStatus){
+    if (lessonStatus === 'Potwierdzona'){
+      lessonStatus = {'status': 'Niepotwierdzona'}
+    } else if (lessonStatus === 'Niepotwierdzona'){
+      lessonStatus = {'status': 'Potwierdzona'}
+    } else {
+      return console.log('Nieznany status lekcji: ', lessonId, lessonStatus);
+    }
+
+    this.subscription$ = this.scheduleService.patchLesson(lessonId, lessonStatus).
+    subscribe(
+      data => console.log('Started lesson:', data.status),
+      error =>   { console.log('ERR:', error) },
+      () => this.scheduleService.scheduleSubject.next(null),
+    )
   }
 
   startLesson(lessonId, inProgressBool){

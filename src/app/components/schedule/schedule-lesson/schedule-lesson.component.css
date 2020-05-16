@@ -145,13 +145,23 @@
   margin: 3px 0 3px 0;
 }
 
+.confirm-lesson-icon{
+  font-size: 1.7rem;
+  color: rgb(32, 161, 0);
+}
+.confirm-lesson-icon:hover{
+  font-size: 1.9rem;
+  color: rgb(34, 204, 0);
+  cursor: pointer;
+}
+
 .start-lesson-icon{
   font-size: 1.7rem;
-  color: rgb(187, 112, 0);
+  color: rgb(209, 143, 0);
 }
 .start-lesson-icon:hover{
   font-size: 1.9rem;
-  color: rgb(223, 152, 0);
+  color: rgb(236, 173, 0);
   cursor: pointer;
 }
 
@@ -209,9 +219,24 @@
 }
 
 .lesson-info-inProgress{
-  background-color: rgb(219, 171, 82);
+  /* background-color: rgb(219, 171, 82); */
   border-radius: 0px 0px 3px 3px;
+  animation: test 2300ms linear infinite;
 }
+
+@keyframes test {
+  0% {
+    background-color: rgba(226, 155, 0, 0.911);
+
+    }
+    50%{
+      background-color: transparent;
+    }
+  100% {
+    background-color: rgba(226, 155, 0, 0.911);
+  }
+}
+
 .lesson-info-paid{
   background-color: rgb(71, 170, 71);
   border-radius: 0px 0px 3px 3px;
@@ -296,4 +321,42 @@
   background-image: url('../../../../assets/board.svg');
 }
 
+.spinner-container{
+  width: 100%;
+  place-content: end;
+}
 
+
+/* SPINNER if lesson in progress (Enable in template) */
+.spinner{
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+
+  /* background-color: orange; */
+
+  border-top: 1px solid rgb(48, 48, 48);
+  border-right: 1px solid rgb(48, 48, 48);
+
+  animation: rotate 1700ms linear infinite;
+}
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+    background-color: rgba(226, 155, 0, 0.911);
+
+    }
+    50%{
+      background-color: transparent;
+      /* background-color: tr; */
+
+
+      /* border-top: 4px solid green; */
+    }
+  100% {
+    transform: rotate(360deg);
+    background-color: rgba(226, 155, 0, 0.911);
+
+    /* border-top: 2px solid yellow; */
+  }
+}

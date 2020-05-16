@@ -1,3 +1,4 @@
+import { formatDate } from '@angular/common';
 import { ISchedule } from './../model/schedule-interface';
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Subscription } from 'rxjs';
@@ -33,11 +34,11 @@ export class ScheduleComponent implements OnInit {
   ngOnInit() {
     console.log('Schedule init');
 
-    this.currDateAsString = new Date().toISOString().slice(0,10);
+    this.currDateAsString = formatDate(new Date().toLocaleDateString().slice(0,10), 'yyyy-MM-dd', 'pl_PL')
     this.currDateAsDate = new Date();
 
     // Get lessons for given date (default: today)
-    this.getTodaysLessons(this.currDateAsString);
+    // this.getTodaysLessons(this.currDateAsString);
 
     // Subscribe to refresh view requests
     this.schedUpdate$ = this.scheduleService.subject$.subscribe(
@@ -67,7 +68,13 @@ export class ScheduleComponent implements OnInit {
         .subscribe((data: ISchedule) => this.instructorsWithLessons = data);
 
     this.currDateAsDate = new Date(date);
-    this.currDateAsString = new Date(date).toISOString().slice(0,10);;
+    this.currDateAsString = formatDate(new Date(date).toLocaleDateString().slice(0,10), 'yyyy-MM-dd', 'pl_PL');
+    console.log(this.currDateAsString);
+  }
+
+  switcherUpdateDate(date){
+    this.currDateAsDate = new Date(date);
+    this.currDateAsString = formatDate(new Date(date).toLocaleDateString().slice(0,10), 'yyyy-MM-dd', 'pl_PL');
   }
 
   ngOnDestroy(): void {
