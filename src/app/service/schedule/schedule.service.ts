@@ -28,10 +28,10 @@ export class ScheduleService {
 
   private baseUrl = "/api/"
 
-  private _url: string          = "/api/custom?date=";
-  private _createLesson: string = "/api/lessons/create/";
-  private _deleteLesson: string = "/api/lessons/id/delete/";
-  private _editLesson: string    = '/api/lessons/id/update/';
+  private _url:           string = "/api/custom?date=";
+  private _createLesson:  string = "/api/lessons/create/";
+  private _deleteLesson:  string = "/api/lessons/id/delete/";
+  private _editLesson:    string = '/api/lessons/id/update/';
 
 
 

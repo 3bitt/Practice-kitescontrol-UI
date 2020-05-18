@@ -22,6 +22,7 @@ const homeRoutes: Routes = [
           { path: 'students', loadChildren: () => import('../student/student.module').then(m => m.StudentModule) },
           { path: 'instructors', loadChildren: () => import('../instructor/instructor.module').then(m => m.InstructorModule) },
           { path: 'lessons', loadChildren: () => import('../lesson/lesson.module').then(m => m.LessonModule) },
+          { path: 'school', loadChildren: () => import('../school/school.module').then(m => m.SchoolModule)},
           { path: '', redirectTo: 'dashboard', pathMatch: 'full'},
 
     ]}

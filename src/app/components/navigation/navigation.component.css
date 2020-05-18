@@ -38,9 +38,19 @@
     background-color: rgb(247, 177, 177);
 }
 
+.school-nav{
+  border: 1px solid rgb(131, 53, 255);
+  border-radius: 5px;
+}
+
+.school-nav > a {
+  text-decoration: none;
+  color: rgb(150, 85, 255);
+}
+
 
 .kc-logo{
   position: absolute;
   top: -137px;
-  right: 50%;
+  right: 30%;
 }

@@ -21,7 +21,7 @@ export class ScheduleComponent implements OnInit {
     ) { }
 
   service$: Subscription;
-  dialogCloseEvent$: Subscription;
+  // dialogCloseEvent$: Subscription;
   schedUpdate$: Subscription;
   public instructorsWithLessons: ISchedule;
 
@@ -38,7 +38,7 @@ export class ScheduleComponent implements OnInit {
     this.currDateAsDate = new Date();
 
     // Get lessons for given date (default: today)
-    // this.getTodaysLessons(this.currDateAsString);
+      // this.getTodaysLessons(this.currDateAsString);
 
     // Subscribe to refresh view requests
     this.schedUpdate$ = this.scheduleService.subject$.subscribe(
@@ -79,7 +79,7 @@ export class ScheduleComponent implements OnInit {
 
   ngOnDestroy(): void {
     this.service$.unsubscribe();
-    this.dialogCloseEvent$.unsubscribe();
+    // this.dialogCloseEvent$.unsubscribe();
     this.schedUpdate$.unsubscribe();
     console.log('Schedule OnDestroy');
 
