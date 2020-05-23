@@ -4,7 +4,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { formatDate } from '@angular/common';
 import { IHours } from './model/IHours';
 import {faPlus, faCalendarAlt} from '@fortawesome/free-solid-svg-icons';
-
+import { Chart } from 'chart.js';
 
 @Component({
   selector: 'app-instructor-payments',
@@ -36,6 +36,7 @@ export class InstructorPaymentsComponent implements OnInit, OnDestroy {
 
   initialData: [] = [];
   aggregatedData: IHours[] = []
+
 
 
   ngOnInit(): void {

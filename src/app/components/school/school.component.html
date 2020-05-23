@@ -1,12 +1,19 @@
 
-<div class="nav-buttons">
-  <a [routerLink]="['.']" >
-    <button mat-raised-button class="nav-btn statistics-btn" disabled="true">Statystyki</button>
-  </a>
+<div class="nav-container">
 
-  <a [routerLink]="['payments']" >
-    <button mat-raised-button class="nav-btn payments-btn">Wypłaty</button>
-  </a>
+  <div class="nav-button payments-button-div">
+    <a [routerLink]="['payments']" >
+      <button mat-flat-button class="nav-btn payments-btn">Wypłaty</button>
+    </a>
+  </div>
+
+  <div class="nav-button statistics-button-div">
+    <a [routerLink]="['.']" >
+      <button mat-flat-button class="nav-btn statistics-btn" disabled="true">Statystyki</button>
+    </a>
+  </div>
+
+
 </div>
 
 <router-outlet></router-outlet>

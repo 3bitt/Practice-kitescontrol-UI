@@ -218,8 +218,7 @@
   border-radius: 0px 0px 3px 3px;
 }
 
-.lesson-info-inProgress{
-  /* background-color: rgb(219, 171, 82); */
+/* .lesson-info-inProgress{
   border-radius: 0px 0px 3px 3px;
   animation: test 2300ms linear infinite;
 }
@@ -235,7 +234,7 @@
   100% {
     background-color: rgba(226, 155, 0, 0.911);
   }
-}
+} */
 
 .lesson-info-paid{
   background-color: rgb(71, 170, 71);
@@ -335,15 +334,15 @@
 
   /* background-color: orange; */
 
-  border-top: 1px solid rgb(48, 48, 48);
-  border-right: 1px solid rgb(48, 48, 48);
+  border-top: 1px solid rgb(199, 96, 0);
+  border-right: 1px solid rgb(199, 96, 0);
 
   animation: rotate 1700ms linear infinite;
 }
 @keyframes rotate {
   0% {
     transform: rotate(0deg);
-    background-color: rgba(226, 155, 0, 0.911);
+    background-color: rgba(224, 184, 98, 0.911);
 
     }
     50%{
@@ -355,7 +354,7 @@
     }
   100% {
     transform: rotate(360deg);
-    background-color: rgba(226, 155, 0, 0.911);
+    background-color: rgba(224, 184, 98, 0.911);
 
     /* border-top: 2px solid yellow; */
   }
