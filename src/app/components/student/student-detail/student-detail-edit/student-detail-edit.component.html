@@ -133,9 +133,74 @@
       </li>
       <li class="detail-list-item">
         <div class="detail-list-content">
+          <h3>Rozmiar pianki</h3>
+
+          <div class="form-fields form-short-field">
+            <div class="form-group">
+              <select  type="text"
+              required
+              [ngModel]="student.wetsuit_size"
+              name="wetsuit_size"
+              #wetsuitSize="ngModel"
+              id="wetsuitSize"
+              class="form-control"
+              [class.is-valid]=wetsuitSize.valid
+              [class.is-invalid]="!wetsuitSize.valid && wetsuitSize.touched">
+                <option value="XS">XS</option>
+                <option value="S">S</option>
+                <option value="M">M</option>
+                <option value="L">L</option>
+                <option value="XL">XL</option>
+                <option value="XXL">XXL</option>
+              </select>
+              <div *ngIf="!wetsuitSize.valid && wetsuitSize.touched" >
+                  <span class="field-validation-error" *ngIf="wetsuitSize.errors.required">
+                  <small>To pole jest wymagane</small></span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </li>
+
+      <li class="detail-list-item">
+        <div class="detail-list-content">
+          <h3>Rozmiar trapezu</h3>
+
+          <div class="form-fields form-short-field">
+            <div class="form-group">
+              <select  type="text"
+              required
+              [ngModel]="student.harness_size"
+              name="harness_size"
+              #harnessSize="ngModel"
+              id="harnessSize"
+              class="form-control"
+              [class.is-valid]=harnessSize.valid
+              [class.is-invalid]="!harnessSize.valid && harnessSize.touched">
+                <option value="XS">XS</option>
+                <option value="S">S</option>
+                <option value="M">M</option>
+                <option value="L">L</option>
+                <option value="XL">XL</option>
+                <option value="XXL">XXL</option>
+              </select>
+              <div *ngIf="!harnessSize.valid && harnessSize.touched" >
+                  <span class="field-validation-error" *ngIf="harnessSize.errors.required">
+                  <small>To pole jest wymagane</small></span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </li>
+
+
+      <li class="detail-list-item">
+        <div class="detail-list-content">
           <h3>Waga</h3>
 
-          <div class="form-fields form-number-field">
+          <div class="form-fields form-short-field">
             <div class="form-group">
               <input  type="text" placeholder="min. 25"
               required
@@ -158,9 +223,34 @@
       </li>
       <li class="detail-list-item">
         <div class="detail-list-content">
+          <h3>Numer IKO</h3>
+
+          <div class="form-fields">
+            <div class="form-group">
+              <input  type="text"
+              inputmode="latin-name"
+              required
+              [ngModel]="student.iko_id"
+              name="iko_id"
+              #iko_id="ngModel"
+              id="iko_id"
+              class="form-control"
+              [class.is-valid]=iko_id.valid
+              [class.is-invalid]="!iko_id.valid && iko_id.touched">
+              <div *ngIf="!iko_id.valid && iko_id.touched" >
+                  <span class="field-validation-error" *ngIf="iko_id.errors.required">
+                  <small>To pole jest wymagane</small></span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </li>
+      <li class="detail-list-item">
+        <div class="detail-list-content">
           <h3>Poziom IKO</h3>
 
-          <div class="form-fields form-number-field">
+          <div class="form-fields form-short-field">
             <div class="form-group">
               <input  type="text"
               inputmode="latin-name"

@@ -3,7 +3,9 @@ import { EditLessonDialogComponent } from './../edit-lesson-dialog/edit-lesson-d
 import { Subscription } from 'rxjs';
 import { Component, OnInit, Input, OnDestroy, ElementRef } from '@angular/core';
 import { ScheduleService } from 'src/app/service/schedule/schedule.service';
-import { faCheckCircle, faPlayCircle, faDollarSign, faQuestionCircle, faQuestion } from '@fortawesome/free-solid-svg-icons';
+import { faCheckCircle,  faPlayCircle,
+  faDollarSign, faQuestionCircle, faQuestion, faTrashAlt,
+faEdit } from '@fortawesome/free-solid-svg-icons';
 import { ISchedule, IScheduleInstructor, Lesson } from '../model/schedule-interface';
 import { MatDialog } from '@angular/material/dialog';
 
@@ -28,6 +30,8 @@ export class ScheduleLessonComponent implements OnInit, OnDestroy {
   faCheck = faCheckCircle;
   faStart = faPlayCircle;
   faDollar = faDollarSign;
+  faEdit = faEdit;
+  faTrash = faTrashAlt;
   faQuestion = faQuestionCircle;
   faQuestion2 = faQuestion;
 

@@ -143,54 +143,55 @@
 
 .action-icon{
   margin: 3px 0 3px 0;
+  font-size: 1.3rem;
 }
 
 .confirm-lesson-icon{
-  font-size: 1.7rem;
+  /* font-size: 1.7rem; */
   color: rgb(32, 161, 0);
 }
 .confirm-lesson-icon:hover{
-  font-size: 1.9rem;
+  font-size: 1.6rem;
   color: rgb(34, 204, 0);
   cursor: pointer;
 }
 
 .start-lesson-icon{
-  font-size: 1.7rem;
+  /* font-size: 1.7rem; */
   color: rgb(209, 143, 0);
 }
 .start-lesson-icon:hover{
-  font-size: 1.9rem;
+  font-size: 1.6rem;
   color: rgb(236, 173, 0);
   cursor: pointer;
 }
 
 .pay-lesson-icon{
-  font-size: 1.7rem;
+  /* font-size: 1.7rem; */
   color: rgb(27, 133, 0);
 }
 .pay-lesson-icon:hover{
-  font-size: 1.9rem;
+  font-size: 1.6rem;
   color: rgb(17, 204, 0);
   cursor: pointer;
 }
 
 .edit-lesson-icon{
-  font-size: 1.7rem;
+  /* font-size: 1.7rem; */
   color: rgb(54, 54, 54);
 }
 .edit-lesson-icon:hover{
-  font-size: 1.9rem;
+  font-size: 1.6rem;
   color: black;
   cursor: pointer;
 }
 
 .delete-lesson-icon{
-  font-size: 1.7rem;
+  /* font-size: 1.7rem; */
   color: rgb(155, 0, 0);
 }
 .delete-lesson-icon:hover{
-  font-size: 1.9rem;
+  font-size: 1.6rem;
   color: rgb(236, 22, 22);
   cursor: pointer;
 }

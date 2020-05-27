@@ -158,6 +158,31 @@
       </li>
       <li class="detail-list-item">
         <div class="detail-list-content">
+          <h3>Numer IKO</h3>
+
+          <div class="form-fields form-date-field">
+            <div class="form-group">
+              <input  type="text"
+              inputmode="latin-name"
+              required
+              [ngModel]="instructor.iko_id"
+              name="iko_id"
+              #iko_id="ngModel"
+              id="iko_id"
+              class="form-control"
+              [class.is-valid]=iko_id.valid
+              [class.is-invalid]="!iko_id.valid && iko_id.touched">
+              <div *ngIf="!iko_id.valid && iko_id.touched" >
+                  <span class="field-validation-error" *ngIf="iko_id.errors.required">
+                  <small>To pole jest wymagane</small></span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </li>
+      <li class="detail-list-item">
+        <div class="detail-list-content">
           <h3>Poziom IKO</h3>
 
           <div class="form-fields form-number-field">
@@ -235,22 +260,48 @@
       </li>
       <li class="detail-list-item">
         <div class="detail-list-content">
-          <h3>Stawka</h3>
+          <h3>Stawka indywidualna</h3>
 
-          <div class="form-fields">
+          <div class="form-fields form-number-field">
             <div class="form-group">
-              <input  type="number"
+              <input  type="text"
               inputmode="latin-name"
               required
-              [ngModel]="instructor.pay_rate"
-              name="pay_rate"
-              #payRate="ngModel"
+              [ngModel]="instructor.pay_rate_single"
+              name="pay_rate_single"
+              #payRateSingle="ngModel"
               id="payRate"
               class="form-control"
-              [class.is-valid]=payRate.valid
-              [class.is-invalid]="!payRate.valid && payRate.touched">
-              <div *ngIf="!payRate.valid && payRate.touched" >
-                  <span class="field-validation-error" *ngIf="payRate.errors.required">
+              [class.is-valid]=payRateSingle.valid
+              [class.is-invalid]="!payRateSingle.valid && payRateSingle.touched">
+              <div *ngIf="!payRateSingle.valid && payRateSingle.touched" >
+                  <span class="field-validation-error" *ngIf="payRateSingle.errors.required">
+                  <small>To pole jest wymagane</small></span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </li>
+
+      <li class="detail-list-item">
+        <div class="detail-list-content">
+          <h3>Stawka grupowa</h3>
+
+          <div class="form-fields form-number-field">
+            <div class="form-group">
+              <input  type="text"
+              inputmode="latin-name"
+              required
+              [ngModel]="instructor.pay_rate_group"
+              name="pay_rate_group"
+              #payRateGroup="ngModel"
+              id="payRateGroup"
+              class="form-control"
+              [class.is-valid]=payRateGroup.valid
+              [class.is-invalid]="!payRateGroup.valid && payRateGroup.touched">
+              <div *ngIf="!payRateGroup.valid && payRateGroup.touched" >
+                  <span class="field-validation-error" *ngIf="payRateGroup.errors.required">
                   <small>To pole jest wymagane</small></span>
               </div>
             </div>

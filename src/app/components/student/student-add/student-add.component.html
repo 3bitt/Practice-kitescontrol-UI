@@ -88,7 +88,7 @@
 
 
           <div class="form-group">
-            <label for="birthDate">Data urodzenia</label>
+            <label for="birthDate">Data urodzenia <small>[DD-MM-YYYY]</small></label>
             <input  type="text" placeholder="DD-MM-YYYY"
             required
             pattern="([3][0-1]|[1-2][0-9]|[0][1-9])-([1][0-2]|[0][1-9])-(19[0-9][0-9]|20[0-2][0-9])"
@@ -119,6 +119,71 @@
             [class.is-invalid]="!weight.valid && weight.touched">
             <div *ngIf="!weight.valid && weight.touched" >
                 <span class="field-validation-error" *ngIf="weight.errors.required">
+                <small>To pole jest wymagane</small></span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="wetsuitSize">Rozmiar pianki</label>
+            <select  type="text"
+            required
+            ngModel
+            name="wetsuitSize"
+            #wetsuitSize="ngModel"
+            id="wetsuitSize"
+            class="form-control"
+            [class.is-valid]=wetsuitSize.valid
+            [class.is-invalid]="!wetsuitSize.valid && wetsuitSize.touched">
+              <option value="XS">XS</option>
+              <option value="S">S</option>
+              <option value="M">M</option>
+              <option value="L">L</option>
+              <option value="XL">XL</option>
+              <option value="XXL">XXL</option>
+            </select>
+            <div *ngIf="!wetsuitSize.valid && wetsuitSize.touched" >
+                <span class="field-validation-error" *ngIf="wetsuitSize.errors.required">
+                <small>To pole jest wymagane</small></span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="harnessSize">Rozmiar trapezu</label>
+            <select  type="text"
+            required
+            ngModel
+            name="harnessSize"
+            #harnessSize="ngModel"
+            id="harnessSize"
+            class="form-control"
+            [class.is-valid]=harnessSize.valid
+            [class.is-invalid]="!harnessSize.valid && harnessSize.touched">
+              <option value="XS">XS</option>
+              <option value="S">S</option>
+              <option value="M">M</option>
+              <option value="L">L</option>
+              <option value="XL">XL</option>
+              <option value="XXL">XXL</option>
+            </select>
+            <div *ngIf="!harnessSize.valid && harnessSize.touched" >
+                <span class="field-validation-error" *ngIf="harnessSize.errors.required">
+                <small>To pole jest wymagane</small></span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="iko_id">Numer IKO</label>
+            <input  type="text"
+
+            ngModel
+            name="iko_id"
+            #iko_id="ngModel"
+            id="iko_id"
+            class="form-control"
+            [class.is-valid]=iko_id.valid
+            [class.is-invalid]="!iko_id.valid && iko_id.touched">
+            <div *ngIf="!iko_id.valid && iko_id.touched" >
+                <span class="field-validation-error" *ngIf="iko_id.errors.required">
                 <small>To pole jest wymagane</small></span>
             </div>
           </div>
@@ -160,7 +225,7 @@
           </div>
 
           <div class="form-group">
-            <label for="arrivalDate">Data przyjazdu</label>
+            <label for="arrivalDate">Data przyjazdu <small>[DD-MM-YYYY]</small></label>
             <input  type="text" placeholder="DD-MM-YYYY"
             required
             pattern="([3][0-1]|[1-2][0-9]|[0][1-9])-([1][0-2]|[0][1-9])-(19[0-9][0-9]|20[0-2][0-9])"
@@ -178,7 +243,7 @@
           </div>
 
           <div class="form-group">
-            <label for="leaveDate">Data odjazdu</label>
+            <label for="leaveDate">Data odjazdu <small>[DD-MM-YYYY]</small></label>
             <input  type="text" placeholder="DD-MM-YYYY"
             required
             pattern="([3][0-1]|[1-2][0-9]|[0][1-9])-([1][0-2]|[0][1-9])-(19[0-9][0-9]|20[0-2][0-9])"
@@ -199,7 +264,6 @@
             <label for="comment">Informacje dodatkowe</label>
             <input  type="text"
             inputmode="latin-name"
-            required
             maxlength='255'
             ngModel
             name="comment"

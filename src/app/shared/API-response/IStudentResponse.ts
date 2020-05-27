@@ -15,7 +15,10 @@ export interface IStudentDetailResponse {
   email_address: string;
   mobile_number: string;
   weight:        number;
+  wetsuit_size:  string;
+  harness_size:  string;
   stay_location: string;
+  iko_id:        number;
   iko_level:     string;
   arrival_date:  string;
   leave_date:    string;
@@ -31,7 +34,10 @@ export interface Result {
   email_address: string;
   mobile_number: string;
   weight:        number;
+  wetsuit_size:  string;
+  harness_size:  string;
   stay_location: string;
+  iko_id:        number;
   iko_level:     string;
   arrival_date:  string;
   leave_date:    string;

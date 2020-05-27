@@ -18,8 +18,10 @@ export interface IInstructorDetailResponse {
   weight:           number;
   available_from:   null | string;
   available_to:     null | string;
+  iko_id:           number;
   iko_level:        string;
-  pay_rate:         number | null;
+  pay_rate_single:  number | null;
+  pay_rate_group:  number | null;
   english_lessons:  boolean | null;
   kids_lessons:     boolean | null;
   group_lessons:    boolean;
@@ -38,8 +40,10 @@ export interface Result {
   weight:           number;
   available_from:   null | string;
   available_to:     null | string;
+  iko_id:           number;
   iko_level:        string;
-  pay_rate:         number | null;
+  pay_rate_single:  number | null;
+  pay_rate_group:  number | null;
   english_lessons:  boolean | null;
   kids_lessons:     boolean | null;
   group_lessons:    boolean | null;

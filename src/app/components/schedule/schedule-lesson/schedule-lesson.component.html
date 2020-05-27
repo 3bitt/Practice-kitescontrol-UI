@@ -69,37 +69,31 @@
         </div>
 
         <div #actionsMenu class="actionsMenu" >
-          <!-- (click)="deleteLesson(lesson.id)" -->
 
-          <span class="material-icons md-48 action-icon confirm-lesson-icon"
+          <fa-icon class="action-icon confirm-lesson-icon" title="Potwierdź"
           (click)="confirmLesson(lesson.id, lesson.status)"
-          title="Potwierdź">
-          check_circle_outline
-          </span>
+          [icon]="faCheck">
+          </fa-icon>
 
-          <span class="material-icons md-48 action-icon start-lesson-icon"
+          <fa-icon class="action-icon start-lesson-icon" title="Rozpocznij"
           (click)="startLesson(lesson.id, lesson.in_progress)"
-          title="Rozpocznij">
-            play_circle_outline
-          </span>
+          [icon]="faStart">
+          </fa-icon>
 
-          <span class="material-icons md-48 action-icon pay-lesson-icon"
-          title="Rozlicz"
-          (click)="payLesson(lesson.id, lesson.paid)">
-          attach_money
-          </span>
+          <fa-icon class="action-icon pay-lesson-icon"  title="Rozlicz"
+          (click)="payLesson(lesson.id, lesson.paid)"
+          [icon]="faDollar">
+          </fa-icon>
 
-          <span class="material-icons md-48 action-icon edit-lesson-icon"
-          title="Edytuj"
-          (click)="editLesson(lesson)">
-            settings
-          </span>
+          <fa-icon class="action-icon edit-lesson-icon"  title="Edytuj"
+          (click)="editLesson(lesson)"
+          [icon]="faEdit">
+          </fa-icon>
 
-          <span class="material-icons md-48 action-icon delete-lesson-icon"
-          title="Usuń"
-            (click)="deleteLesson(lesson.id)">
-          delete_forever
-          </span>
+          <fa-icon class="action-icon delete-lesson-icon"  title="Usuń"
+          (click)="deleteLesson(lesson.id)"
+          [icon]="faTrash">
+          </fa-icon>
 
         </div>
 

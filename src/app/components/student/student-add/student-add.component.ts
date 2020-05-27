@@ -8,6 +8,7 @@ import { NgClass, formatDate, getLocaleDateFormat } from '@angular/common';
 import { format } from 'util';
 import { Observable, Subscription } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
+import { NONE_TYPE } from '@angular/compiler';
 
 @Component({
   selector: 'app-student-add',
@@ -37,11 +38,14 @@ export class StudentAddComponent implements OnInit, OnDestroy {
       form.value.mobile,
       form.value.birthDate,
       form.value.weight,
+      form.value.wetsuitSize,
+      form.value.harnessSize,
       form.value.stayLocation,
+      form.value.iko_id ? form.value.iko_id : null,
       form.value.ikoLevel,
       form.value.arrivalDate,
       form.value.leaveDate,
-      form.value.comment
+      form.value.comment ? form.value.comment : null
     );
       console.log(this.newStudent);
     }
