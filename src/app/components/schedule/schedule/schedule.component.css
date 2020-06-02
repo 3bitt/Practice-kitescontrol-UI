@@ -4,7 +4,7 @@
 
   grid-template-columns: 1fr;
   grid-template-rows: 80px 600px;
-  background-color: rgb(134, 171, 192);
+  background-color: rgb(177, 155, 217)
 }
 
 .schedule-btn-container{
@@ -50,7 +50,7 @@
   grid-column: 1;
   grid-row: 2 / 3;
 
-  border: 2px solid rgb(35, 139, 108);
+  /* border: 2px solid rgb(35, 139, 108); */
   overflow: hidden;
 }
 
@@ -113,7 +113,7 @@
   /* row gap impact background-block margins
       (horizontal grid lines)*/
   row-gap: 10px;
-  overflow: hidden;
+  overflow: visible;
 
   padding-top: 11.7px;
   padding-bottom: 11.7px;

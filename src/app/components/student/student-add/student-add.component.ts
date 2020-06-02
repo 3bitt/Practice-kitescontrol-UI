@@ -37,17 +37,18 @@ export class StudentAddComponent implements OnInit, OnDestroy {
       form.value.emailAddress,
       form.value.mobile,
       form.value.birthDate,
-      form.value.weight,
+      form.value.weight ? form.value.weight : null,
       form.value.wetsuitSize,
       form.value.harnessSize,
       form.value.stayLocation,
       form.value.iko_id ? form.value.iko_id : null,
       form.value.ikoLevel,
-      form.value.arrivalDate,
-      form.value.leaveDate,
+      form.value.arrivalDate ? form.value.arrival_date : null,
+      form.value.leaveDate ? form.value.leave_date : null,
       form.value.comment ? form.value.comment : null
     );
-      console.log(this.newStudent);
+    console.log(form.value);
+
     }
 
     onSubmit(){

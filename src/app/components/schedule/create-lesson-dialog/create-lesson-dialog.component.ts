@@ -131,20 +131,6 @@ export class CreateLessonDialogComponent implements OnInit, OnDestroy {
     this.instructorIdsList = this.instructorIdsList.filter(item => item != +instructorId)
   }
 
-  ngOnInit(): void {
-    this.students$ = this.studentService.getStudents().
-      subscribe((data) => this.studentsSourceList = data);
-
-    this.students$ = this.instructorService.getInstructors().
-      subscribe( data => this.instructorsSourceList = data);
-  }
-
-  ngOnDestroy(){
-    if (this.subscription$){
-      this.subscription$.unsubscribe();
-    }
-    this.students$.unsubscribe();
-  }
 
   createLesson(lesson){
     lesson.value.date = formatDate(lesson.value.date, 'dd-MM-yyyy', 'en_US')
@@ -163,7 +149,27 @@ export class CreateLessonDialogComponent implements OnInit, OnDestroy {
 
   exitDialog(){
     this.dialogRef.close();
+  }
 
+
+  checkExistingLessons(lessonToBeAdded, instructor){
+
+  }
+
+
+  ngOnInit(): void {
+    this.students$ = this.studentService.getStudents().
+      subscribe((data) => this.studentsSourceList = data);
+
+    this.students$ = this.instructorService.getInstructors().
+      subscribe( data => this.instructorsSourceList = data);
+  }
+
+  ngOnDestroy(){
+    if (this.subscription$){
+      this.subscription$.unsubscribe();
+    }
+    this.students$.unsubscribe();
   }
 
 }

@@ -1,11 +1,12 @@
 :host {
     display: grid;
     grid-template-columns: 30px repeat(6, 1fr) 30px;
-    grid-template-rows: 30px 200px auto 100px;
+    grid-template-rows: 30px auto 30px auto 100px;
 
     row-gap: 40px;
 
-    background-color: #76a9b3;
+    background-color: #d0c7e0;
+
 
 }
 
@@ -22,7 +23,12 @@ app-forecast {
 
 app-schedule {
   grid-column: 2 / 8;
-  grid-row: 3 / 4 ;
+  grid-row: 4 / 5 ;
+
+  border-radius: 4px;
+  -webkit-box-shadow: 2px 2px 10px 1px rgb(94, 94, 94);
+  -moz-box-shadow: 2px 2px 10px 1px rgb(94, 94, 94);
+  box-shadow: 2px 2px 10px 1px rgb(94, 94, 94);
 }
 
 
