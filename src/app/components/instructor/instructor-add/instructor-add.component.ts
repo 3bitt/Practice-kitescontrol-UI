@@ -34,18 +34,18 @@ export class InstructorAddComponent implements OnDestroy {
       form.mobile,
       form.emailAddress,
       form.birthDate,
-      form.weight,
-      form.availableFrom,
-      form.availableTo,
-      form.ikoId,
+      form.weight ? form.weight : null,
+      form.availableFrom ? form.availableFrom : null,
+      form.availableTo ? form.availableTo : null,
+      form.ikoId ? form.ikoId : null,
       form.ikoLevel,
       form.payRateSingle,
       form.payRateGroup,
-      form.englishLessons,
-      form.kidsLessons,
-      form.groupLessons,
-      form.dailyHourLimit,
-      form.active
+      form.englishLessons ? form.englishLessons : false,
+      form.kidsLessons ? form.kidsLessons : false,
+      form.groupLessons ? form.groupLessons : false,
+      form.dailyHourLimit ? form.dailyHourLimit : null,
+      form.active ? form.active : true
     );
       console.log(this.newInstructor);
     }
