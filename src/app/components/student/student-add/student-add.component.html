@@ -123,14 +123,12 @@
 
           <div class="form-group ">
             <label for="weight">Waga</label>
-            <input  type="text"
-            pattern="([1-9][0-9]|[3-9][0-9]|[1-3][0-9][0-9])"
+            <input  type="number"
             ngModel
             name="weight"
             #weight="ngModel"
             id="weight"
             class="form-control not-required-field"
-
             [class.is-invalid]="!weight.valid && weight.touched">
             <div *ngIf="!weight.valid && weight.touched" >
                 <span class="field-validation-error">
@@ -202,7 +200,7 @@
 
           <div class="form-group ">
             <label for="ikoLevel">Poziom IKO</label>
-            <input  type="text"
+            <select  type="text"
             inputmode="latin-name"
             ngModel
             name="ikoLevel"
@@ -211,6 +209,38 @@
             class="form-control not-required-field"
             [class.ng-valid]=ikoLevel.valid
             [class.is-invalid]="!ikoLevel.valid && ikoLevel.touched">
+            <optgroup label="1 - Discovery">
+              <option value="1A">A - S.E.A.</option>
+              <option value="1B">B - Safety systems / Pre-flight check</option>
+              <option value="1C">C - First piloting</option>
+              <option value="1D">D - First piloting advanced</option>
+              <option value="1E">E - Quick release activation / Self-landing</option>
+            </optgroup>
+            <optgroup label="2 - Intermediate">
+              <option value="2F">F - Enter/exit water with kite / Water relaunch</option>
+              <option value="2G">G - Body-drag left/right</option>
+              <option value="3H">H - Body-drag upwind / with board + Self rescue</option>
+              <option value="4I">I - Rules of way / Steady-pull / Water start </option>
+            </optgroup>
+            <optgroup label="3 - Independent">
+              <option value="3J">J - Controlled stop / control speed</option>
+              <option value="3K">K - Riding upwind</option>
+              <option value="3L">L - Sliding transition</option>
+              <option value="3M">M - Toe-side riding / Toe-side turn</option>
+              <option value="3N">N - Self-launching / Self-rescue deep water</option>
+            </optgroup>
+            <optgroup label="4 - Advanced">
+              <option value="4-1">1 - Basic jump</option>
+              <option value="4-2">2 - Jibe</option>
+              <option value="4-3">3 - Jump with grab</option>
+              <option value="4-4">4 - Rider recovery</option>
+              <option value="4-5">5 - Board recovery</option>
+              <option value="4-6">6 - International signs and ROW</option>
+              <option value="4-7">7 - Equipment</option>
+              <option value="4-8">8 - Weather and tides</option>
+              <option value="4-9">9 - Aerodynamics</option>
+            </optgroup>
+          </select>
             <div *ngIf="!ikoLevel.valid && ikoLevel.touched" >
                 <span class="field-validation-error" *ngIf="ikoLevel.errors.required">
                 <small>To pole jest wymagane</small></span>

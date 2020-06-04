@@ -1,11 +1,5 @@
 
 
-
-
-
-/* FROM STUDENT */
-
-
 :host {
   display: grid;
   grid-template-columns: 50px auto 50px;
@@ -125,6 +119,14 @@ height: 30px;
   font-weight: bold;
 }
 
+::placeholder{
+  font-size: 90%;
+}
+
+.form-group label{
+  margin-bottom: .3rem;
+}
+
 .form-buttons{
   display: flex;
   place-content: space-around;
@@ -159,19 +161,6 @@ height: 30px;
 .radio-btn{
   width: 20px;
   margin-left: 25px;
-}
-
-
-::placeholder{
-  font-size: 90%;
-}
-
-.form-group label{
-  margin-bottom: .3rem;
-}
-
-button{
-  margin-top: 30px;
 }
 
 

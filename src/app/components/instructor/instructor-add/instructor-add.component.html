@@ -56,7 +56,6 @@
           <div class="form-group">
             <label for="nickname">Ksywka</label>
             <input  type="text" inputmode="latin-name"
-
             minlength="2"
             maxlength="60"
             ngModel
@@ -191,7 +190,7 @@
 
           <div class="form-group">
             <label for="ikoLevel">Poziom IKO</label>
-            <input  type="text"
+            <select  type="text"
             inputmode="latin-name"
             ngModel
             name="ikoLevel"
@@ -200,10 +199,13 @@
             class="form-control not-required-field number-field"
             [class.ng-valid]=ikoLevel.valid
             [class.is-invalid]="!ikoLevel.valid && ikoLevel.touched">
-            <div *ngIf="!ikoLevel.valid && ikoLevel.touched" >
-                <span class="field-validation-error" *ngIf="ikoLevel.errors.required">
-                <small>To pole jest wymagane</small></span>
-            </div>
+            <option value="Assistant">AITC - Assistant Instructor</option>
+            <option value="Level 1">Instructor Level 1</option>
+            <option value="Level 2">Instructor Level 2</option>
+            <option value="Level 3">Instructor Level 3</option>
+            <option value="Coach">Coach</option>
+
+            </select>
           </div>
 
           <div class="form-group">
@@ -244,7 +246,7 @@
 
         <div class="form-col-3">
           <div class="form-col-3-title">
-            Miejsce i czas
+            Szczegóły
           </div>
 
           <div class="form-group">
@@ -391,13 +393,18 @@
         <!--  -->
         <div class="form-buttons">
           <button type="submit"
-          class="btn btn-success"
+          class="btn submit-btn"
           (click)="formReady=true; makeForm(instructorForm.value)"
-          [disabled]="!instructorForm.form.valid">       Zatwierdź</button>
+          [disabled]="!instructorForm.form.valid"
+          [class.btn-success]="instructorForm.form.valid">
+          Zatwierdź
+          </button>
 
           <button type="button"
-          class="btn btn-default"
-          (click)="instructorForm.reset()">            Reset</button>
+          class="btn btn-default reset-btn"
+          (click)="instructorForm.reset()">
+          Reset
+          </button>
         </div>
 
       </div>

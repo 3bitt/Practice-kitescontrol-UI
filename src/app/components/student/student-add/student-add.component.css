@@ -39,6 +39,8 @@
   background-color: aliceblue;
   border-radius: 7px;
   box-shadow: 1px 1px 3px #666;
+  align-self: baseline;
+
 }
 
 .form-col-1 .form-group{
