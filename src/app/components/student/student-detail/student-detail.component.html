@@ -1,14 +1,114 @@
 <!-- <router-outlet></router-outlet> -->
-
 <div *ngIf="student">
-<h2>Student detail </h2>
+<h1>{{student.name}} {{student.surname}}</h1>
 
-<a routerLink="/students">Back</a>
-<ul>
-    <li>{{student.name}}</li>
-    <li>{{student.surname}}</li>
-    <li>{{student.birth_date}}</li>
-    <li>{{student.weight}}</li>
-    <li>{{student.register_date}}</li>
-</ul>
+<div *ngIf="student && !editMode">
+
+  <a [routerLink]="['..']">Back</a>
+  <div class="detail-container">
+    <ul class="detail-list">
+      <li class="detail-list-item">
+        <div class="detail-list-content">
+          <h3>Imię i nazwisko</h3>
+          <span class="student-name">{{student.name}} {{student.surname}}</span>
+        </div>
+      </li>
+      <li class="detail-list-item">
+        <div class="detail-list-content">
+          <h3>Email</h3>
+          <span>{{student.email_address}}</span>
+        </div>
+      </li>
+      <li class="detail-list-item">
+        <div class="detail-list-content">
+          <h3>Numer telefonu</h3>
+          <span>{{student.mobile_number}}</span>
+        </div>
+      </li>
+      <li class="detail-list-item">
+        <div class="detail-list-content">
+          <h3>Data urodzenia</h3>
+          <span>{{student.birth_date}}</span>
+        </div>
+      </li>
+      <li class="detail-list-item">
+        <div class="detail-list-content">
+          <h3>Waga</h3>
+          <span>{{student.weight}}</span>
+        </div>
+      </li>
+      <li class="detail-list-item">
+        <div class="detail-list-content">
+          <h3>Rozmiar pianki</h3>
+          <span>{{student.wetsuit_size}}</span>
+        </div>
+      </li>
+      <li class="detail-list-item">
+        <div class="detail-list-content">
+          <h3>Rozmiar trapezu</h3>
+          <span>{{student.harness_size}}</span>
+        </div>
+      </li>
+      <li class="detail-list-item">
+        <div class="detail-list-content">
+          <h3>Numer IKO</h3>
+          <span>{{student.iko_id}}</span>
+        </div>
+      </li>
+      <li class="detail-list-item">
+        <div class="detail-list-content">
+          <h3>Poziom IKO</h3>
+          <span>{{student.iko_level}}</span>
+        </div>
+      </li>
+      <li class="detail-list-item">
+        <div class="detail-list-content">
+          <h3>Miejsce pobytu</h3>
+          <span>{{student.stay_location}}</span>
+        </div>
+      </li>
+      <li class="detail-list-item">
+        <div class="detail-list-content">
+          <h3>Dostępny od</h3>
+          <span>{{student.arrival_date}}</span>
+        </div>
+      </li>
+      <li class="detail-list-item">
+        <div class="detail-list-content">
+          <h3>Dostępny do</h3>
+          <span>{{student.leave_date}}</span>
+        </div>
+      </li>
+      <li class="detail-list-item">
+        <div class="detail-list-content">
+          <h3>Data rejestracji</h3>
+          <span>{{student.register_date | date:'dd-MM-yyyy':'-0200'}}</span>
+        </div>
+      </li>
+      <li class="detail-list-item">
+        <div class="detail-list-content">
+          <h3>Informacje dodatkowe</h3>
+          <span>{{student.comment}}</span>
+        </div>
+      </li>
+    </ul>
+
+    <div class="edit-btn">
+      <button mat-raised-button (click)="showEdit()" >Edytuj</button>
+    </div>
+
+  </div>
+
+
+
 </div>
+</div>
+
+<app-student-detail-edit
+  *ngIf="editMode"
+  [student]="student"
+  (editStudentEmitter)="onReceiveEditForm($event)"
+  (cancelEditEmitter)="this.editMode=false">
+<app-student-detail-edit>
+
+

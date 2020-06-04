@@ -1,3 +1,4 @@
+import { IInstructorPagingResponse } from './../../../shared/API-response/IInstructorResponse';
 import { Subscription } from 'rxjs';
 import { IpagingResponse } from './../../../models/response';
 
@@ -14,7 +15,7 @@ import { InstructorService } from 'src/app/service/instructor/instructor.service
 })
 export class InstructorListComponent implements OnInit, OnDestroy {
 
-  public instructors;
+  public instructors: IInstructorPagingResponse;
   private instructors$: Subscription;
   public searchList = [];
   public searchValue = '';
@@ -37,11 +38,21 @@ export class InstructorListComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.instructors$ = this._instructorService.getInstructors()
-    .subscribe((data: IpagingResponse) => { this.instructors = data },
+    .subscribe((data: IInstructorPagingResponse) => { this.instructors = data },
     err => {
       console.log(err);
     });
   };
+
+  deleteInstructor(id: number){
+    this.instructors$ = this._instructorService.deleteInstructor(id)
+    .subscribe( (data) => { this.instructors.results = data;
+      console.log(data);
+
+    }, err => {
+      console.log('ERR:', err);
+    });
+  }
 
   ngOnDestroy(){
     this.instructors$.unsubscribe();

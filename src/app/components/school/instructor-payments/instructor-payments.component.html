@@ -1,0 +1,96 @@
+
+<div class="instructor-payments-container">
+
+  <div class="payments-btn-wrapper">
+
+    <!-- PAYMENTS -------- FROM -->
+    <div class="payments-from-div">
+
+      <button class="payment-button" mat-raised-button>
+        <fa-icon [icon]="faCalendar"></fa-icon>
+        Od
+        <div class="transparent-date-div">
+          <input #dateFrom
+          class="transparent-date-input"
+          type="date"
+          [max]="this.currDateAsString"
+          (change)="this.fromDateInput=dateFrom.value" >
+        </div>
+
+      </button>
+
+      <input class="disabled-text-field from-text-field"
+      type="text"
+      disabled
+      [value]="this.fromDateInput | date: 'fullDate':'':'pl_PL'">
+
+    </div>
+
+
+    <!-- PAYMENTS -------- TO -->
+    <div class="payments-to-div">
+
+      <button class="payment-button" mat-raised-button>
+
+        <fa-icon [icon]="faCalendar"></fa-icon>
+        Do
+        <div class="transparent-date-div">
+          <input #dateTo
+          class="transparent-date-input"
+          type="date"
+          [min]="this.fromDateInput"
+          (change)="this.toDateInput=dateTo.value" >
+        </div>
+
+      </button>
+
+      <input class="disabled-text-field to-text-field"
+      type="text"
+      disabled
+      [value]="this.toDateInput | date: 'fullDate':'':'pl_PL'">
+
+
+      <!-- SEARCH BUTTON -->
+      <button mat-raised-button
+      class="search-button"
+      (click)="searchInstructorFundings(this.fromDateInput, this.toDateInput)">
+      Pokaż
+      </button>
+
+    </div>
+
+
+  </div>
+
+
+
+
+
+  <table class="payments-table">
+    <thead>
+      <tr>
+        <th class="instructor-heading" rowspan="2">Instruktor</th>
+        <th class="hours-outer-heading" colspan="2">GODZINY</th>
+        <th class="funding-heading" rowspan="2">Wypłata</th>
+      </tr>
+      <tr >
+        <th class="hours-inner-ind">Indywidualne</th>
+        <th class="hours-inner-grp">Grupowe</th>
+      </tr>
+
+    </thead>
+    <tbody>
+      <tr *ngFor="let instr of aggregatedData">
+        <td>
+          <span>{{instr.name}} {{instr.surname[0]}}</span>
+        </td>
+        <td>
+          <span >{{instr.single_hours}}</span>
+        </td>
+        <td>{{instr.group_hours}}</td>
+        <td>{{(instr.single_hours * instr.pay_rate_single) + (instr.group_hours * instr.pay_rate_single)}} zł</td>
+      </tr>
+    </tbody>
+  </table>
+
+</div>

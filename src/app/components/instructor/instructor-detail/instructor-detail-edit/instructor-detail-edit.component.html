@@ -1,0 +1,456 @@
+<div *ngIf="instructor">
+
+  <a [routerLink]="['..']">Back</a>
+  <div class="detail-container">
+    <form #editForm="ngForm">
+    <ul class="detail-list">
+
+      <li class="detail-list-item">
+        <div class="detail-list-content">
+          <h3>Imię i nazwisko</h3>
+
+          <div class="form-fields">
+            <div class="form-group form-instructor-name">
+              <label for="firstName">Imię</label>
+              <input type="text" inputmode="latin-name"
+              required
+              minlength="2"
+              maxlength="30"
+              [ngModel]="instructor.name"
+              name="name"
+              #firstName="ngModel"
+              id="name"
+              class="form-control"
+              [class.is-valid]=firstName.valid
+              [class.is-invalid]="!firstName.valid && firstName.touched">
+              <div *ngIf="!firstName.valid && firstName.touched" >
+                  <span class="field-validation-error" *ngIf="firstName.errors.required">
+                  <small>To pole jest wymagane</small></span>
+              </div>
+            </div>
+
+            <div class="form-group form-instructor-surname ">
+              <label for="lastName">Nazwisko</label>
+              <input type="text" inputmode="latin-name"
+              required
+              minlength="2"
+              maxlength="30"
+              [ngModel]="instructor.surname"
+              name="surname"
+              #lastName="ngModel"
+              id="name"
+              class="form-control"
+              [class.is-valid]=lastName.valid
+              [class.is-invalid]="!lastName.valid && lastName.touched">
+              <div *ngIf="!lastName.valid && lastName.touched" >
+                  <span class="field-validation-error" *ngIf="lastName.errors.required">
+                  <small>To pole jest wymagane</small></span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </li>
+
+      <li class="detail-list-item">
+        <div class="detail-list-content">
+          <h3>Email</h3>
+
+          <div class="form-fields">
+            <div class="form-group">
+              <input  type="text"
+              inputmode="latin-name"
+              required
+              minlength="2"
+              maxlength="60"
+              [ngModel]="instructor.email_address"
+              name="email_address"
+              #emailAddress="ngModel"
+              id="emailAddress"
+              class="form-control"
+              [class.is-valid]=emailAddress.valid
+              [class.is-invalid]="!emailAddress.valid && emailAddress.touched">
+              <div *ngIf="!emailAddress.valid && emailAddress.touched" >
+                  <span class="field-validation-error" *ngIf="emailAddress.errors.required">
+                  <small>To pole jest wymagane</small></span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </li>
+      <li class="detail-list-item">
+        <div class="detail-list-content">
+          <h3>Numer telefonu</h3>
+
+          <div class="form-fields">
+            <div class="form-group">
+            <input  type="text"
+            inputmode="latin-name"
+            required
+            minlength="9"
+            maxlength="20"
+            [ngModel]="instructor.mobile_number"
+            name="mobile_number"
+            #mobile="ngModel"
+            id="mobile"
+            class="form-control"
+            [class.is-valid]=mobile.valid
+            [class.is-invalid]="!mobile.valid && mobile.touched">
+            <div *ngIf="!mobile.valid && mobile.touched" >
+                <span class="field-validation-error" *ngIf="mobile.errors.required">
+                <small>To pole jest wymagane</small></span>
+            </div>
+            </div>
+          </div>
+
+        </div>
+      </li>
+      <li class="detail-list-item">
+        <div class="detail-list-content">
+          <h3>Data urodzenia</h3>
+
+          <div class="form-fields form-date-field">
+            <div class="form-group">
+              <input  type="text" placeholder="DD-MM-YYYY"
+              required
+              pattern="([3][0-1]|[1-2][0-9]|[0][1-9])-([1][0-2]|[0][1-9])-(19[0-9][0-9]|20[0-2][0-9])"
+              [ngModel]="instructor.birth_date"
+              name="birth_date"
+              #birthDate="ngModel"
+              id="birthDate"
+              class="form-control"
+              [class.is-valid]=birthDate.valid
+              [class.is-invalid]="!birthDate.valid && birthDate.touched">
+              <div *ngIf="!birthDate.valid && birthDate.touched" >
+                  <span class="field-validation-error" *ngIf="birthDate.errors.required">
+                  <small>To pole jest wymagane</small></span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </li>
+      <li class="detail-list-item">
+        <div class="detail-list-content">
+          <h3>Waga</h3>
+
+          <div class="form-fields form-number-field">
+            <div class="form-group">
+              <input  type="text" placeholder="min. 25"
+              required
+              pattern="([2-9][5-9]|[3-9][0-9]|[1-3][0-9][0-9])"
+              [ngModel]="instructor.weight"
+              name="weight"
+              #weight="ngModel"
+              id="weight"
+              class="form-control"
+              [class.is-valid]=weight.valid
+              [class.is-invalid]="!weight.valid && weight.touched">
+              <div *ngIf="!weight.valid && weight.touched" >
+                  <span class="field-validation-error" *ngIf="weight.errors.required">
+                  <small>min. 25kg</small></span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </li>
+      <li class="detail-list-item">
+        <div class="detail-list-content">
+          <h3>Numer IKO</h3>
+
+          <div class="form-fields form-date-field">
+            <div class="form-group">
+              <input  type="text"
+              inputmode="latin-name"
+              required
+              [ngModel]="instructor.iko_id"
+              name="iko_id"
+              #iko_id="ngModel"
+              id="iko_id"
+              class="form-control"
+              [class.is-valid]=iko_id.valid
+              [class.is-invalid]="!iko_id.valid && iko_id.touched">
+              <div *ngIf="!iko_id.valid && iko_id.touched" >
+                  <span class="field-validation-error" *ngIf="iko_id.errors.required">
+                  <small>To pole jest wymagane</small></span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </li>
+      <li class="detail-list-item">
+        <div class="detail-list-content">
+          <h3>Poziom IKO</h3>
+
+          <div class="form-fields form-number-field">
+            <div class="form-group">
+              <input  type="text"
+              inputmode="latin-name"
+              required
+              [ngModel]="instructor.iko_level"
+              name="iko_level"
+              #ikoLevel="ngModel"
+              id="ikoLevel"
+              class="form-control"
+              [class.is-valid]=ikoLevel.valid
+              [class.is-invalid]="!ikoLevel.valid && ikoLevel.touched">
+              <div *ngIf="!ikoLevel.valid && ikoLevel.touched" >
+                  <span class="field-validation-error" *ngIf="ikoLevel.errors.required">
+                  <small>To pole jest wymagane</small></span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </li>
+
+      <li class="detail-list-item">
+        <div class="detail-list-content">
+          <h3>Dostępny od</h3>
+
+          <div class="form-fields form-date-field">
+            <div class="form-group">
+              <input  type="text" placeholder="DD-MM-YYYY"
+              required
+              pattern="([3][0-1]|[1-2][0-9]|[0][1-9])-([1][0-2]|[0][1-9])-(19[0-9][0-9]|20[0-2][0-9])"
+              [ngModel]="instructor.available_from"
+              name="available_from"
+              #availableFrom="ngModel"
+              id="availableFrom"
+              class="form-control"
+              [class.is-valid]=availableFrom.valid
+              [class.is-invalid]="!availableFrom.valid && availableFrom.touched">
+              <div *ngIf="!availableFrom.valid && availableFrom.touched" >
+                  <span class="field-validation-error" *ngIf="availableFrom.errors.required">
+                  <small>To pole jest wymagane</small></span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </li>
+
+      <li class="detail-list-item">
+        <div class="detail-list-content">
+          <h3>Dostępny do</h3>
+
+          <div class="form-fields form-date-field">
+            <div class="form-group">
+              <input  type="text" placeholder="DD-MM-YYYY"
+              required
+              pattern="([3][0-1]|[1-2][0-9]|[0][1-9])-([1][0-2]|[0][1-9])-(19[0-9][0-9]|20[0-2][0-9])"
+              [ngModel]="instructor.available_to"
+              name="available_to"
+              #availableTo="ngModel"
+              id="availableTo"
+              class="form-control"
+              [class.is-valid]=availableTo.valid
+              [class.is-invalid]="!availableTo.valid && availableTo.touched">
+              <div *ngIf="!availableTo.valid && availableTo.touched" >
+                  <span class="field-validation-error" *ngIf="availableTo.errors.required">
+                  <small>To pole jest wymagane</small></span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </li>
+      <li class="detail-list-item">
+        <div class="detail-list-content">
+          <h3>Stawka indywidualna</h3>
+
+          <div class="form-fields form-number-field">
+            <div class="form-group">
+              <input  type="text"
+              inputmode="latin-name"
+              required
+              [ngModel]="instructor.pay_rate_single"
+              name="pay_rate_single"
+              #payRateSingle="ngModel"
+              id="payRate"
+              class="form-control"
+              [class.is-valid]=payRateSingle.valid
+              [class.is-invalid]="!payRateSingle.valid && payRateSingle.touched">
+              <div *ngIf="!payRateSingle.valid && payRateSingle.touched" >
+                  <span class="field-validation-error" *ngIf="payRateSingle.errors.required">
+                  <small>To pole jest wymagane</small></span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </li>
+
+      <li class="detail-list-item">
+        <div class="detail-list-content">
+          <h3>Stawka grupowa</h3>
+
+          <div class="form-fields form-number-field">
+            <div class="form-group">
+              <input  type="text"
+              inputmode="latin-name"
+              required
+              [ngModel]="instructor.pay_rate_group"
+              name="pay_rate_group"
+              #payRateGroup="ngModel"
+              id="payRateGroup"
+              class="form-control"
+              [class.is-valid]=payRateGroup.valid
+              [class.is-invalid]="!payRateGroup.valid && payRateGroup.touched">
+              <div *ngIf="!payRateGroup.valid && payRateGroup.touched" >
+                  <span class="field-validation-error" *ngIf="payRateGroup.errors.required">
+                  <small>To pole jest wymagane</small></span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </li>
+
+      <li class="detail-list-item">
+        <div class="detail-list-content">
+          <h3>Zajęcia po angielsku</h3>
+
+          <div class="form-fields">
+            <div class="form-group">
+              <input  type="checkbox"
+              inputmode="latin-name"
+              [ngModel]="instructor.english_lessons"
+              name="english_lessons"
+              #englishLessons="ngModel"
+              id="englishLessons"
+              class="form-control"
+              [class.is-valid]=englishLessons.valid
+              [class.is-invalid]="!englishLessons.valid && englishLessons.touched">
+              <div *ngIf="!englishLessons.valid && englishLessons.touched" >
+                  <span class="field-validation-error" *ngIf="englishLessons.errors.required">
+                  <small>To pole jest wymagane</small></span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </li>
+
+      <li class="detail-list-item">
+        <div class="detail-list-content">
+          <h3>Zajęcia z dziećmi</h3>
+
+          <div class="form-fields">
+            <div class="form-group">
+              <input  type="checkbox"
+              inputmode="latin-name"
+              [ngModel]="instructor.kids_lessons"
+              name="kids_lessons"
+              #kidsLessons="ngModel"
+              id="kidsLessons"
+              class="form-control"
+              [class.is-valid]=kidsLessons.valid
+              [class.is-invalid]="!kidsLessons.valid && kidsLessons.touched">
+              <div *ngIf="!kidsLessons.valid && kidsLessons.touched" >
+                  <span class="field-validation-error" *ngIf="kidsLessons.errors.required">
+                  <small>To pole jest wymagane</small></span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </li>
+
+      <li class="detail-list-item">
+        <div class="detail-list-content">
+          <h3>Zajęcia grupowe</h3>
+
+          <div class="form-fields">
+            <div class="form-group">
+              <input  type="checkbox"
+              inputmode="latin-name"
+              [ngModel]="instructor.group_lessons"
+              name="group_lessons"
+              #groupLessons="ngModel"
+              id="groupLessons"
+              class="form-control"
+              [class.is-valid]=groupLessons.valid
+              [class.is-invalid]="!groupLessons.valid && groupLessons.touched">
+              <div *ngIf="!groupLessons.valid && groupLessons.touched" >
+                  <span class="field-validation-error" *ngIf="groupLessons.errors.required">
+                  <small>To pole jest wymagane</small></span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </li>
+
+      <li class="detail-list-item">
+        <div class="detail-list-content">
+          <h3>Dzienny limit godzin</h3>
+
+          <div class="form-fields">
+            <div class="form-group">
+              <input  type="number"
+              inputmode="latin-name"
+              required
+              [ngModel]="instructor.daily_hour_limit"
+              name="daily_hour_limit"
+              #dailyHourLimit="ngModel"
+              id="dailyHourLimit"
+              class="form-control"
+              [class.is-valid]=dailyHourLimit.valid
+              [class.is-invalid]="!dailyHourLimit.valid && dailyHourLimit.touched">
+              <div *ngIf="!dailyHourLimit.valid && dailyHourLimit.touched" >
+                  <span class="field-validation-error" *ngIf="dailyHourLimit.errors.required">
+                  <small>To pole jest wymagane</small></span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </li>
+
+      <li class="detail-list-item">
+        <div class="detail-list-content">
+          <h3>Aktywny</h3>
+
+          <div class="form-fields">
+            <div class="form-group">
+              <input  type="checkbox"
+              inputmode="latin-name"
+              [ngModel]="instructor.active"
+              name="active"
+              #active="ngModel"
+              id="active"
+              class="form-control"
+              [class.is-valid]=active.valid
+              [class.is-invalid]="!active.valid && active.touched">
+              <div *ngIf="!active.valid && active.touched" >
+                  <span class="field-validation-error" *ngIf="active.errors.required">
+                  <small>To pole jest wymagane</small></span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </li>
+
+
+    </ul>
+    </form>
+
+    <div class="edit-buttons">
+
+      <button class="cancel-edit-btn" mat-raised-button
+        (click)="cancelEdit()">Anuluj
+      </button>
+
+      <button class="submit-edit-btn" mat-raised-button
+        (click)="submitEditForm(editForm)">Edytuj
+      </button>
+    </div>
+  </div>
+
+
+</div>

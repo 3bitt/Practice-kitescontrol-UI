@@ -1,0 +1,151 @@
+:host{
+  display: grid;
+  position: relative;
+
+  grid-template-columns: 1fr;
+  grid-template-rows: 80px 1400px;
+  background-color: rgb(177, 155, 217)
+}
+
+.schedule-btn-container{
+  display: flex;
+  /* position: relative; */
+
+  grid-row: 1;
+  flex-direction: row;
+
+  margin-left: 10px;
+  margin-top: 10px;
+}
+
+.schedule-btn-wrapper{
+  margin-right: 10px;
+}
+
+.history-btn-div{
+  position: relative;
+}
+
+.history-div{
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0%;
+  text-align: right;
+}
+.history-input{
+  text-align: right;
+}
+
+.schedule-date-switcher{
+  position: absolute;
+  right: 41%;
+}
+
+
+/* Schedule body */
+
+.scheduler-wrapper {
+  grid-row: 2 / 3;
+
+  /* border: 2px solid rgb(35, 139, 108); */
+  overflow: hidden;
+}
+
+.empty-schedule{
+  grid-column: 1;
+  grid-row: 2 / 3;
+}
+.empty-info{
+  text-align: center;
+}
+
+.schedule-container{
+  display: grid;
+  grid-template-columns: 160px repeat(14, 120px);
+  grid-template-rows: 45px 30px auto;
+
+
+}
+
+.header-container{
+  display: grid;
+  grid-template-columns: 160px repeat(14, 120px);
+  grid-row: 2;
+  /* grid-column: 1 / -1; */
+  /* grid-row: 1 / 2; */
+}
+
+.schedule-icon{
+  font-size: 16px;
+  margin-right: 5px;
+}
+.lesson-add-icon{
+  color: green;
+}
+.lesson-history-icon{
+  color: rgb(255, 255, 255);
+}
+
+.schedule-date{
+  font-size: 20px;
+  place-self: center;
+}
+
+.hour{
+  font-size: 22px;
+  align-self: center;
+  padding-left: 5px;
+  border-left: 2px solid  rgb(217, 235, 168);
+}
+
+.schedule-row{
+  display: grid;
+  grid-template-columns: 160px auto ;
+  /* grid-template-rows: auto; */
+
+  grid-column: 1/-1;
+  grid-row: 3;
+  /* column-gap: 10px; */
+
+  /* row gap impact background-block margins
+      (horizontal grid lines)*/
+  row-gap: 10px;
+  overflow: visible;
+
+  padding-top: 11.7px;
+  padding-bottom: 11.7px;
+}
+
+/* .instr-lesson-row{
+  display: grid;
+  grid-template-columns: 210px auto;
+  grid-column: 1 / -1;
+} */
+
+app-schedule-lesson{
+  display: contents;
+  /* grid-column: 1 / -1;
+  grid-row: 1; */
+
+}
+
+.test1{
+  display: contents;
+
+  /* grid-column: 1/-1;
+  grid-row: 1; */
+}
+
+
+
+/* .lessons-time-grid{
+  display: grid;
+  grid-template-columns: repeat(28, 55px);
+  grid-template-columns: repeat(auto-fill, 55px);
+
+  grid-column: 2 / -1;
+} */
+

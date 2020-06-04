@@ -1,0 +1,20 @@
+
+
+<div class="switcher-container">
+  <div class="left-icon icon">
+    <a (click)="previousDay()">
+      <fa-icon [icon]="leftArrow"></fa-icon>
+    </a>
+  </div>
+
+  <div class="current-date" >
+     <span>{{scheduledate | date: 'fullDate':'':'pl_PL'}}</span>
+  </div>
+
+  <div class="right-icon icon">
+    <a (click)="nextDay()">
+      <fa-icon [icon]="rightArrow"></fa-icon>
+    </a>
+  </div>
+
+</div>

@@ -1,0 +1,173 @@
+
+
+<div class="instr-cell">
+
+  <span>{{instructor.name}}</span>
+
+</div>
+
+
+<div class="lessons-time-grid" *ngIf="instructor">
+
+  <div class="background-grid">
+  <div class="background-block"></div>
+  <div class="background-block"></div>
+  <div class="background-block"></div>
+  <div class="background-block"></div>
+  <div class="background-block"></div>
+  <div class="background-block"></div>
+  <div class="background-block"></div>
+  <div class="background-block"></div>
+  <div class="background-block"></div>
+  <div class="background-block"></div>
+  <div class="background-block"></div>
+  <div class="background-block"></div>
+  <div class="background-block"></div>
+  <div class="background-block"></div>
+  <div class="background-block"></div>
+  <div class="background-block"></div>
+  <div class="background-block"></div>
+  <div class="background-block"></div>
+  <div class="background-block"></div>
+  <div class="background-block"></div>
+  <div class="background-block"></div>
+  <div class="background-block"></div>
+  <div class="background-block"></div>
+  <div class="background-block"></div>
+  <div class="background-block"></div>
+  <div class="background-block"></div>
+  <div class="background-block"></div>
+  <div class="background-block"></div>
+  <div class="background-block"></div>
+  <div class="background-block"></div>
+  <div class="background-block"></div>
+  <div class="background-block"></div>
+
+</div>
+  <!-- ^([1-9][0-9]:[0-3]+) - Regexp for lesson time. ex. 12:30 -->
+  <!-- (^[1-9][0-9]|(?<=0)[0-9]) - gets only first digits -->
+
+
+  <div class="lesson-cell" #lessonCell *ngFor="let lesson of instructor.lessons"
+    [style.grid-column]="(lesson.time | timeToPosition) + '/ span '+ (lesson.duration) * 2">
+
+    <div class="lesson-header">
+      <div class="lesson-inner-time" *ngIf="lesson.duration > 1">
+        {{lesson.time | slice:0:5}}
+      </div>
+
+      <div class="lesson-student-name"
+      *ngFor="let student of lesson.student">
+        {{student.name}} {{student.surname[0]}}
+      </div>
+
+      <div class="lesson-action" >
+
+        <div class="lesson-action-button"
+          (click)="showLessonActionsMenu(actionsMenu)" >
+          <mat-icon >more_vert</mat-icon>
+        </div>
+
+        <div #actionsMenu class="actionsMenu" >
+
+          <fa-icon class="action-icon confirm-lesson-icon" title="Potwierdź"
+          (click)="confirmLesson(lesson.id, lesson.status)"
+          [icon]="faCheck">
+          </fa-icon>
+
+          <fa-icon class="action-icon start-lesson-icon" title="Rozpocznij"
+          (click)="startLesson(lesson.id, lesson.in_progress)"
+          [icon]="faStart">
+          </fa-icon>
+
+          <fa-icon class="action-icon pay-lesson-icon"  title="Rozlicz"
+          (click)="payLesson(lesson.id, lesson.paid)"
+          [icon]="faDollar">
+          </fa-icon>
+
+          <fa-icon class="action-icon edit-lesson-icon"  title="Edytuj"
+          (click)="editLesson(lesson)"
+          [icon]="faEdit">
+          </fa-icon>
+
+          <fa-icon class="action-icon delete-lesson-icon"  title="Usuń"
+          (click)="deleteLesson(lesson.id)"
+          [icon]="faTrash">
+          </fa-icon>
+
+        </div>
+
+      </div>
+    </div>
+
+
+
+
+    <!-- Lesson duration condition - if smaller width then smaller font siez -->
+
+    <div class="lesson-info" *ngIf="lesson.duration >= 1.5"
+      [class.lesson-info-paid]="lesson.paid"
+      [class.lesson-info-inProgress]="lesson.in_progress" >
+
+      <div *ngIf="lesson.status == 'Potwierdzona'"
+      class="lesson-info-item lesson-confirmed">
+      <fa-icon class="icon-confirmed" [icon]="faCheck"></fa-icon>
+      </div>
+      <div *ngIf="lesson.status == 'Niepotwierdzona'"
+      class="lesson-info-item lesson-not-confirmed">
+      <fa-icon class="icon-not-confirmed" [icon]="faQuestion"></fa-icon>
+      </div>
+
+      <div class="lesson-info-item lesson-equipment img-container"
+      *ngIf="lesson.kite_brand">
+        <div class="kite-image"></div>
+        <span>{{lesson.kite_brand}}</span>
+      </div>
+
+      <div class="lesson-info-item lesson-equipment img-container"
+      *ngIf="lesson.board">
+        <div class="board-image"></div>
+        <span>{{lesson.board}}</span>
+      </div>
+
+      <!-- SPINNER if lesson in progress -->
+
+      <div class="lesson-info-item lesson-equipment img-container spinner-container"
+      *ngIf="lesson.in_progress">
+        <div class="spinner"></div>
+      </div>
+
+    </div>
+      <!-- else -->
+    <div class="lesson-info-smaller" *ngIf="lesson.duration < 1.5"
+      [class.lesson-info-paid]="lesson.paid"
+      [class.lesson-info-inProgress]="lesson.in_progress">
+
+      <div *ngIf="lesson.status == 'Potwierdzona'"
+      class="lesson-info-item lesson-not-confirmed">
+      <fa-icon class="icon-confirmed-smaller" [icon]="faCheck"></fa-icon>
+      </div>
+      <div *ngIf="lesson.status == 'Niepotwierdzona'"
+      class="lesson-info-item lesson-not-confirmed">
+      <fa-icon class="icon-not-confirmed-smaller" [icon]="faQuestion"></fa-icon>
+      </div>
+
+      <div class="lesson-info-item lesson-equipment-smaller img-container"
+      *ngIf="lesson.kite_brand">
+        <div class="kite-image-smaller"></div>
+        <span>{{lesson.kite_brand}}</span>
+      </div>
+
+      <div class="lesson-info-item lesson-equipment-smaller img-container"
+      *ngIf="lesson.board">
+        <div class="board-image-smaller"></div>
+        <span>{{lesson.board}}</span>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+

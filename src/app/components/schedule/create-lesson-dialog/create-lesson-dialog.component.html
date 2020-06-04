@@ -1,0 +1,187 @@
+
+<h2 mat-dialog-title>Nowa lekcja</h2>
+<mat-dialog-content class="dialog-content">
+
+  <form class="dialog-form"
+  autocomplete="off" id="lessonForm"
+  #lessonForm="ngForm" >
+
+    <div class="lesson-time-group">
+      <div class="form-field date-field">
+        <label for="date">Data</label>
+        <input class="date-field-input"
+        type="date"
+        required
+        ngModel
+        name="date">
+      </div>
+
+      <div class="form-field time-field">
+        <label for="time">Godzina lekcji</label>
+        <input
+        placeholder="np. 15:30"
+        type="text"
+        required
+        ngModel
+        name="time">
+      </div>
+
+      <div class="form-field duration-field">
+        <label for="duration">Czas [h]</label>
+        <select
+        required
+        ngModel
+        name="duration">
+          <!-- <option value="30">0.5</option>
+          <option value="60">1</option>
+          <option value="90">1.5</option>
+          <option value="120">2</option>
+          <option value="150">2.5</option>
+          <option value="180">3</option> -->
+          <option value="0.5">0.5</option>
+          <option value="1">1</option>
+          <option value="1.5">1.5</option>
+          <option value="2">2</option>
+          <option value="2.5">2.5</option>
+          <option value="3">3</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-field student-field">
+      <label for="student">Kursant</label>
+      <input  #studentNameInput type="text" name="student" id="student"
+      required
+      [ngModel]='studentIdsList'
+      (input)="search(studentNameInput)" (focus)="search(studentNameInput)"
+      (blur)="hideList()">
+
+      <div class="search-list-container">
+        <ul class="search-ul-Parent" *ngIf="studentsDropdownList.length">
+          <li class="searchElement" *ngFor="let student of studentsDropdownList"
+          (mousedown)="getNameValue(student, studentNameInput)">
+
+              {{student.name}} {{student.surname}}
+
+          </li>
+        </ul>
+      </div>
+      <div class="student-display-list-div">
+        <ul class="student-display-list">
+          <li class="student-list-item" *ngFor="let stud of studentDisplayList">
+            <span>{{stud.name}}</span>
+            <fa-icon [icon]="faTimesIcon" (click)="removeStudent(stud.id)"></fa-icon>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="form-field instructor-field">
+      <label for="instructor">Instruktor</label>
+      <input  #instructorNameInput type="text" name="instructor" id="instructor"
+      required
+      [ngModel]='instructorIdsList'
+      (input)="search(instructorNameInput)" (focus)="search(instructorNameInput)"
+      (blur)="hideList()">
+
+      <div class="search-list-container">
+        <ul class="search-ul-Parent" *ngIf="instructorsDropdownList.length">
+          <li class="searchElement" *ngFor="let instructor of instructorsDropdownList"
+          (mousedown)="getNameValue(instructor, instructorNameInput)">
+
+              {{instructor.name}} {{instructor.surname}}
+
+          </li>
+        </ul>
+      </div>
+      <div class="instructor-display-list-div">
+        <ul class="instructor-display-list">
+          <li class="instructor-list-item" *ngFor="let instr of instructorDisplayList">
+            <span>{{instr.name}}</span>
+            <fa-icon [icon]="faTimesIcon" (click)="removeInstructor(instr.id)"></fa-icon>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="form-field status-field">
+      <label for="status">Status</label>
+      <select
+      required
+      class="dialog-dropdown"
+      ngModel
+      name="status">
+        <option value="Niepotwierdzona">Niepotwierdzona</option>
+        <option value="Potwierdzona">Potwierdzona</option>
+      </select>
+    </div>
+
+    <div class="form-field paid-field">
+      <!-- <mat-checkbox ngModel name="paid" >Zapłacona</mat-checkbox> -->
+    </div>
+
+    <hr>
+
+    <div class="form-field equipment-field">
+      <label for="equipment">Sprzęt</label>
+      <select
+      required="false"
+      class="dialog-dropdown"
+      ngModel
+      name="equipment">
+        <option value="Szkółka">Szkółka</option>
+        <option value="Własny">Własny</option>
+      </select>
+    </div>
+
+
+    <div class="form-field kite-field">
+      <label for="kite_brand">Latawiec</label>
+      <input
+      required="false"
+      type="text"
+      ngModel
+      name="kite_brand">
+    </div>
+
+    <!-- <div>
+      <label>Rozmiar</label>
+      <input
+      type="number"
+      ngModel
+      name="kite_size">
+    </div> -->
+
+    <div class="form-field board-field">
+      <label for="board">Deska</label>
+      <input
+      required="false"
+      type="text"
+      ngModel
+      name="board">
+    </div>
+
+    <div class="form-field comment-field">
+      <label for="comment">Dodatkowe informacje</label>
+      <textarea
+      required="false"
+      type="text"
+      ngModel
+      name="comment"></textarea>
+    </div>
+
+    <div class="dialog-action-buttons">
+      <button mat-stroked-button type="button"
+      class="cancel-button" (click)="exitDialog()">
+        Anuluj
+      </button>
+      <button mat-stroked-button
+      class="submit-button" type="submit" (click)="createLesson(lessonForm)">
+        Dodaj
+      </button>
+    </div>
+
+  </form>
+
+</mat-dialog-content>

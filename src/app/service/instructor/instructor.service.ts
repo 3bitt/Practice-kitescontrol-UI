@@ -4,6 +4,7 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
 import { Observable, of, throwError } from 'rxjs';
 import { catchError, tap, map } from 'rxjs/operators';
 import { IpagingResponse, IDetailResponse } from 'src/app/models/response';
+import { IInstructorPagingResponse } from 'src/app/shared/API-response/IInstructorResponse';
 
 
 @Injectable({
@@ -21,8 +22,9 @@ export class InstructorService {
 
   constructor(private http: HttpClient) { }
 
-  private _getInstructorURL: string = this.baseUrl + "instructors/"
-  private _postInstructor: string = this.baseUrl + "instructors/create/"
+  private _getInstructorURL: string = this.baseUrl + "instructors/";
+  private _postInstructor: string = this.baseUrl + "instructors/create/";
+  private _putInstructor: string = this.baseUrl + "instructors/id/update/";
 
 
   private handleError(error: HttpErrorResponse) {
@@ -43,7 +45,7 @@ export class InstructorService {
 
 
   getInstructors() {
-    return this.http.get<IpagingResponse>(this._getInstructorURL)
+    return this.http.get<IInstructorPagingResponse>(this._getInstructorURL)
       .pipe(
         catchError(this.handleError)
       );
@@ -61,5 +63,20 @@ export class InstructorService {
     return this.http.post<Instructor>(this._postInstructor, instructor)
     .pipe(catchError(this.handleError))
   };
+
+  deleteInstructor(id: number){
+    let instructorId = `${this._getInstructorURL}${id}/delete/`
+    return this.http.delete<any>(instructorId)
+  };
+
+  putInstructor(id: number|string, student: Instructor){
+    let url = this._putInstructor.replace('id', id.toString());
+    return this.http.put<any>(url, student);
+  }
+
+  patchInstructor(id: number|string, student: Instructor){
+    let url = this._putInstructor.replace('id', id.toString());
+    return this.http.patch<any>(url, student);
+  }
 }
 

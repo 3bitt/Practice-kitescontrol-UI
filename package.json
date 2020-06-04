@@ -1,6 +1,9 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> bootstrap-version
 {
   "name": "kitescontrol",
 =======
@@ -24,17 +27,28 @@
   "private": true,
   "dependencies": {
     "@angular/animations": "~9.0.7",
+    "@angular/cdk": "^9.2.0",
     "@angular/common": "~9.0.7",
     "@angular/compiler": "~9.0.7",
     "@angular/core": "~9.0.7",
     "@angular/forms": "~9.0.7",
+    "@angular/material": "^9.2.0",
     "@angular/platform-browser": "~9.0.7",
     "@angular/platform-browser-dynamic": "~9.0.7",
     "@angular/router": "~9.0.7",
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+    "@fortawesome/angular-fontawesome": "^0.6.1",
+>>>>>>> bootstrap-version
     "@fortawesome/fontawesome-free": "^5.12.1",
+    "@fortawesome/fontawesome-svg-core": "^1.2.28",
+    "@fortawesome/free-regular-svg-icons": "^5.13.0",
+    "@fortawesome/free-solid-svg-icons": "^5.13.0",
     "bootstrap": "^4.4.1",
+    "chart.js": "^2.9.3",
     "jquery": "^3.4.1",
+    "ng2-charts": "^2.3.2",
     "popper.js": "^1.16.1",
 =======
 >>>>>>> initial commit
@@ -64,6 +78,7 @@
     "tslint": "~5.15.0",
     "typescript": "~3.7.5"
   }
+<<<<<<< HEAD
   
 =======
     "@types/node": "^12.11.1",
@@ -83,4 +98,6 @@
     "typescript": "~3.7.5"
   }
 >>>>>>> initial commit
+=======
+>>>>>>> bootstrap-version
 }

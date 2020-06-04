@@ -1,0 +1,34 @@
+:host {
+  display: grid;
+  grid-template-columns: 630px repeat(4, 1fr);
+  grid-template-rows: 1fr ;
+  column-gap: 30px;
+}
+
+.icm-forecast{
+  display: grid;
+  grid-column: 1 / 2;
+  /* grid-row: 1 / 2; */
+
+  /* place-content: center; */
+
+}
+
+.icm-forecast img{
+  height: 100%;
+}
+
+.windguru-forecast{
+  display: grid;
+  grid-column: 2 / -1;
+  /* grid-row: 1 / 2; */
+
+  overflow: scroll;
+
+  outline: 1px dashed rgb(255, 255, 255);;
+  place-content: center;
+}
+
+.windguru-forecast h2 {
+  text-align: justify;
+}

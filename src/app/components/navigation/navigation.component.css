@@ -1,4 +1,4 @@
-
+/*
 .back-button {
     grid-column: 1;
     grid-row: 1;
@@ -11,15 +11,16 @@
     border-radius: 7px;
     border-style: solid;
     border-color: #2c8191;
-}
+} */
 
 .navbar {
-    display: flex;
-    grid-column: 2 / -2;
-    grid-row: 1;
+  position: relative;
+  display: flex;
+  grid-column: 2 / -2;
+  grid-row: 1;
 
-    justify-content: flex-start;
-    column-gap: 27px;
+  justify-content: flex-start;
+  column-gap: 27px;
 
  }
 
@@ -35,4 +36,21 @@
 }
 .navbar > .navbar-lesson-dropdown > .show{
     background-color: rgb(247, 177, 177);
+}
+
+.school-nav{
+  border: 1px solid rgb(131, 53, 255);
+  border-radius: 5px;
+}
+
+.school-nav > a {
+  text-decoration: none;
+  color: rgb(150, 85, 255);
+}
+
+
+.kc-logo{
+  position: absolute;
+  top: -137px;
+  right: 30%;
 }

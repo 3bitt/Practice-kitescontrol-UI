@@ -1,0 +1,43 @@
+
+
+/* #76a9b3 - background color  */
+
+.nav-container{
+  display: grid;
+  grid-template-columns: 30px repeat(4, min-content) 30px;
+  grid-auto-flow: column;
+
+  column-gap: 30px;
+  background-color: #65929b;
+}
+
+.nav-button{
+  padding-top: 15px;
+  padding-bottom: 15px;
+  /* padding-left: 13px;
+  padding-right: 13px; */
+  /* margin-top: 10px; */
+}
+
+
+.payments-button-div{
+  grid-column: 2;
+  /* background-color: #76a9b3; */
+  border-radius: 8px 8px 0 0 ;
+
+  /*  Colors after activation */
+  background: rgb(101,146,155);
+  background: linear-gradient(180deg,
+                  rgba(101,146,155,1) 0%,
+                  rgba(101,146,155,1) 40%,
+                  rgba(118,169,179,1) 60%,
+                  rgba(118,169,179,1) 100%);
+}
+.statistics-button-div{
+  grid-column: 3;
+}
+.payments-btn{
+  /* color after activation */
+   background-color:#76a9b3;
+}
+

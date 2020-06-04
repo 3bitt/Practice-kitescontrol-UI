@@ -1,7 +1,7 @@
 import { IStudent } from './studentModel';
 import { IInstructor } from './instructorModel';
 
-export interface IpagingResponse {
+export interface IpagingResponse extends Array<any> {
   count: number,
   next: string,
   previous: String,

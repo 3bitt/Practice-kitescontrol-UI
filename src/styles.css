@@ -1,6 +1,17 @@
 /* You can add global styles to this file, and also import other style files */
 
 
-body {
-    background-color: #76a9b3;
+html, body {
+  height: 100%;
 }
+body {
+  margin: 0;
+  font-family: Lato, "Helvetica Neue", sans-serif;
+  background-color: #CFDEE7;
+
+  /* background-color: #60a7e6; */
+
+}
+
+
+

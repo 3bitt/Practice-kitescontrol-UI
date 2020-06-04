@@ -1,0 +1,119 @@
+
+
+.instructor-payments-container{
+  margin-left: 20px;
+  margin-top: 30px;
+  width: 600px;
+}
+
+.payments-btn-wrapper{
+  display: flex;
+  flex-direction: column;
+  width: max-content;
+  margin-bottom: 15px;
+}
+
+.payment-button{
+  height: min-content;
+}
+
+.payments-from-div{
+  position: relative;
+  margin-bottom: 15px;
+  height: 30px;
+}
+.payments-to-div{
+  position: relative;
+}
+
+.transparent-date-div{
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0%;
+  text-align: right;
+}
+.transparent-date-input{
+  width: 400%;
+}
+.transparent-date-input:hover{
+  cursor: pointer;
+}
+
+.disabled-text-field{
+  margin-left: 7px;
+}
+
+.search-button {
+  position: absolute;
+  right: -50%;
+  bottom: 3px;
+}
+
+.search-button{
+  background-color: #009851;
+}
+
+
+
+/*                */
+/* PAYMENTS TABLE */
+/*                */
+.payments-table{
+  border-collapse: collapse;
+  font-size: 1em;
+  min-width: 530px;
+  border-radius: 5px 5px 0 0;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+  background-color: rgb(226, 226, 226)
+}
+
+.payments-table thead tr{
+  background-color: #009879;
+  color: #ececec;
+  text-align: center;
+  font-weight: bold;
+}
+
+.payments-table th,
+.payments-table td {
+  padding: 12px 15px;
+}
+
+.hours-outer-heading{
+  border-left: 1px solid #008066;
+  border-right: 1px solid #008066;
+  text-align: center;
+  letter-spacing: 2px;
+  background-color: #008066;
+}
+
+.hours-inner-ind {
+  text-align: left;
+  border-left: 1px solid #008066;
+}
+.hours-inner-grp{
+  text-align: left;
+  border-right: 1px solid #008066;
+}
+
+.payments-table tbody tr{
+  border-bottom: 1px solid #dddddd;
+}
+
+.payments-table tbody tr:nth-of-type(even){
+  background-color: #f3f3f3;
+}
+
+.payments-table tbody tr:last-of-type {
+  border-bottom: 3px solid #008066;
+}
+
+.payments-table tbody tr:hover{
+  background-color: #c2c2c2;
+}
+
+

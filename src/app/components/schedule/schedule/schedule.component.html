@@ -1,0 +1,81 @@
+
+
+<!-- Schedule header buttons -->
+<div class="schedule-btn-container">
+
+  <div class="schedule-btn-wrapper add-lesson-btn-div">
+    <button mat-raised-button class="add-lesson-btn"
+    (click)="openDialog()">
+      <fa-icon class="lesson-add-icon schedule-icon" [icon]="faPlus"></fa-icon>
+        Nowa lekcja
+    </button>
+  </div>
+  <!-- date picker workaround - btn and input overlap each other in CSS -->
+  <div class="schedule-btn-wrapper history-btn-div">
+    <button mat-raised-button>
+      <fa-icon class="lesson-history-icon schedule-icon" [icon]="faCalendar"></fa-icon>
+      Kalendarz
+      <div class="history-div">
+        <input #date class="history-input"
+        type="date"  (change)="showScheduleByDate(date.value)" >
+      </div>
+    </button>
+  </div>
+
+  <div class="schedule-date-switcher">
+    <app-date-switcher (dateChangedEvent)="switcherUpdateDate($event)"  [scheduleDate]="currDateAsDate">
+    </app-date-switcher>
+  </div>
+
+</div>
+
+<!-- Schedule body -->
+<div class="scheduler-wrapper" *ngIf="instructorsWithLessons?.instructors.length > 0">
+  <div class="schedule-container">
+
+<!-- Schedule header >->->-> Date + hours -->
+    <div class="header-container">
+
+      <div class="schedule-date" *ngIf="instructorsWithLessons">
+        {{currDateAsString}}
+      </div>
+      <div class="hour">8<sup>oo</sup></div>
+      <div class="hour">9<sup>oo</sup></div>
+      <div class="hour">10<sup>oo</sup></div>
+      <div class="hour">11<sup>oo</sup></div>
+      <div class="hour">12<sup>oo</sup></div>
+      <div class="hour">13<sup>oo</sup></div>
+      <div class="hour">14<sup>oo</sup></div>
+      <div class="hour">15<sup>oo</sup></div>
+      <div class="hour">16<sup>oo</sup></div>
+      <div class="hour">17<sup>oo</sup></div>
+      <div class="hour">18<sup>oo</sup></div>
+      <div class="hour">19<sup>oo</sup></div>
+      <div class="hour">20<sup>oo</sup></div>
+      <div class="hour">21<sup>oo</sup></div>
+
+    </div>
+
+<!-- Schedule body >->->-> lessons -->
+    <div class="schedule-row" *ngIf="instructorsWithLessons">
+
+      <div class="test1">
+        <app-schedule-lesson
+        *ngFor="let instructor of instructorsWithLessons.instructors"
+        [instructor]="instructor">
+        </app-schedule-lesson>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+<!-- If no lessons -->
+<div class="empty-schedule" *ngIf="instructorsWithLessons?.instructors.length == 0">
+  <div class="empty-info">
+    <h2>Tego dnia nie ma żadnych lekcji</h2>
+    <h3>Użyj przycisku "Nowa lekcja" żeby dodać lekcje </h3>
+  </div>
+</div>

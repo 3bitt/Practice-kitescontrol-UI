@@ -1,103 +1,363 @@
 <div class="form-container">
+  <div class="page-header">
+    <h1>Nowy kursant - formularz</h1>
+    <span>Wyszarzone pola są opcjonalne</span>
+  </div>
     <!-- (ngSubmit)="onSubmit(studentForm) -->
     <form #studentForm="ngForm">
-        <div [hidden]="formReady">
-            <h1>Nowy kursant</h1>
+      <div [hidden]="formReady" class="form-parent">
 
+        <div class="form-card">
 
-            <div class="form-group">
-                <label for="firstName">Imię</label>
-                <input type="text" inputmode="latin-name"
-                required
-                minlength="2"
-                maxlength="30"
-                ngModel
-                name="firstName"
-                #firstName="ngModel"
-                id="name"
-                class="form-control"
-                [class.is-valid]=firstName.valid
-                [class.is-invalid]="!firstName.valid && firstName.touched">
-                <div *ngIf="!firstName.valid && firstName.touched" >
-                    <span class="field-validation-error" *ngIf="firstName.errors.required">
-                    <small>To pole jest wymagane</small></span>
-                </div>
+          <div class="form-col-1">
+            <div class="form-col-1-title">
+              Dane kontaktowe
             </div>
 
-            <div class="form-group">
-                <label for="lastName">Nazwisko</label>
-                <input  type="text"
-                inputmode="latin-name"
-                required
-                minlength="2"
-                maxlength="60"
-                ngModel
-                name="lastName"
-                #lastName="ngModel"
-                id="lastName"
-                class="form-control"
-                [class.is-valid]=lastName.valid
-                [class.is-invalid]="!lastName.valid && lastName.touched">
-                <div *ngIf="!lastName.valid && lastName.touched" >
-                    <span class="field-validation-error" *ngIf="lastName.errors.required">
-                    <small>To pole jest wymagane</small></span>
-                </div>
+            <div class="form-group ">
+              <label for="firstName" class="required-label">Imię*</label>
+              <input type="text" inputmode="latin-name"
+              required
+              minlength="2"
+              maxlength="30"
+              ngModel
+              name="firstName"
+              #firstName="ngModel"
+              id="name"
+              class="form-control required-field"
+              [class.is-valid]=firstName.valid
+              [class.is-invalid]="!firstName.valid && firstName.touched">
+              <div *ngIf="!firstName.valid && firstName.touched" >
+                  <span class="field-validation-error" *ngIf="firstName.errors.required">
+                  <small>To pole jest wymagane</small></span>
+              </div>
+            </div>
+
+            <div class="form-group ">
+              <label for="lastName" class="required-label">Nazwisko*</label>
+              <input  type="text"
+              inputmode="latin-name"
+              required
+              minlength="2"
+              maxlength="60"
+              ngModel
+              name="lastName"
+              #lastName="ngModel"
+              id="lastName"
+              class="form-control required-field"
+              [class.is-valid]=lastName.valid
+              [class.is-invalid]="!lastName.valid && lastName.touched">
+              <div *ngIf="!lastName.valid && lastName.touched" >
+                  <span class="field-validation-error" *ngIf="lastName.errors.required">
+                  <small>To pole jest wymagane</small></span>
+              </div>
+            </div>
+
+            <div class="form-group ">
+              <label for="emailAddress">Email</label>
+              <input  type="text"
+              inputmode="latin-name"
+              minlength="2"
+              maxlength="60"
+              ngModel
+              name="emailAddress"
+              #emailAddress="ngModel"
+              id="emailAddress"
+              class="form-control not-required-field"
+              [class.ng-valid]=emailAddress.valid
+              [class.is-invalid]="!emailAddress.valid && emailAddress.touched">
+              <div *ngIf="!emailAddress.valid && emailAddress.touched" >
+                  <span class="field-validation-error" *ngIf="emailAddress.errors.required">
+                  <small>To pole jest wymagane</small></span>
+              </div>
+            </div>
+
+
+            <div class="form-group ">
+              <label for="mobile" class="required-label">Telefon*<small>&ensp;min. 6 cyfr</small></label>
+              <input  type="text"
+              inputmode="latin-name"
+              required
+              minlength="9"
+              maxlength="20"
+              ngModel
+              name="mobile"
+              #mobile="ngModel"
+              id="mobile"
+              class="form-control required-field"
+              [class.is-valid]=mobile.valid
+              [class.is-invalid]="!mobile.valid && mobile.touched">
+              <div *ngIf="!mobile.valid && mobile.touched" >
+                  <span class="field-validation-error" *ngIf="mobile.errors.required">
+                  <small>To pole jest wymagane</small></span>
+              </div>
             </div>
 
 
 
-            <div class="form-group">
-                <label for="birthDate">Data urodzenia</label>
-                <input  type="text" placeholder="DD-MM-YYYY"
-                required
-                pattern="([3][0-1]|[1-2][0-9]|[0][1-9])-([1][0-2]|[0][1-9])-(19[0-9][0-9]|20[0-2][0-9])"
-                ngModel
-                name="birthDate"
-                #birthDate="ngModel"
-                id="birthDate"
-                class="form-control"
-                [class.is-valid]=birthDate.valid
-                [class.is-invalid]="!birthDate.valid && birthDate.touched">
-                <div *ngIf="!birthDate.valid && birthDate.touched" >
-                    <span class="field-validation-error" *ngIf="birthDate.errors.required">
-                    <small>To pole jest wymagane</small></span>
-                </div>
+            <div class="form-group ">
+              <label for="birthDate" class="required-label">Data urodzenia*<small>&ensp;[DD-MM-YYYY]</small></label>
+              <input  type="text" placeholder="DD-MM-YYYY"
+              required
+              pattern="([3][0-1]|[1-2][0-9]|[0][1-9])-([1][0-2]|[0][1-9])-(19[0-9][0-9]|20[0-2][0-9])"
+              ngModel
+              name="birthDate"
+              #birthDate="ngModel"
+              id="birthDate"
+              class="form-control required-field"
+              [class.is-valid]=birthDate.valid
+              [class.is-invalid]="!birthDate.valid && birthDate.touched">
+              <div class="errors-div" *ngIf="!birthDate.valid && birthDate.touched" >
+                <small class="field-validation-error" *ngIf="birthDate.errors.required">
+                  To pole jest wymagane
+                </small>
+                <small class="field-validation-error">Format: DD-MM-YYYY - np. 05-08-1993</small>
+              </div>
             </div>
 
-            <div class="form-group">
-                <label for="weight">Waga</label>
-                <input  type="text" placeholder="min. 25"
-                required
-                pattern="([2-9][5-9]|[3-9][0-9]|[1-3][0-9][0-9])"
-                ngModel
-                name="weight"
-                #weight="ngModel"
-                id="weight"
-                class="form-control"
-                [class.is-valid]=weight.valid
-                [class.is-invalid]="!weight.valid && weight.touched">
-                <div *ngIf="!weight.valid && weight.touched" >
-                    <span class="field-validation-error" *ngIf="weight.errors.required">
-                    <small>To pole jest wymagane</small></span>
-                </div>
+            <!-- COL-1 END -->
+          </div>
+
+        <div class="form-col-2">
+          <div class="form-col-2-title">
+            Kite dane
+          </div>
+
+          <div class="form-group ">
+            <label for="weight">Waga</label>
+            <input  type="number"
+            ngModel
+            name="weight"
+            #weight="ngModel"
+            id="weight"
+            class="form-control not-required-field"
+            [class.is-invalid]="!weight.valid && weight.touched">
+            <div *ngIf="!weight.valid && weight.touched" >
+                <span class="field-validation-error">
+                <small>min. 10 kg</small></span>
             </div>
+          </div>
+
+          <div class="form-group ">
+            <label for="wetsuitSize">Rozmiar pianki</label>
+            <select  type="text"
+            ngModel
+            name="wetsuitSize"
+            #wetsuitSize="ngModel"
+            id="wetsuitSize"
+            class="form-control not-required-field"
+            [class.ng-valid]=wetsuitSize.valid
+            [class.is-invalid]="!wetsuitSize.valid && wetsuitSize.touched">
+              <option value="XS">XS</option>
+              <option value="S">S</option>
+              <option value="M">M</option>
+              <option value="L">L</option>
+              <option value="XL">XL</option>
+              <option value="XXL">XXL</option>
+            </select>
+            <div *ngIf="!wetsuitSize.valid && wetsuitSize.touched" >
+                <span class="field-validation-error" *ngIf="wetsuitSize.errors.required">
+                <small>To pole jest wymagane</small></span>
+            </div>
+          </div>
+
+          <div class="form-group ">
+            <label for="harnessSize">Rozmiar trapezu</label>
+            <select  type="text"
+            ngModel
+            name="harnessSize"
+            #harnessSize="ngModel"
+            id="harnessSize"
+            class="form-control not-required-field"
+            [class.ng-valid]=harnessSize.valid
+            [class.is-invalid]="!harnessSize.valid && harnessSize.touched">
+              <option value="XS">XS</option>
+              <option value="S">S</option>
+              <option value="M">M</option>
+              <option value="L">L</option>
+              <option value="XL">XL</option>
+              <option value="XXL">XXL</option>
+            </select>
+            <div *ngIf="!harnessSize.valid && harnessSize.touched" >
+                <span class="field-validation-error" *ngIf="harnessSize.errors.required">
+                <small>To pole jest wymagane</small></span>
+            </div>
+          </div>
+
+          <div class="form-group ">
+            <label for="iko_id">Numer IKO</label>
+            <input  type="text"
+            ngModel
+            name="iko_id"
+            #iko_id="ngModel"
+            id="iko_id"
+            class="form-control not-required-field"
+            [class.ng-valid]=iko_id.valid
+            [class.is-invalid]="!iko_id.valid && iko_id.touched">
+            <div *ngIf="!iko_id.valid && iko_id.touched" >
+                <span class="field-validation-error" *ngIf="iko_id.errors.required">
+                <small>To pole jest wymagane</small></span>
+            </div>
+          </div>
+
+          <div class="form-group ">
+            <label for="ikoLevel">Poziom IKO</label>
+            <select  type="text"
+            inputmode="latin-name"
+            ngModel
+            name="ikoLevel"
+            #ikoLevel="ngModel"
+            id="ikoLevel"
+            class="form-control not-required-field"
+            [class.ng-valid]=ikoLevel.valid
+            [class.is-invalid]="!ikoLevel.valid && ikoLevel.touched">
+            <optgroup label="1 - Discovery">
+              <option value="1A">A - S.E.A.</option>
+              <option value="1B">B - Safety systems / Pre-flight check</option>
+              <option value="1C">C - First piloting</option>
+              <option value="1D">D - First piloting advanced</option>
+              <option value="1E">E - Quick release activation / Self-landing</option>
+            </optgroup>
+            <optgroup label="2 - Intermediate">
+              <option value="2F">F - Enter/exit water with kite / Water relaunch</option>
+              <option value="2G">G - Body-drag left/right</option>
+              <option value="3H">H - Body-drag upwind / with board + Self rescue</option>
+              <option value="4I">I - Rules of way / Steady-pull / Water start </option>
+            </optgroup>
+            <optgroup label="3 - Independent">
+              <option value="3J">J - Controlled stop / control speed</option>
+              <option value="3K">K - Riding upwind</option>
+              <option value="3L">L - Sliding transition</option>
+              <option value="3M">M - Toe-side riding / Toe-side turn</option>
+              <option value="3N">N - Self-launching / Self-rescue deep water</option>
+            </optgroup>
+            <optgroup label="4 - Advanced">
+              <option value="4-1">1 - Basic jump</option>
+              <option value="4-2">2 - Jibe</option>
+              <option value="4-3">3 - Jump with grab</option>
+              <option value="4-4">4 - Rider recovery</option>
+              <option value="4-5">5 - Board recovery</option>
+              <option value="4-6">6 - International signs and ROW</option>
+              <option value="4-7">7 - Equipment</option>
+              <option value="4-8">8 - Weather and tides</option>
+              <option value="4-9">9 - Aerodynamics</option>
+            </optgroup>
+          </select>
+            <div *ngIf="!ikoLevel.valid && ikoLevel.touched" >
+                <span class="field-validation-error" *ngIf="ikoLevel.errors.required">
+                <small>To pole jest wymagane</small></span>
+            </div>
+          </div>
+
+          <!-- COL 2 END -->
+        </div>
+
+
+        <div class="form-col-3">
+          <div class="form-col-3-title">
+            Miejsce i czas
+          </div>
+
+          <div class="form-group ">
+            <label for="stayLocation">Miejsce pobytu</label>
+            <input  type="text"
+            inputmode="latin-name"
+            ngModel
+            name="stayLocation"
+            #stayLocation="ngModel"
+            id="stayLocation"
+            class="form-control not-required-field"
+            [class.ng-valid]=stayLocation.valid
+            [class.is-invalid]="!stayLocation.valid && stayLocation.touched">
+            <div *ngIf="!stayLocation.valid && stayLocation.touched" >
+                <span class="field-validation-error" *ngIf="stayLocation.errors.required">
+                <small>To pole jest wymagane</small></span>
+            </div>
+          </div>
+
+          <div class="form-group ">
+            <label for="arrivalDate">Data przyjazdu <small>&ensp;[DD-MM-YYYY]</small></label>
+            <input  type="text" placeholder="DD-MM-YYYY"
+            pattern="([3][0-1]|[1-2][0-9]|[0][1-9])-([1][0-2]|[0][1-9])-(19[0-9][0-9]|20[0-2][0-9])"
+            ngModel
+            name="arrivalDate"
+            #arrivalDate="ngModel"
+            id="arrivalDate"
+            class="form-control not-required-field"
+            [class.ng-valid]=arrivalDate.valid
+            [class.is-invalid]="!arrivalDate.valid && arrivalDate.touched">
+            <div class="errors-div" *ngIf="!arrivalDate.valid && arrivalDate.touched" >
+              <small class="field-validation-error" *ngIf="arrivalDate.errors.required">
+                To pole jest wymagane
+              </small>
+              <small class="field-validation-error">Format: DD-MM-YYYY - np. 05-08-1993</small>
+            </div>
+          </div>
+
+          <div class="form-group ">
+            <label for="leaveDate">Data odjazdu <small>&ensp;[DD-MM-YYYY]</small></label>
+            <input  type="text" placeholder="DD-MM-YYYY"
+            pattern="([3][0-1]|[1-2][0-9]|[0][1-9])-([1][0-2]|[0][1-9])-(19[0-9][0-9]|20[0-2][0-9])"
+            ngModel
+            name="leaveDate"
+            #leaveDate="ngModel"
+            id="leaveDate"
+            class="form-control not-required-field"
+            [class.ng-valid]=leaveDate.valid
+            [class.is-invalid]="!leaveDate.valid && leaveDate.touched">
+            <div class="errors-div" *ngIf="!leaveDate.valid && leaveDate.touched" >
+              <small class="field-validation-error" *ngIf="leaveDate.errors.required">
+                To pole jest wymagane
+              </small>
+              <small class="field-validation-error">Format: DD-MM-YYYY - np. 05-08-1993</small>
+            </div>
+          </div>
+
+          <div class="form-group ">
+            <label for="comment">Informacje dodatkowe</label>
+            <textarea
+            inputmode="latin-name"
+            maxlength='255'
+            ngModel
+            name="comment"
+            #comment="ngModel"
+            id="comment"
+            class="form-control not-required-field"
+            [class.ng-valid]=comment.valid
+            [class.is-invalid]="!comment.valid && comment.touched"></textarea>
+            <div *ngIf="!comment.valid && comment.touched" >
+                <span class="field-validation-error" *ngIf="comment.errors.required">
+                <small>To pole jest wymagane</small></span>
+            </div>
+          </div>
+
+          <!-- COL 3 END -->
+        </div>
+      </div>
+
+
             <!--  -->
-            <div class="form-buttons">
-                <button type="submit"
-                class="btn btn-success"
-                (click)="formReady=true; makeForm(studentForm)"
-                [disabled]="!studentForm.form.valid">       Zatwierdź</button>
+        <div class="form-buttons">
+          <button type="submit"
+            class="btn submit-btn"
+            (click)="formReady=true; makeForm(studentForm)"
+            [disabled]="!studentForm.form.valid"
+            [class.btn-success]="studentForm.form.valid">
+            Zatwierdź
+          </button>
 
-                <button type="button"
-                class="btn btn-default"
-                (click)="studentForm.reset()">            Reset</button>
-            </div>
+          <button type="button"
+            class="btn btn-default reset-btn"
+            (click)="studentForm.reset()">
+            Reset
+          </button>
+        </div>
 
         </div>
                         <!-- CONFIRMED FORM -->
                                                         <!-- *ngIf="!formSubmitted" -->
         <div class="confirmed-form" [hidden]="!formReady || (formReady && formSubmitted)" >
-            <h2>{{firstName.value}} {{lastName.value}}</h2>
+            <h1>{{firstName.value}} {{lastName.value}}</h1>
             <div class="confirmed-form-fields">
 
                 <div class="field">
@@ -105,10 +365,16 @@
                     <span>{{ birthDate.value }}</span>
                 </div>
                 <div class="field">
-                    <span>Waga:</span>
-                    <span id="value">{{ weight.value }}</span>
+                    <span>Telefon</span>
+                    <span id="value">{{ mobile.value }}</span>
                 </div>
+                <div class="field">
+                  <span>Email</span>
+                  <span id="value">{{ emailAddress.value }}</span>
+              </div>
             </div>
+
+
             <div class="confirmed-form-buttons">
                 <button type="button"
                 class="confirmed-edit btn btn-labeled btn-primary"
@@ -130,92 +396,3 @@
     </form>
 
 </div>
-
-
-
-<!--
-<div class="form-container">
-    <div [hidden]="submitted">
-        <h1>Nowy kursant</h1>
-        <form (ngSubmit)="onSubmit()" #studentForm="ngForm">
-
-
-            <div class="form-group">
-                <label for="name">Imię</label>
-                <input type="text" class="form-control" id="name"
-                required
-                [(ngModel)]="student.name" name="name"
-                #name="ngModel"
-                #spy>
-                <div [hidden]="name.valid || name.pristine" class="alert alert-danger">
-                    To pole jest wymagane
-
-                </div>
-            </div>
-            {{spy.className}}
-            <div class="form-group">
-                <label for="surname">Nazwisko</label>
-                <input  type="text" class="form-control" id="surname"
-                required
-                [(ngModel)]="student.surname" name="surname"
-                #surname="ngModel">
-                <div [hidden]="surname.valid || surname.pristine" class="alert alert-danger">
-                    To pole jest wymagane
-                </div>
-
-            </div>
-
-            <div class="form-group">
-                <label for="birth_date">Data urodzenia np. 27-06-1985</label>
-                <input type="datetime-local" class="form-control" id="birth_date"
-                pattern="[0-9]{2}-[([0][1-9])([1][0-2])]-[0-9]{4}"
-                placeholder="Dzień - Miesiąc - Rok"
-                required
-                [(ngModel)]="student.birth_date" name="birth_date"
-                #birth_date="ngModel">
-                <div [hidden]="birth_date.valid || birth_date.pristine" class="alert alert-danger">
-                    To pole jest wymagane
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label for="weight">Waga</label>
-                <input type="number" class="form-control" id="weight"
-                required
-                [(ngModel)]="student.weight" name="weight"
-                #weight="ngModel">
-                <div [hidden]="weight.valid || weight.pristine" class="alert alert-danger">
-                    To pole jest wymagane
-                </div>
-            </div>
-
-            <button type="submit" class="btn btn-success" [disabled]="!studentForm.form.valid">Zatwierdź</button>
-            <button type="button" class="btn btn-default" (click)="newStudent(); studentForm.reset()">Nowy kursant</button>
-
-
-        </form>
-    </div>
-
-    <div [hidden]="!submitted">
-        <h2>Wyszło coś takiego:</h2>
-        <div class="row">
-        <div class="col-xs-3">Imię</div>
-        <div class="col-xs-9">{{ student.name }}</div>
-        </div>
-        <div class="row">
-        <div class="col-xs-3">Nazwisko</div>
-        <div class="col-xs-9">{{ student.surname }}</div>
-        </div>
-        <div class="row">
-        <div class="col-xs-3">Data urodzenia</div>
-        <div class="col-xs-9">{{ student.birth_date }}</div>
-        </div>
-        <div class="row">
-        <div class="col-xs-3">Waga</div>
-        <div class="col-xs-9">{{ student.birth_date }}</div>
-        </div>
-        <br>
-        <button class="btn btn-primary" (click)="submitted=false">Edit</button>
-    </div>
-
-</div> -->

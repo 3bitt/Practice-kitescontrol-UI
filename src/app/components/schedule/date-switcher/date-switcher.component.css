@@ -1,0 +1,28 @@
+.switcher-container{
+  display: flex;
+  flex-direction: row;
+}
+
+.icon{
+  font-size: 2rem;
+
+}
+
+.current-date{
+  align-self: center;
+  text-align: center;
+  font-size: 1.35rem;
+  width: 270px;
+}
+
+.left-icon{
+  margin-right: 15px;
+}
+.right-icon{
+  margin-left: 15px;
+}
+
+a:hover{
+  color: rgb(61, 233, 233);
+  cursor: pointer;
+}

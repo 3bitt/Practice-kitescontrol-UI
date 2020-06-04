@@ -1,0 +1,102 @@
+:host {
+  display: grid;
+  grid-template-columns: 50px 400px auto;
+
+}
+
+.form-container{
+  grid-column: 2;
+  width: 300px;
+}
+
+/* --------------- FORM --------------- */
+
+.form-group #birthDate{
+  width: 150px;
+}
+.form-group #weight {
+  width: 110px;
+}
+::placeholder{
+  font-size: 90%;
+}
+
+.form-group label{
+  margin-bottom: .3rem;
+}
+
+button{
+  margin-top: 30px;
+}
+
+.form-buttons{
+  display: flex;
+  place-content: space-around;
+}
+/* VALIDATION */
+.field-validation-error{
+  color: #af2a28;
+}
+.form-control.ng-valid {
+  border-left: 6px solid #42A948; /* green */
+}
+
+.form-control.ng-invalid.ng-touched  {
+  border-left: 6px solid #a94442; /* red */
+}
+
+/* --------------- CONFIRMED FORM --------------- */
+.confirmed-form{
+  display: grid;
+  margin-top: 50px;
+  width: 500px;
+}
+.confirmed-form-fields{
+  display: inherit;
+  place-self: center;
+  width: 250px;
+  margin-bottom: 25px;
+}
+.confirmed-form h2{
+  text-align: center;
+  margin-bottom: 30px;
+}
+.confirmed-form .field{
+  display: flex;
+  place-content: space-between;
+  border-bottom: 1px dashed;
+  margin-bottom: 20px;
+}
+.confirmed-form-buttons{
+  display: flex;
+  place-content: space-evenly;
+
+}
+/* Confirm buttons styling */
+.btn-labeled {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+.btn-label {
+  position: relative;
+  left: -13px;
+  display: inline-block;
+  padding: 4px 9px;
+  background: rgba(0,0,0,0.15);
+  border-radius: 3px 0 0 3px;
+}
+.confirmed-form-buttons.confirmed-edit.btn {
+  width: 90px;
+}
+.confirmed-form-buttons.confirmed-send.btn {
+  width: 140px;
+}
+
+/* .name-validation-error{
+  color: red;
+  font-size: 90%;
+} */
+
+
+
+
