@@ -6,6 +6,11 @@
   autocomplete="off" id="lessonForm"
   #lessonForm="ngForm" >
 
+  <div class="validation-error" *ngIf="lessonTimeConflict">
+      <b>Lekcja konfliktuje z inną lekcją tego instruktora!</b><br/>
+      Zmień godzine lub instruktora lekcji
+  </div>
+
     <div class="lesson-time-group">
       <div class="form-field date-field">
         <label for="date">Data</label>
@@ -23,7 +28,8 @@
         type="text"
         required
         ngModel
-        name="time">
+        name="time"
+        (change)="checkExistingLessons(lessonForm.value)">
       </div>
 
       <div class="form-field duration-field">
@@ -31,7 +37,8 @@
         <select
         required
         ngModel
-        name="duration">
+        name="duration"
+        (change)="checkExistingLessons(lessonForm.value)">
           <!-- <option value="30">0.5</option>
           <option value="60">1</option>
           <option value="90">1.5</option>
@@ -46,6 +53,7 @@
           <option value="3">3</option>
         </select>
       </div>
+
     </div>
 
     <div class="form-field student-field">
@@ -83,7 +91,8 @@
       required
       [ngModel]='instructorIdsList'
       (input)="search(instructorNameInput)" (focus)="search(instructorNameInput)"
-      (blur)="hideList()">
+      (blur)="hideList();
+      checkExistingLessons(lessonForm.value)">
 
       <div class="search-list-container">
         <ul class="search-ul-Parent" *ngIf="instructorsDropdownList.length">
@@ -118,7 +127,6 @@
     </div>
 
     <div class="form-field paid-field">
-      <!-- <mat-checkbox ngModel name="paid" >Zapłacona</mat-checkbox> -->
     </div>
 
     <hr>
@@ -172,12 +180,17 @@
     </div>
 
     <div class="dialog-action-buttons">
+
       <button mat-stroked-button type="button"
       class="cancel-button" (click)="exitDialog()">
         Anuluj
       </button>
+
       <button mat-stroked-button
-      class="submit-button" type="submit" (click)="createLesson(lessonForm)">
+      class="submit-button"
+      type="submit"
+      (click)="createLesson(lessonForm)"
+      [disabled]="lessonTimeConflict">
         Dodaj
       </button>
     </div>

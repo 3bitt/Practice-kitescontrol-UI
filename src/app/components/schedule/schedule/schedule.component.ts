@@ -55,10 +55,14 @@ export class ScheduleComponent implements OnInit {
 
 
   openDialog(): void{
+    // open dialog - pass in instructors with lessons for further validation when adding new lesson
     let dialogRef = this.dialog.open(
       CreateLessonDialogComponent,
       {
-        panelClass: 'dialog'
+        panelClass: 'dialog',
+        data: { instructors:
+          this.instructorsWithLessons.instructors.filter(item => item.lessons.length > 0)
+        }
       });
   }
 

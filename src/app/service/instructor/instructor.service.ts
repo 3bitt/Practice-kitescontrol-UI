@@ -23,6 +23,7 @@ export class InstructorService {
   constructor(private http: HttpClient) { }
 
   private _getInstructorURL: string = this.baseUrl + "instructors/";
+  private _getActiveInstructorsURL: string = this.baseUrl + "activeInstructors/";
   private _postInstructor: string = this.baseUrl + "instructors/create/";
   private _putInstructor: string = this.baseUrl + "instructors/id/update/";
 
@@ -49,6 +50,13 @@ export class InstructorService {
       .pipe(
         catchError(this.handleError)
       );
+  };
+
+  getActiveInstructors(){
+    return this.http.get<IInstructorPagingResponse>(this._getActiveInstructorsURL)
+    .pipe(
+      catchError(this.handleError)
+    );
   };
 
   getInstructorById(id: number | string): Observable<any>{

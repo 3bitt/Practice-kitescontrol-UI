@@ -1,18 +1,20 @@
+import { IInstructor } from './../../../models/instructorModel';
 import { NgForm } from '@angular/forms';
-import { Lesson } from './../model/schedule-interface';
+import { Lesson, ISchedule, IScheduleInstructor, LessonInstructor } from './../model/schedule-interface';
 import { IStudent } from './../../../models/studentModel';
 import { InstructorService } from 'src/app/service/instructor/instructor.service';
 import { IInstructorPagingResponse } from 'src/app/shared/API-response/IInstructorResponse';
 import { IStudentPagingResponse } from './../../../shared/API-response/IStudentResponse';
 import { StudentService } from 'src/app/service/student/student.service';
 import { Subscription } from 'rxjs';
-import { Component, OnInit, Inject, OnDestroy, Pipe, ElementRef, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, Inject, OnDestroy, Pipe, ElementRef, ViewEncapsulation, Input } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ScheduleService } from 'src/app/service/schedule/schedule.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { MatInput } from '@angular/material/input';
 import { formatDate } from '@angular/common';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-create-lesson-dialog',
@@ -24,7 +26,7 @@ export class CreateLessonDialogComponent implements OnInit, OnDestroy {
 
   constructor(
     public dialogRef: MatDialogRef<CreateLessonDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: Lesson,
+    @Inject(MAT_DIALOG_DATA) public dialogData: ISchedule,
     private scheduleService: ScheduleService,
     private studentService: StudentService,
     private instructorService: InstructorService,
@@ -37,19 +39,23 @@ export class CreateLessonDialogComponent implements OnInit, OnDestroy {
 
   studentsSourceList: IStudentPagingResponse;
   instructorsSourceList: IInstructorPagingResponse;
-
+// Select student/instructor dropdown variables
   studentsDropdownList = []
   selectedStudent = ' ';
   studentIdsList: number[] = [];
-
   instructorsDropdownList = [];
   selectedInstructor = ' ';
   instructorIdsList: number[] = [];
-
   toggleList = false;
-
   studentDisplayList = [];
   instructorDisplayList= [];
+
+  // Input existing lessons from schedule component
+  @Input('existingLessons') existingLessons;
+
+  lessonTimeConflict = false;
+  lessonStartTimeError;
+  lessonDurationError;
 
 
 
@@ -133,7 +139,12 @@ export class CreateLessonDialogComponent implements OnInit, OnDestroy {
 
 
   createLesson(lesson){
-    lesson.value.date = formatDate(lesson.value.date, 'dd-MM-yyyy', 'en_US')
+
+    try {
+      lesson.value.date = formatDate(lesson.value.date, 'dd-MM-yyyy', 'en_US');
+    } catch (error) {
+
+    }
 
     this.subscription$ = this.scheduleService.createLesson(lesson.value).
     subscribe(
@@ -152,7 +163,55 @@ export class CreateLessonDialogComponent implements OnInit, OnDestroy {
   }
 
 
-  checkExistingLessons(lessonToBeAdded, instructor){
+  checkExistingLessons(lessonToBeAdded: Lesson){
+
+    let newStartTime: number = +lessonToBeAdded.time.replace(':', '');
+    let newEndTime: number = newStartTime + (+lessonToBeAdded.duration * 100)
+    let newLessonInstructor = lessonToBeAdded.instructor[0]
+
+
+    let existingInstructor = this.dialogData.instructors.filter(
+      i => i.id === +newLessonInstructor)
+
+    // Check for clashing time for each existing lesson
+    // First IF to avoid error when checking instructor without lesson
+    // This can happen becouse validation is triggered on blur event in HTML
+    if (existingInstructor.length > 0){
+      // existingInstructor[0].lessons.forEach(lesson => {
+      for (let lesson of existingInstructor[0].lessons){
+      let oldStartTime: number = +lesson.time.slice(0,5).replace(':', '')
+      let oldEndTime: number = oldStartTime + (lesson.duration * 100)
+
+      // console.log("oldStartTime: ", oldStartTime);
+      // console.log("oldEndTime", oldEndTime);
+
+      // console.log('newStartTime:', newStartTime);
+      // console.log("newEndTime:", newEndTime);
+
+      if (  (newStartTime >= oldStartTime && oldEndTime > newStartTime) ||
+            (newEndTime > oldStartTime && newEndTime <= oldEndTime)     ||
+            (newStartTime < oldStartTime && newEndTime > oldEndTime)
+          ) {
+
+            this.lessonStartTimeError = lesson.time.slice(0,5)
+            this.lessonDurationError = lesson.duration
+
+            this.lessonTimeConflict = true;
+            console.log(this.lessonTimeConflict);
+            break;
+
+            }
+            else {
+              this.lessonTimeConflict = false;
+              console.log(this.lessonTimeConflict);
+            };
+      };
+    } else {
+      console.log('elo');
+
+      this.lessonTimeConflict = false;
+    }
+
 
   }
 
@@ -161,8 +220,9 @@ export class CreateLessonDialogComponent implements OnInit, OnDestroy {
     this.students$ = this.studentService.getStudents().
       subscribe((data) => this.studentsSourceList = data);
 
-    this.students$ = this.instructorService.getInstructors().
+    this.students$ = this.instructorService.getActiveInstructors().
       subscribe( data => this.instructorsSourceList = data);
+
   }
 
   ngOnDestroy(){

@@ -5,6 +5,7 @@ export interface ISchedule {
 }
 
 export interface IScheduleInstructor {
+  id:      number;
   name:    string;
   surname: string;
   weight:  number;
