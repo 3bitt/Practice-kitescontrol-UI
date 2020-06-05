@@ -8,34 +8,24 @@ export class ScheduleLessonPositionPipe implements PipeTransform {
   transform(value: string): number {
 
     // calc position of lesson in schedule time grid
-    function calc(x: number) {
+    function calc(x: number, fractionOffset: number) {
       let y;
       let ret;
-      y = 15 - x;
 
-      if (x > 15) {
-          ret = x + Math.abs(y)
-      } else {
-          ret = x - y
-      }
-      return ret;
+      // Linear function calculating position column start for lesson in schedule
+      y = ( (6 * x) - 47 ) + fractionOffset
+
+      return y
   }
 
 // split time 12:30:00
   let split = value.toString().split(':');
 
-  let result: number = 0;
+  let result: number = +split[0]
+  let fraction: number = +split[1] / 10
 
-// convert half hour (30) into 0.5 making 12:30 to be 12.5
-  for (let i of split) {
-      let num = +i
-      if (num == 30) {
-          result += 0.5
-          break;
-      }
-      result += num
-  }
-    return calc(result);
+  return calc(result, fraction)
+
   }
 
 }

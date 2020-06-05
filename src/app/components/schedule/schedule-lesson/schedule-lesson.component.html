@@ -49,7 +49,7 @@
 
 
   <div class="lesson-cell" #lessonCell *ngFor="let lesson of instructor.lessons"
-    [style.grid-column]="(lesson.time | timeToPosition) + '/ span '+ (lesson.duration) * 2">
+    [style.grid-column]="(lesson.time | timeToPosition) + '/ span '+ (lesson.duration) * 6">
 
     <div class="lesson-header">
       <div class="lesson-inner-time" *ngIf="lesson.duration > 1">
