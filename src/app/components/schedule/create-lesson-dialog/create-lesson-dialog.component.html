@@ -8,7 +8,7 @@
 
   <div class="validation-error" *ngIf="lessonTimeConflict">
       <b>Lekcja konfliktuje z inną lekcją tego instruktora!</b><br/>
-      Zmień godzine lub instruktora lekcji
+      Zmień godzine lekcji lub instruktora
   </div>
 
     <div class="lesson-time-group">
@@ -18,7 +18,11 @@
         type="date"
         required
         ngModel
-        name="date">
+        #lessonDate='ngModel'
+        name="date"
+        class="form-control"
+        [class.is-valid]=lessonDate.valid
+        [class.is-invalid]="!lessonDate.valid && lessonDate.touched">
       </div>
 
       <div class="form-field time-field">
@@ -28,7 +32,11 @@
         type="text"
         required
         ngModel
+        #lessonTime='ngModel'
         name="time"
+        class="form-control"
+        [class.is-valid]=lessonTime.valid
+        [class.is-invalid]="!lessonTime.valid && lessonTime.touched"
         (change)="checkExistingLessons(lessonForm.value)">
       </div>
 
@@ -37,7 +45,11 @@
         <select
         required
         ngModel
+        #lessonDuration='ngModel'
         name="duration"
+        class="form-control"
+        [class.is-valid]=lessonDuration.valid
+        [class.is-invalid]="!lessonDuration.valid && lessonDuration.touched"
         (change)="checkExistingLessons(lessonForm.value)">
           <!-- <option value="30">0.5</option>
           <option value="60">1</option>
@@ -60,9 +72,13 @@
       <label for="student">Kursant</label>
       <input  #studentNameInput type="text" name="student" id="student"
       required
+      #lessonStudent='ngModel'
       [ngModel]='studentIdsList'
       (input)="search(studentNameInput)" (focus)="search(studentNameInput)"
-      (blur)="hideList()">
+      (blur)="hideList()"
+      class="form-control"
+      [class.is-valid]=lessonStudent.valid
+      [class.is-invalid]="!lessonStudent.valid && lessonStudent.touched">
 
       <div class="search-list-container">
         <ul class="search-ul-Parent" *ngIf="studentsDropdownList.length">
@@ -89,11 +105,14 @@
       <label for="instructor">Instruktor</label>
       <input  #instructorNameInput type="text" name="instructor" id="instructor"
       required
+      #lessonInstructor='ngModel'
       [ngModel]='instructorIdsList'
+      class="form-control"
+      [class.is-valid]=lessonInstructor.valid
+      [class.is-invalid]="!lessonInstructor.valid && lessonInstructor.touched"
       (input)="search(instructorNameInput)" (focus)="search(instructorNameInput)"
       (blur)="hideList();
       checkExistingLessons(lessonForm.value)">
-
       <div class="search-list-container">
         <ul class="search-ul-Parent" *ngIf="instructorsDropdownList.length">
           <li class="searchElement" *ngFor="let instructor of instructorsDropdownList"
@@ -118,9 +137,12 @@
       <label for="status">Status</label>
       <select
       required
-      class="dialog-dropdown"
+      #lessonStatus='ngModel'
+      class="dialog-dropdown form-control"
       ngModel
-      name="status">
+      name="status"
+      [class.is-valid]=lessonStatus.valid
+      [class.is-invalid]="!lessonStatus.valid && lessonStatus.touched">
         <option value="Niepotwierdzona">Niepotwierdzona</option>
         <option value="Potwierdzona">Potwierdzona</option>
       </select>
@@ -130,13 +152,14 @@
     </div>
 
     <hr>
+    <div class="divider-not-required-text">Opcjonalne</div>
 
     <div class="form-field equipment-field">
       <label for="equipment">Sprzęt</label>
       <select
-      required="false"
       class="dialog-dropdown"
       ngModel
+      #lessonEquipment='ngModel'
       name="equipment">
         <option value="Szkółka">Szkółka</option>
         <option value="Własny">Własny</option>
@@ -147,9 +170,9 @@
     <div class="form-field kite-field">
       <label for="kite_brand">Latawiec</label>
       <input
-      required="false"
       type="text"
       ngModel
+      #lessonKite='ngModel'
       name="kite_brand">
     </div>
 
@@ -167,6 +190,7 @@
       required="false"
       type="text"
       ngModel
+      #lessonBoard='ngModel'
       name="board">
     </div>
 
@@ -176,6 +200,7 @@
       required="false"
       type="text"
       ngModel
+      #lessonComment='ngModel'
       name="comment"></textarea>
     </div>
 
@@ -190,7 +215,7 @@
       class="submit-button"
       type="submit"
       (click)="createLesson(lessonForm)"
-      [disabled]="lessonTimeConflict">
+      [disabled]="lessonTimeConflict || !lessonForm.valid">
         Dodaj
       </button>
     </div>

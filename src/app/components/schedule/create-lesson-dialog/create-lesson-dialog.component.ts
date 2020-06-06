@@ -1,5 +1,5 @@
 import { IInstructor } from './../../../models/instructorModel';
-import { NgForm } from '@angular/forms';
+import { NgForm, NgModel } from '@angular/forms';
 import { Lesson, ISchedule, IScheduleInstructor, LessonInstructor } from './../model/schedule-interface';
 import { IStudent } from './../../../models/studentModel';
 import { InstructorService } from 'src/app/service/instructor/instructor.service';
@@ -7,7 +7,7 @@ import { IInstructorPagingResponse } from 'src/app/shared/API-response/IInstruct
 import { IStudentPagingResponse } from './../../../shared/API-response/IStudentResponse';
 import { StudentService } from 'src/app/service/student/student.service';
 import { Subscription } from 'rxjs';
-import { Component, OnInit, Inject, OnDestroy, Pipe, ElementRef, ViewEncapsulation, Input } from '@angular/core';
+import { Component, OnInit, Inject, OnDestroy, Pipe, ElementRef, ViewEncapsulation, Input, ViewChild } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ScheduleService } from 'src/app/service/schedule/schedule.service';
 import { HttpErrorResponse } from '@angular/common/http';
@@ -53,7 +53,15 @@ export class CreateLessonDialogComponent implements OnInit, OnDestroy {
   // Input existing lessons from schedule component
   @Input('existingLessons') existingLessons;
 
+  // Used to set below fields status to valid when stud/instr is choosed
+  @ViewChild('lessonInstructor') instructorInput: NgModel;
+  @ViewChild('lessonStudent') studentInput: NgModel;
+
   lessonTimeConflict = false;
+
+  // Not used for now
+  // Variables for displaying error of conflicting lesson time
+  // Value if set in checkExistingLessons function
   lessonStartTimeError;
   lessonDurationError;
 
@@ -76,9 +84,10 @@ export class CreateLessonDialogComponent implements OnInit, OnDestroy {
               id: row.id,
               name: row.name.concat(' ', row.surname)
             });
+            this.studentInput.control.setErrors(null);
+
         }
       });
-      console.log(this.studentIdsList);
 
       this.studentsDropdownList = [];
 
@@ -96,9 +105,9 @@ export class CreateLessonDialogComponent implements OnInit, OnDestroy {
               id: row.id,
               name: row.name.concat(' ', row.surname)
             });
+            this.instructorInput.control.setErrors(null);
         }
       })
-      console.log(this.instructorIdsList);
 
       this.instructorsDropdownList = [];
     }
@@ -137,7 +146,6 @@ export class CreateLessonDialogComponent implements OnInit, OnDestroy {
     this.instructorIdsList = this.instructorIdsList.filter(item => item != +instructorId)
   }
 
-
   createLesson(lesson){
 
     try {
@@ -158,10 +166,9 @@ export class CreateLessonDialogComponent implements OnInit, OnDestroy {
     );
   }
 
-  exitDialog(){
+  exitDialog(form){
     this.dialogRef.close();
   }
-
 
   checkExistingLessons(lessonToBeAdded: Lesson){
 
@@ -177,22 +184,16 @@ export class CreateLessonDialogComponent implements OnInit, OnDestroy {
     // First IF to avoid error when checking instructor without lesson
     // This can happen becouse validation is triggered on blur event in HTML
     if (existingInstructor.length > 0){
-      // existingInstructor[0].lessons.forEach(lesson => {
       for (let lesson of existingInstructor[0].lessons){
       let oldStartTime: number = +lesson.time.slice(0,5).replace(':', '')
       let oldEndTime: number = oldStartTime + (lesson.duration * 100)
-
-      // console.log("oldStartTime: ", oldStartTime);
-      // console.log("oldEndTime", oldEndTime);
-
-      // console.log('newStartTime:', newStartTime);
-      // console.log("newEndTime:", newEndTime);
 
       if (  (newStartTime >= oldStartTime && oldEndTime > newStartTime) ||
             (newEndTime > oldStartTime && newEndTime <= oldEndTime)     ||
             (newStartTime < oldStartTime && newEndTime > oldEndTime)
           ) {
 
+            // Not used for now
             this.lessonStartTimeError = lesson.time.slice(0,5)
             this.lessonDurationError = lesson.duration
 
