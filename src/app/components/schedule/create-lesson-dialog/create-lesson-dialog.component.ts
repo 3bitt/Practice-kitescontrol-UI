@@ -166,7 +166,7 @@ export class CreateLessonDialogComponent implements OnInit, OnDestroy {
     );
   }
 
-  exitDialog(form){
+  exitDialog(){
     this.dialogRef.close();
   }
 
