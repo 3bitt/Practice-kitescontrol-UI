@@ -27,7 +27,7 @@ export class InstructorPaymentsComponent implements OnInit, OnDestroy {
   pastDateAsDate: Date;
   // 604800000 - 7 days
   // 6904800000 - for testing
-  oneWeekCalc = 6904800000;
+  oneWeekCalc = 604800000;
 
   fromDateInput;
   toDateInput;

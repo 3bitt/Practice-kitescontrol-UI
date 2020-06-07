@@ -14,15 +14,24 @@
     <div class="lesson-time-group">
       <div class="form-field date-field">
         <label for="date">Data</label>
-        <input class="date-field-input"
-        type="date"
-        required
-        ngModel
-        #lessonDate='ngModel'
-        name="date"
-        class="form-control"
-        [class.is-valid]=lessonDate.valid
-        [class.is-invalid]="!lessonDate.valid && lessonDate.touched">
+
+        <input class="lesson-date-text-field from-text-field"
+          type="text"
+          disabled
+          [value]="this.todayDate | date: 'fullDate':'':'pl_PL'">
+
+          <input
+          type="date"
+          required
+          [(ngModel)]='this.todayDate'
+          #lessonDate='ngModel'
+          (change)='dateChange(lessonDate.value)'
+          [min]='this.dialogData.scheduleCurrentDate'
+          name="date"
+          class="form-control date-field-input"
+          [class.is-valid]=lessonDate.valid
+          [class.is-invalid]="!lessonDate.valid && lessonDate.touched">
+
       </div>
 
       <div class="form-field time-field">
@@ -147,6 +156,7 @@
         <option value="Potwierdzona">Potwierdzona</option>
       </select>
     </div>
+
 
     <div class="form-field paid-field">
     </div>

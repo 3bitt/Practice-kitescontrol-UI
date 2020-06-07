@@ -1,5 +1,5 @@
 import { IInstructor } from './../../../models/instructorModel';
-import { NgForm, NgModel } from '@angular/forms';
+import { NgForm, NgModel, FormControl } from '@angular/forms';
 import { Lesson, ISchedule, IScheduleInstructor, LessonInstructor } from './../model/schedule-interface';
 import { IStudent } from './../../../models/studentModel';
 import { InstructorService } from 'src/app/service/instructor/instructor.service';
@@ -7,8 +7,8 @@ import { IInstructorPagingResponse } from 'src/app/shared/API-response/IInstruct
 import { IStudentPagingResponse } from './../../../shared/API-response/IStudentResponse';
 import { StudentService } from 'src/app/service/student/student.service';
 import { Subscription } from 'rxjs';
-import { Component, OnInit, Inject, OnDestroy, Pipe, ElementRef, ViewEncapsulation, Input, ViewChild } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Component, OnInit, Inject, OnDestroy, Pipe, ElementRef, ViewEncapsulation, Input, ViewChild, AfterViewInit, AfterViewChecked, ChangeDetectorRef, AfterContentChecked, AfterContentInit } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA, MatDialogConfig } from '@angular/material/dialog';
 import { ScheduleService } from 'src/app/service/schedule/schedule.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { MatInput } from '@angular/material/input';
@@ -26,11 +26,13 @@ export class CreateLessonDialogComponent implements OnInit, OnDestroy {
 
   constructor(
     public dialogRef: MatDialogRef<CreateLessonDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public dialogData: ISchedule,
+    @Inject(MAT_DIALOG_DATA) public dialogData: any,
     private scheduleService: ScheduleService,
     private studentService: StudentService,
     private instructorService: InstructorService,
+    private changeDetectorRef: ChangeDetectorRef
   ) { }
+
 
   public subscription$: Subscription;
 
@@ -50,13 +52,15 @@ export class CreateLessonDialogComponent implements OnInit, OnDestroy {
   studentDisplayList = [];
   instructorDisplayList= [];
 
-  // Input existing lessons from schedule component
-  @Input('existingLessons') existingLessons;
-
   // Used to set below fields status to valid when stud/instr is choosed
   @ViewChild('lessonInstructor') instructorInput: NgModel;
   @ViewChild('lessonStudent') studentInput: NgModel;
 
+  // Used to set today's date on init
+  @ViewChild('lessonDate') lessonDate: NgModel;
+  @ViewChild('lessonForm') lessonForm: NgForm;
+
+  // Used to show/hide div with lesson conflict error
   lessonTimeConflict = false;
 
   // Not used for now
@@ -65,6 +69,7 @@ export class CreateLessonDialogComponent implements OnInit, OnDestroy {
   lessonStartTimeError;
   lessonDurationError;
 
+  todayDate = formatDate(new Date().toLocaleDateString().slice(0,10), 'yyyy-MM-dd', 'pl_PL')
 
 
   hideList(){
@@ -223,8 +228,13 @@ export class CreateLessonDialogComponent implements OnInit, OnDestroy {
 
     this.students$ = this.instructorService.getActiveInstructors().
       subscribe( data => this.instructorsSourceList = data);
-
   }
+
+  dateChange(date){
+    this.todayDate = date
+    this.lessonDate.control.setValue(date)
+  }
+
 
   ngOnDestroy(){
     if (this.subscription$){

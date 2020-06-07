@@ -60,8 +60,9 @@ export class ScheduleComponent implements OnInit {
       CreateLessonDialogComponent,
       {
         panelClass: 'dialog',
-        data: { instructors:
-          this.instructorsWithLessons.instructors.filter(item => item.lessons.length > 0)
+        data: {
+          instructors: this.instructorsWithLessons.instructors.filter(item => item.lessons.length > 0),
+          scheduleCurrentDate: this.currDateAsString
         }
       });
   }
