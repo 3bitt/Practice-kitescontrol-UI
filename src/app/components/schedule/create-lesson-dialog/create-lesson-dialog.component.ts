@@ -58,6 +58,7 @@ export class CreateLessonDialogComponent implements OnInit, OnDestroy {
 
   // Used to set today's date on init
   @ViewChild('lessonDate') lessonDate: NgModel;
+  @ViewChild('lessonTime') lessonTime: NgModel;
   @ViewChild('lessonForm') lessonForm: NgForm;
 
   // Used to show/hide div with lesson conflict error
@@ -69,15 +70,16 @@ export class CreateLessonDialogComponent implements OnInit, OnDestroy {
   lessonStartTimeError;
   lessonDurationError;
 
-  todayDate = formatDate(new Date().toLocaleDateString().slice(0,10), 'yyyy-MM-dd', 'pl_PL')
+  lessonDefaultDate = formatDate(new Date().toLocaleDateString().slice(0,10), 'yyyy-MM-dd', 'pl_PL')
+  lessonDefaultTime: string = '';
 
 
+  // Functions used in dialog
   hideList(){
     this.studentsDropdownList = [];
     this.instructorsDropdownList = [];
     this.toggleList = false;
   }
-
   getNameValue(row, inputFieldRef){
     if (inputFieldRef.name == 'student'){
       this.studentsSourceList.results.forEach(item=>{
@@ -117,7 +119,6 @@ export class CreateLessonDialogComponent implements OnInit, OnDestroy {
       this.instructorsDropdownList = [];
     }
   }
-
   search(inputField: string | any){
     let regexp = new RegExp(inputField.value, 'gi')
 
@@ -141,7 +142,6 @@ export class CreateLessonDialogComponent implements OnInit, OnDestroy {
       }
     }
   }
-
   removeStudent(studentId: string){
     this.studentDisplayList = this.studentDisplayList.filter(item => item.id != studentId)
     this.studentIdsList = this.studentIdsList.filter(item => item != +studentId)
@@ -150,7 +150,6 @@ export class CreateLessonDialogComponent implements OnInit, OnDestroy {
     this.instructorDisplayList = this.instructorDisplayList.filter(item => item.id != instructorId)
     this.instructorIdsList = this.instructorIdsList.filter(item => item != +instructorId)
   }
-
   createLesson(lesson){
 
     try {
@@ -170,17 +169,22 @@ export class CreateLessonDialogComponent implements OnInit, OnDestroy {
         )
     );
   }
-
-  exitDialog(){
-    this.dialogRef.close();
+  updateLessonTime(hour, minutes){
+    let time = hour + ':' + minutes;
+    this.lessonDefaultTime = time.length === 5 ? time : ''
+    this.lessonTime.control.setValue(this.lessonDefaultTime)
+    this.checkExistingLessons(this.lessonForm.value)
   }
-
+  updateLessonDate(date){
+    this.lessonDefaultDate = date
+    this.lessonDate.control.setValue(date)
+    this.checkExistingLessons(this.lessonForm.value)
+  }
   checkExistingLessons(lessonToBeAdded: Lesson){
 
     let newStartTime: number = +lessonToBeAdded.time.replace(':', '');
     let newEndTime: number = newStartTime + (+lessonToBeAdded.duration * 100)
     let newLessonInstructor = lessonToBeAdded.instructor[0]
-
 
     let existingInstructor = this.dialogData.instructors.filter(
       i => i.id === +newLessonInstructor)
@@ -197,7 +201,6 @@ export class CreateLessonDialogComponent implements OnInit, OnDestroy {
             (newEndTime > oldStartTime && newEndTime <= oldEndTime)     ||
             (newStartTime < oldStartTime && newEndTime > oldEndTime)
           ) {
-
             // Not used for now
             this.lessonStartTimeError = lesson.time.slice(0,5)
             this.lessonDurationError = lesson.duration
@@ -205,7 +208,6 @@ export class CreateLessonDialogComponent implements OnInit, OnDestroy {
             this.lessonTimeConflict = true;
             console.log(this.lessonTimeConflict);
             break;
-
             }
             else {
               this.lessonTimeConflict = false;
@@ -217,8 +219,10 @@ export class CreateLessonDialogComponent implements OnInit, OnDestroy {
 
       this.lessonTimeConflict = false;
     }
-
-
+  }
+  // End of functions used in dialog
+  exitDialog(){
+    this.dialogRef.close();
   }
 
 
@@ -229,12 +233,6 @@ export class CreateLessonDialogComponent implements OnInit, OnDestroy {
     this.students$ = this.instructorService.getActiveInstructors().
       subscribe( data => this.instructorsSourceList = data);
   }
-
-  dateChange(date){
-    this.todayDate = date
-    this.lessonDate.control.setValue(date)
-  }
-
 
   ngOnDestroy(){
     if (this.subscription$){

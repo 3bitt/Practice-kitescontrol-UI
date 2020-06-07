@@ -15,21 +15,26 @@
       <div class="form-field date-field">
         <label for="date">Data</label>
 
-        <input class="lesson-date-text-field from-text-field"
+        <input class="form-control lesson-date-text-field"
           type="text"
           disabled
-          [value]="this.todayDate | date: 'fullDate':'':'pl_PL'">
+          [value]="this.lessonDefaultDate | date: 'fullDate':'':'pl_PL'"
+          [class.ng-valid]='lessonDate.valid'
+          [class.is-invalid]="!lessonDate.valid && lessonDate.touched">
+
+          <!-- [class.ng-valid]='lessonDate.valid'
+          [class.ng-invalid]="!lessonDate.valid && lessonDate.touched" -->
 
           <input
           type="date"
           required
-          [(ngModel)]='this.todayDate'
+          [(ngModel)]='this.lessonDefaultDate'
           #lessonDate='ngModel'
-          (change)='dateChange(lessonDate.value)'
+          (change)='updateLessonDate(lessonDate.value)'
           [min]='this.dialogData.scheduleCurrentDate'
           name="date"
           class="form-control date-field-input"
-          [class.is-valid]=lessonDate.valid
+          [class.ng-valid]='lessonDate.valid'
           [class.is-invalid]="!lessonDate.valid && lessonDate.touched">
 
       </div>
@@ -37,16 +42,54 @@
       <div class="form-field time-field">
         <label for="time">Godzina lekcji</label>
         <input
-        placeholder="np. 15:30"
         type="text"
         required
-        ngModel
+        [(ngModel)]='this.lessonDefaultTime'
         #lessonTime='ngModel'
         name="time"
-        class="form-control"
-        [class.is-valid]=lessonTime.valid
-        [class.is-invalid]="!lessonTime.valid && lessonTime.touched"
-        (change)="checkExistingLessons(lessonForm.value)">
+        class="form-control time-field-input"
+        >
+
+        <div class="time-select"
+        (change)="updateLessonTime(lessonHour.value, lessonMinutes.value)">
+          <select
+          #lessonHour
+          required
+          class="form-control"
+          [class.ng-valid]='lessonTime.valid'
+          [class.is-invalid]="!lessonTime.valid && lessonTime.touched">
+            <option value="" selected disabled hidden>--</option>
+            <option value="08">8</option>
+            <option value="09">9</option>
+            <option value="10">10</option>
+            <option value="11">11</option>
+            <option value="12">12</option>
+            <option value="13">13</option>
+            <option value="14">14</option>
+            <option value="15">15</option>
+            <option value="16">16</option>
+            <option value="17">17</option>
+            <option value="18">18</option>
+            <option value="19">19</option>
+            <option value="20">20</option>
+          </select>
+          :
+          <select
+          #lessonMinutes
+          required
+          class="form-control"
+          [class.ng-valid]='lessonTime.valid'
+          [class.is-invalid]="!lessonTime.valid && lessonTime.touched">
+            <option value="" selected disabled hidden>--</option>
+            <option value="00">00</option>
+            <option value="10">10</option>
+            <option value="20">20</option>
+            <option value="30">30</option>
+            <option value="40">40</option>
+            <option value="50">50</option>
+          </select>
+
+        </div>
       </div>
 
       <div class="form-field duration-field">
@@ -57,7 +100,7 @@
         #lessonDuration='ngModel'
         name="duration"
         class="form-control"
-        [class.is-valid]=lessonDuration.valid
+        [class.ng-valid]=lessonDuration.valid
         [class.is-invalid]="!lessonDuration.valid && lessonDuration.touched"
         (change)="checkExistingLessons(lessonForm.value)">
           <!-- <option value="30">0.5</option>
@@ -86,7 +129,7 @@
       (input)="search(studentNameInput)" (focus)="search(studentNameInput)"
       (blur)="hideList()"
       class="form-control"
-      [class.is-valid]=lessonStudent.valid
+      [class.ng-valid]=lessonStudent.valid
       [class.is-invalid]="!lessonStudent.valid && lessonStudent.touched">
 
       <div class="search-list-container">
@@ -117,7 +160,7 @@
       #lessonInstructor='ngModel'
       [ngModel]='instructorIdsList'
       class="form-control"
-      [class.is-valid]=lessonInstructor.valid
+      [class.ng-valid]=lessonInstructor.valid
       [class.is-invalid]="!lessonInstructor.valid && lessonInstructor.touched"
       (input)="search(instructorNameInput)" (focus)="search(instructorNameInput)"
       (blur)="hideList();
@@ -150,7 +193,7 @@
       class="dialog-dropdown form-control"
       ngModel
       name="status"
-      [class.is-valid]=lessonStatus.valid
+      [class.ng-valid]=lessonStatus.valid
       [class.is-invalid]="!lessonStatus.valid && lessonStatus.touched">
         <option value="Niepotwierdzona">Niepotwierdzona</option>
         <option value="Potwierdzona">Potwierdzona</option>
@@ -217,7 +260,7 @@
     <div class="dialog-action-buttons">
 
       <button mat-stroked-button type="button"
-      class="cancel-button" (click)="exitDialog()">
+      class="cancel-button" (click)="exitDialog(lessonForm)">
         Anuluj
       </button>
 
