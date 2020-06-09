@@ -10,6 +10,7 @@ import { StudentDetailComponent } from './student-detail/student-detail.componen
 import { StudentAddComponent } from './student-add/student-add.component';
 import { StudentService } from 'src/app/service/student/student.service';
 import { StudentDetailEditComponent } from './student-detail/student-detail-edit/student-detail-edit.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 
 @NgModule({
@@ -25,7 +26,7 @@ import { StudentDetailEditComponent } from './student-detail/student-detail-edit
     StudentRoutingModule,
     FormsModule,
     MatButtonModule,
-
+    FontAwesomeModule
   ],
   providers: [StudentService]
 })

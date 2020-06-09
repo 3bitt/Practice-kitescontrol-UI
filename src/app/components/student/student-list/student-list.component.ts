@@ -3,6 +3,8 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { StudentService } from 'src/app/service/student/student.service';
 import { IStudentPagingResponse } from 'src/app/shared/API-response/IStudentResponse';
+import { faQuestionCircle } from '@fortawesome/free-regular-svg-icons';
+
 
 @Component({
   selector: 'app-student-list',
@@ -16,6 +18,10 @@ export class StudentListComponent implements OnInit, OnDestroy {
   public students$;
   public searchList = [];
   public searchValue = '';
+
+  tooltipIcon = faQuestionCircle;
+
+  hidetooltip = true;
 
   constructor(private _studentService: StudentService,
               private router: Router,
@@ -33,8 +39,36 @@ export class StudentListComponent implements OnInit, OnDestroy {
     }
   }
 
+  showTooltip(){
+    this.hidetooltip = false;
+  }
+  hideTooltip(){
+    this.hidetooltip = true;
+  }
+
+  deleteStudent(id: number){
+    this.students$ = this._studentService.deleteStudent(id)
+    .subscribe( (data) => { this.students.results = data;
+      console.log(data);
+    }, err => {
+      console.log('ERR:', err);
+    });
+  };
+
+  searchStudents(studName: string, studSurname: string, studMobile: string){
+    let payload = {
+      "studentName": studName.trim(),
+      "studentSurname": studSurname.trim(),
+      "mobileNumber": studMobile.trim()
+    };
+    console.log(payload);
 
 
+    this.students$ = this._studentService.getStudentsPostMethod(payload).
+    subscribe(data => this.students = data,
+              err => console.log('ERR:', err)
+              );
+  };
 
   ngOnInit() {
     this.students$ = this._studentService.getStudents()
@@ -42,24 +76,13 @@ export class StudentListComponent implements OnInit, OnDestroy {
     }, err => {
       console.log('ERR:', err);
       });
-    }
+  };
 
-  deleteStudent(id: number){
-    this.students$ = this._studentService.deleteStudent(id)
-    .subscribe( (data) => { this.students.results = data;
-      console.log(data);
+  ngOnDestroy(){
+    this.students$.unsubscribe();
+  };
 
-    }, err => {
-      console.log('ERR:', err);
-    });
-
-  }
-
-    ngOnDestroy(){
-      this.students$.unsubscribe();
-    }
-
-  }
+}
 
 
 

@@ -1,13 +1,11 @@
 
 :host{
     display: grid;
-    grid-template-columns: 0.2fr repeat(5, 1fr) 0.2fr;
-    grid-template-rows: 50px 150px 40px auto;
+    grid-template-columns: 0.1fr repeat(5, 1fr) 0.2fr;
+    grid-template-rows: 350px auto;
 
     vertical-align: bottom;
 }
-
-
 
 
 .students-table {
@@ -30,15 +28,24 @@ span {
 
 
 .search-field {
-    display: grid;
-    grid-column: 2 / 3;
-    grid-row: 2;
-    height: 30px;
+  grid-column: 2 / 3;
+  grid-row: 1;
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  padding: 25px;
+  border: 1px solid #b3b9cc;
+  border-radius: 5px;
+  background-color: #d8e2fb;
+  margin-bottom: auto;
 }
 
 .search-list-container{
-    grid-column: 3 / 4;
-    grid-row: 2;
+  position: relative;
+  grid-column: 3 / 4;
+  grid-row: 1;
+  top: 100px;
+
 
 }
 
@@ -75,4 +82,70 @@ span {
 
 .searchElement a:hover{
     background: #b3d7df;
+}
+
+
+.advanced-search{
+  grid-column: 4/6;
+  grid-row: 1;
+}
+
+.title{
+  display: flex;
+  font-size: 22px;
+  font-weight: bold;
+  margin-bottom: 25px;
+  place-content: center;
+}
+.tooltip-div{
+  position: relative;
+  margin-left: 15px;
+}
+.tooltip-content{
+  position: absolute;
+  font-size: 12px;
+  top: 0;
+  left: 30px;
+  background-color: #c2d3fa;
+  padding: 5px;
+  width: 400px;
+  font-weight: bolder;
+  z-index: 1;
+  border-radius: 7px;
+  border: 1px solid black;
+}
+.advanced-search .title .tooltip-icon{
+  color: rgb(77, 134, 240);
+  font-size: 16px;
+}
+.advanced-search .field-group{
+  width: 390px;
+  padding: 25px;
+  margin-top: 10px;
+  border: 1px solid #b3b9cc;
+  border-radius: 5px;
+  background-color: #d8e2fb;
+}
+
+.advanced-search .search-field-div{
+  display: flex;
+  place-content: space-between;
+  align-items: baseline;
+  margin-bottom: 5px;
+}
+
+.search-btn-div{
+  display: flex;
+  place-content: center;
+  margin-top: 23px;
+}
+.search-btn{
+  color: rgb(0, 0, 0);
+  width: 100px;
+  border: 1px solid #4e64bb;
+  background-color: #dbd07a;
+}
+.search-btn:hover{
+  background-color: #c0b13b;
+  border: 1px solid #273b8a;
 }

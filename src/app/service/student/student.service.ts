@@ -24,7 +24,7 @@ export class StudentService {
 
 
   private _getStudentURL: string = this.baseUrl + "students/?orderBy=register_date";
-  private _getStudentByIdURL: string = this.baseUrl + "students/";
+  private _getStudents: string = this.baseUrl + "students/";
   private _postStudent: string = this.baseUrl + "students/create/";
   private _putStudent: string = this.baseUrl + "students/id/update/";
   // private _deleteStudentURL: string = this.baseUrl + "students"
@@ -45,9 +45,16 @@ export class StudentService {
       );
   };
 
+  getStudentsPostMethod(payload): Observable<any>{
+    return this.http.post<any>(this._getStudents, payload).
+    pipe(
+      catchError(this.handleError('getStudentsPostMethod', []))
+    )
+  }
+
 
   getStudentById(id: number | string): Observable<IStudentDetailResponse>{
-    let studentId = `${this._getStudentByIdURL}${id}/`
+    let studentId = `${this._getStudents}${id}/`
     return this.http.get<any>(studentId)
       .pipe(
         catchError(this.handleError('getStudentById', []))
@@ -59,7 +66,7 @@ export class StudentService {
   }
 
   deleteStudent(id: number){
-    let studentId = `${this._getStudentByIdURL}${id}/delete/`
+    let studentId = `${this._getStudents}${id}/delete/`
     return this.http.delete<any>(studentId)
   }
 
