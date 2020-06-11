@@ -1,3 +1,4 @@
+import { ConfirmDeleteDialogComponent } from 'src/app/shared/confirm-delete-dialog/confirm-delete-dialog.component';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -19,7 +20,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 
 
-import { registerLocaleData } from '@angular/common';
+import { registerLocaleData, CommonModule } from '@angular/common';
 import localePl from '@angular/common/locales/pl';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
@@ -33,6 +34,7 @@ registerLocaleData(localePl, 'pl_PL');
     AppComponent,
     // LessonListComponent,
     // LessonDetailComponent,
+    ConfirmDeleteDialogComponent
   ],
   imports: [
     BrowserModule,

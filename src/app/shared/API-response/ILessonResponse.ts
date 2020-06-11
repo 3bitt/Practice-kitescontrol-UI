@@ -24,6 +24,7 @@ export interface ILessonDetailResponse {
   paid:         boolean;
   status:       null | string;
   comment:      null | string;
+  in_progress:   null | boolean;
 }
 
 export interface Result {
@@ -41,6 +42,7 @@ export interface Result {
   paid:         boolean;
   status:       null | string;
   comment:      null | string;
+  in_progress:   null | boolean;
 }
 
 export interface Instructor {

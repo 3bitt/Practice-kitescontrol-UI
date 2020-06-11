@@ -1,0 +1,111 @@
+.container{
+  display: flex;
+  flex-direction: column;
+}
+
+.header{
+  margin-bottom: 24px;
+  text-align: center;
+}
+.title{
+  font-size: 1.8rem;
+  margin-bottom: 10px;
+}
+.sub-title{
+  font-size: 1.1rem;
+  color: rgb(255, 212, 133);
+}
+
+.lesson-info-container{
+  width: 280px;
+  border: 1px solid;
+  border-radius: 5px;
+  padding: 15px;
+  align-self: flex-start;
+}
+.lesson-info{
+  display: flex;
+  place-content: space-between;
+  font-size: 16px;
+  margin-bottom: 18px;
+}
+.lesson-info:last-of-type{
+  margin-bottom: 0;
+}
+.change-duration-link{
+  margin-left: 20px;
+  color: rgb(134, 134, 255);
+  cursor: pointer;
+  font-size: .8rem;
+}
+.new-duration-label{
+  color: rgb(255, 212, 133);
+}
+.duration-select{
+  width: 70px;
+  height: 30px;
+  font-size: 13px;
+}
+
+
+/*  */
+/* Students */
+/*  */
+.student-container{
+  display: flex;
+  margin-top: 28px;
+  column-gap: 20px;
+}
+.student-item{
+  border: 1px solid aliceblue;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 0 0 15px 0;
+  width: 280px;
+}
+.student-item:nth-child(2){
+  margin: 0 0 15px 15px;
+}
+.student-item:nth-child(3){
+  margin: 0 0 15px 15px;
+}
+
+.student-name{
+  font-size: 1.3rem;
+  font-weight: bold;
+  text-align: center;
+  margin: 10px 0 20px 0;
+}
+.student-level{
+  display: flex;
+  place-content: space-between;
+  margin-bottom: 17px;
+  font-size: 15px;
+  border-bottom: 1px solid gray;
+}
+.new-level{
+  display: flex;
+  place-content: space-between;
+  margin-bottom: 10px;
+  font-size: 15px;
+}
+.new-level-label{
+  color: rgb(255, 212, 133);
+}
+
+.level-select{
+  width: 120px;
+  height: 30px;
+  font-size: 13px;
+}
+
+.button-container{
+  display: flex;
+  place-content: space-between;
+}
+.cancel-btn{
+  background-color: #c45858;
+}
+.confirm-btn{
+  background-color: #81c681;
+}

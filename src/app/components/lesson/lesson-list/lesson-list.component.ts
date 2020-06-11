@@ -17,32 +17,32 @@ export class LessonListComponent implements OnInit, OnDestroy {
   ) { }
 
   public lessons: ILessonPagingResponse;
-  public lessons$: Observable<IpagingResponse>;
+  public lessons$: Subscription;
 
   public errorMessage;
 
-  // ngOnInit() {
-  //   this.lessons$ = this._lessonService.getLessons()
-  //   .subscribe((data) => { this.lessons = data; console.log(this.lessons);
-  //   },
-  //   err => { console.log('ERR', err) });
-  // }
-
-
-// Using async in template
-  ngOnInit(){
-    this.lessons$ = this._lessonService.lessons$
-    .pipe(
-      catchError(error => {
-        this.errorMessage = error;
-        return of(null);
-      })
-    );
-
+  ngOnInit() {
+    this.lessons$ = this._lessonService.getLessons()
+    .subscribe((data) => { this.lessons = data;
+    },
+    err => { console.log('ERR', err) });
   }
 
 
+// // Using async in template
+//   ngOnInit(){
+//     this.lessons$ = this._lessonService.lessons$
+//     .pipe(
+//       catchError(error => {
+//         this.errorMessage = error;
+//         return of(null);
+//       })
+//     );
+
+//   }
+
+
   ngOnDestroy(){
-    // this.lessons$.unsubscribe();
+    this.lessons$.unsubscribe();
   }
 }

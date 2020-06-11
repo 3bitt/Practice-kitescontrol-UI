@@ -1,0 +1,132 @@
+<div class="container">
+
+  <div class="header">
+    <div class="title">Koniec lekcji</div>
+    <div class="sub-title">Zaktualizuj poziom kursanta</div>
+  </div>
+
+
+  <div class="lesson-info-container">
+
+    <div class="lesson-info instructor">
+      <div class="instructor-label">
+        Instruktor
+      </div>
+      <div class="instructor-name">
+        {{dialogData.lesson.instructor[0].name}}
+        {{dialogData.lesson.instructor[0].surname}}
+      </div>
+    </div>
+
+    <div class="lesson-info duration">
+      <div class="duration-label">
+        Czas lekcji
+      </div>
+
+      <div class="lesson-duration">
+        {{dialogData.lesson.duration}} h
+        <a class="change-duration-link" (click)="this.showTimeChange = !this.showTimeChange">
+          Zmień
+        </a>
+      </div>
+    </div>
+
+    <div class="lesson-info change-duration" *ngIf="this.showTimeChange">
+      <div class="new-duration-label">
+        Nowy czas lekcji
+      </div>
+
+      <select class="duration-select" (change)="changeTime($event)">
+        <option [value]="dialogData.lesson.duration" selected disabled hidden>Bez zmian</option>
+        <option value="0.5">0.5</option>
+        <option value="1">1</option>
+        <option value="1.5">1.5</option>
+        <option value="2">2</option>
+        <option value="2.5">2.5</option>
+        <option value="3">3</option>
+      </select>
+
+
+
+    </div>
+
+  </div>
+
+  <!-- STUDENTS -->
+  <div class="student-container">
+
+    <div class="student-item"
+    *ngFor="let student of dialogData.lesson.student">
+
+      <div class="student-name">
+        {{student.name}} {{student.surname}}
+      </div>
+
+      <div class="student-level">
+        <div class="label level-label">
+          Aktualny poziom
+        </div>
+
+        <div class="level-value">
+          {{student.iko_level}}
+        </div>
+      </div>
+
+      <div class="new-level">
+        <div class="label new-level-label">
+          Nowy poziom
+        </div>
+
+        <div class="new-level-input">
+          <select class="level-select" (change)="changeLevel($event, student)">
+            <optgroup label="1 - Discovery">
+              <option [value]="student.iko_level" selected disabled hidden>Bez zmian</option>
+              <option value="1A">A - S.E.A.</option>
+              <option value="1B">B - Safety systems / Pre-flight check</option>
+              <option value="1C">C - First piloting</option>
+              <option value="1D">D - First piloting advanced</option>
+              <option value="1E">E - Quick release activation / Self-landing</option>
+            </optgroup>
+            <optgroup label="2 - Intermediate">
+              <option value="2F">F - Enter/exit water with kite / Water relaunch</option>
+              <option value="2G">G - Body-drag left/right</option>
+              <option value="2H">H - Body-drag upwind / with board + Self rescue</option>
+              <option value="2I">I - Rules of way / Steady-pull / Water start </option>
+            </optgroup>
+            <optgroup label="3 - Independent">
+              <option value="3J">J - Controlled stop / control speed</option>
+              <option value="3K">K - Riding upwind</option>
+              <option value="3L">L - Sliding transition</option>
+              <option value="3M">M - Toe-side riding / Toe-side turn</option>
+              <option value="3N">N - Self-launching / Self-rescue deep water</option>
+            </optgroup>
+            <optgroup label="4 - Advanced">
+              <option value="4-1">1 - Basic jump</option>
+              <option value="4-2">2 - Jibe</option>
+              <option value="4-3">3 - Jump with grab</option>
+              <option value="4-4">4 - Rider recovery</option>
+              <option value="4-5">5 - Board recovery</option>
+              <option value="4-6">6 - International signs and ROW</option>
+              <option value="4-7">7 - Equipment</option>
+              <option value="4-8">8 - Weather and tides</option>
+              <option value="4-9">9 - Aerodynamics</option>
+            </optgroup>
+          </select>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="button-container">
+    <button class="btn cancel-btn" type="button"
+    (click)="cancel()">
+      Anuluj
+    </button>
+    <button class="btn confirm-btn" type="button"
+    (click)="submit()">
+      Zapisz
+    </button>
+  </div>
+</div>

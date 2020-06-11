@@ -47,7 +47,7 @@
                 <td>{{instructor.active}}</td>
                 <td class="table-details-col">
                   <a [routerLink]="['./', instructor.id]">Szczegóły</a>
-                  <span (click)="deleteInstructor(instructor.id)" title="Usuń">
+                  <span (click)="confirmDelete(instructor)" title="Usuń">
                     <i  class="fas fa-user-times"></i>
                   </span>
                 </td>

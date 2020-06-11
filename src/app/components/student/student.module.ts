@@ -1,3 +1,4 @@
+import { ConfirmDeleteDialogComponent } from './../../shared/confirm-delete-dialog/confirm-delete-dialog.component';
 import { MatButtonModule } from '@angular/material/button';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
@@ -11,6 +12,7 @@ import { StudentAddComponent } from './student-add/student-add.component';
 import { StudentService } from 'src/app/service/student/student.service';
 import { StudentDetailEditComponent } from './student-detail/student-detail-edit/student-detail-edit.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { MatDialogModule } from '@angular/material/dialog';
 
 
 @NgModule({
@@ -20,13 +22,15 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     StudentAddComponent,
     StudentDetailEditComponent,
 
+
   ],
   imports: [
     CommonModule,
     StudentRoutingModule,
     FormsModule,
     MatButtonModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+
   ],
   providers: [StudentService]
 })

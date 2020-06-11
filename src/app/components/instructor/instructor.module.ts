@@ -11,6 +11,7 @@ import { InstructorRoutingModule } from './instructor-routing.module';
 import { InstructorAddComponent } from './instructor-add/instructor-add.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { InstructorDetailEditComponent } from './instructor-detail/instructor-detail-edit/instructor-detail-edit.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 
 @NgModule({
@@ -26,6 +27,7 @@ import { InstructorDetailEditComponent } from './instructor-detail/instructor-de
     InstructorRoutingModule,
     FontAwesomeModule,
     MatCheckboxModule,
+
   ],
   // It seems like it's sufficient to declare InstructorService in AppModule - it works
   // providers: [InstructorService]

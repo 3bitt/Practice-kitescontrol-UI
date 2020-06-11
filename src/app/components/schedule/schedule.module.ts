@@ -22,6 +22,7 @@ import {MatIconModule} from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { DateSwitcherComponent } from './date-switcher/date-switcher.component';
 import { EditLessonDialogComponent } from './edit-lesson-dialog/edit-lesson-dialog.component';
+import { FinishLessonDialogComponent } from './finish-lesson-dialog/finish-lesson-dialog.component';
 
 @NgModule({
 
@@ -32,7 +33,8 @@ import { EditLessonDialogComponent } from './edit-lesson-dialog/edit-lesson-dial
     CreateLessonDialogComponent,
     ScheduleLessonPositionPipe,
     DateSwitcherComponent,
-    EditLessonDialogComponent
+    EditLessonDialogComponent,
+    FinishLessonDialogComponent
   ],
 
   imports: [

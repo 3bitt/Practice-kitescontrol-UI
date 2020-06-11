@@ -137,7 +137,7 @@
           <li class="searchElement" *ngFor="let student of studentsDropdownList"
           (mousedown)="getNameValue(student, studentNameInput)">
 
-              {{student.name}} {{student.surname}}
+              {{student.name}} {{student.surname}} lvl. {{student.iko_level}}
 
           </li>
         </ul>
@@ -145,7 +145,7 @@
       <div class="student-display-list-div">
         <ul class="student-display-list">
           <li class="student-list-item" *ngFor="let stud of studentDisplayList">
-            <span>{{stud.name}}</span>
+            <span>{{stud.name}} lvl. {{stud.iko_level}}</span>
             <fa-icon [icon]="faTimesIcon" (click)="removeStudent(stud.id)"></fa-icon>
           </li>
         </ul>
@@ -195,8 +195,8 @@
       name="status"
       [class.ng-valid]=lessonStatus.valid
       [class.is-invalid]="!lessonStatus.valid && lessonStatus.touched">
-        <option value="Niepotwierdzona">Niepotwierdzona</option>
-        <option value="Potwierdzona">Potwierdzona</option>
+        <option value="0_NC">Niepotwierdzona</option>
+        <option value="0_C">Potwierdzona</option>
       </select>
     </div>
 

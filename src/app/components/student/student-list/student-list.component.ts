@@ -1,9 +1,11 @@
+import { ConfirmDeleteDialogComponent } from './../../../shared/confirm-delete-dialog/confirm-delete-dialog.component';
 import { IpagingResponse } from './../../../models/response';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { StudentService } from 'src/app/service/student/student.service';
 import { IStudentPagingResponse } from 'src/app/shared/API-response/IStudentResponse';
 import { faQuestionCircle } from '@fortawesome/free-regular-svg-icons';
+import { MatDialog } from '@angular/material/dialog';
 
 
 @Component({
@@ -26,6 +28,7 @@ export class StudentListComponent implements OnInit, OnDestroy {
   constructor(private _studentService: StudentService,
               private router: Router,
               private route: ActivatedRoute,
+              private dialog: MatDialog,
               ) { }
 
 
@@ -44,6 +47,30 @@ export class StudentListComponent implements OnInit, OnDestroy {
   }
   hideTooltip(){
     this.hidetooltip = true;
+  }
+
+  confirmDelete(studentObj){
+    let dialogRef = this.dialog.open(
+      ConfirmDeleteDialogComponent,
+      {
+        panelClass: 'dialog',
+        data: {
+          obj: studentObj,
+          context: "student"
+        }
+      }
+    );
+
+    dialogRef.afterClosed().subscribe(
+      (result: any | undefined) => {
+        if (result === undefined){
+          return
+        }
+        else if (result.event === 'Delete'){
+          this.deleteStudent(result.data)
+        };
+      }
+    );
   }
 
   deleteStudent(id: number){

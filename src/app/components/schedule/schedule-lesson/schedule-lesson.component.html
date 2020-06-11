@@ -56,9 +56,11 @@
         {{lesson.time | slice:0:5}}
       </div>
 
-      <div class="lesson-student-name"
+      <div class="lesson-student"
       *ngFor="let student of lesson.student">
-        {{student.name}} {{student.surname[0]}}
+      <div class="lesson-student-name">{{student.name}} {{student.surname[0]}}</div>
+      <div class="lesson-student-lvl">lvl. {{student.iko_level}}</div>
+
       </div>
 
       <div class="lesson-action" >
@@ -70,31 +72,41 @@
 
         <div #actionsMenu class="actionsMenu" >
 
-          <fa-icon class="action-icon confirm-lesson-icon" title="Potwierdź"
-          (click)="confirmLesson(lesson.id, lesson.status)"
-          [icon]="faCheck">
-          </fa-icon>
-
-          <fa-icon class="action-icon start-lesson-icon" title="Rozpocznij"
+          <div class="actions-menu-item" (click)="confirmLesson(lesson.id, lesson.status)">
+            <fa-icon class="action-icon confirm-lesson-icon" title="Potwierdź"
+            [icon]="faCheck">
+            </fa-icon>
+            Potwierdź
+          </div>
+          <div class="actions-menu-item"
           (click)="startLesson(lesson.id, lesson.in_progress)"
-          [icon]="faStart">
-          </fa-icon>
+          [style.pointer-events]="lesson.status.includes('F') || lesson.status.includes('P') ? 'none': 'auto'">
+            <fa-icon class="action-icon start-lesson-icon" title="Rozpocznij"
+            [icon]="faStart">
+            </fa-icon>
+            Rozpocznij
+          </div>
 
-          <fa-icon class="action-icon pay-lesson-icon"  title="Rozlicz"
-          (click)="payLesson(lesson.id, lesson.paid)"
-          [icon]="faDollar">
-          </fa-icon>
+          <div class="actions-menu-item" (click)="finishLesson(lesson)">
+            <fa-icon class="action-icon pay-lesson-icon"  title="Rozlicz"
+            [icon]="faDollar">
+            </fa-icon>
+            Zakończ
+          </div>
 
-          <fa-icon class="action-icon edit-lesson-icon"  title="Edytuj"
-          (click)="editLesson(lesson)"
-          [icon]="faEdit">
-          </fa-icon>
+          <div class="actions-menu-item" (click)="editLesson(lesson)">
+            <fa-icon class="action-icon edit-lesson-icon"  title="Edytuj"
+            [icon]="faEdit">
+            </fa-icon>
+            Edytuj
+          </div>
 
-          <fa-icon class="action-icon delete-lesson-icon"  title="Usuń"
-          (click)="deleteLesson(lesson.id)"
-          [icon]="faTrash">
-          </fa-icon>
-
+          <div class="actions-menu-item" (click)="confirmDelete(lesson)">
+            <fa-icon class="action-icon delete-lesson-icon"  title="Usuń"
+            [icon]="faTrash">
+            </fa-icon>
+            Usuń
+          </div>
         </div>
 
       </div>
@@ -103,17 +115,17 @@
 
 
 
-    <!-- Lesson duration condition - if smaller width then smaller font siez -->
+    <!-- Lesson duration condition - if smaller width then smaller font size -->
 
-    <div class="lesson-info" *ngIf="lesson.duration >= 1.5"
-      [class.lesson-info-paid]="lesson.paid"
-      [class.lesson-info-inProgress]="lesson.in_progress" >
+    <div class="lesson-info" *ngIf="lesson.duration >= 1.5">
 
-      <div *ngIf="lesson.status == 'Potwierdzona'"
+      <!-- NC - not confirmed  -->
+      <div *ngIf="!lesson.status.includes('NC')"
       class="lesson-info-item lesson-confirmed">
       <fa-icon class="icon-confirmed" [icon]="faCheck"></fa-icon>
       </div>
-      <div *ngIf="lesson.status == 'Niepotwierdzona'"
+
+      <div *ngIf="lesson.status.includes('NC')"
       class="lesson-info-item lesson-not-confirmed">
       <fa-icon class="icon-not-confirmed" [icon]="faQuestion"></fa-icon>
       </div>
@@ -134,7 +146,15 @@
 
       <div class="lesson-info-item lesson-equipment img-container spinner-container"
       *ngIf="lesson.in_progress">
-        <div class="spinner"></div>
+      <!-- <div class="spinner">W trakcie</div> -->
+        <div class="lesson-in-progress">W trakcie</div>
+      </div>
+
+      <!-- F - finished -->
+      <div class="lesson-info-item lesson-equipment img-container spinner-container"
+      *ngIf="lesson.status.includes('F')">
+      <!-- <div class="spinner">W trakcie</div> -->
+        <div class="lesson-paid">Zakończona</div>
       </div>
 
     </div>

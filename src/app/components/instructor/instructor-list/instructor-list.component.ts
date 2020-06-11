@@ -5,6 +5,8 @@ import { IpagingResponse } from './../../../models/response';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { InstructorService } from 'src/app/service/instructor/instructor.service';
+import { MatDialog } from '@angular/material/dialog';
+import { ConfirmDeleteDialogComponent } from 'src/app/shared/confirm-delete-dialog/confirm-delete-dialog.component';
 
 
 
@@ -22,7 +24,8 @@ export class InstructorListComponent implements OnInit, OnDestroy {
 
   constructor(private _instructorService: InstructorService,
               private router: Router,
-              private route: ActivatedRoute) { }
+              private route: ActivatedRoute,
+              private dialog: MatDialog) { }
 
 
 
@@ -43,6 +46,29 @@ export class InstructorListComponent implements OnInit, OnDestroy {
       console.log(err);
     });
   };
+
+  confirmDelete(instructorObj){
+    let dialogRef = this.dialog.open(
+      ConfirmDeleteDialogComponent,
+      {
+        panelClass: 'dialog',
+        data: {
+          obj: instructorObj,
+          context: "instructor"
+        }
+      });
+
+    dialogRef.afterClosed().subscribe(
+      (result: any | undefined) => {
+        if (result === undefined){
+          return
+        }
+        else if (result.event === 'Delete'){
+          this.deleteInstructor(result.data)
+        };
+      }
+    )
+  }
 
   deleteInstructor(id: number){
     this.instructors$ = this._instructorService.deleteInstructor(id)

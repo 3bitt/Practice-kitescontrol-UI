@@ -1,0 +1,74 @@
+
+
+
+<div [ngSwitch]="context">
+
+  <ng-container *ngSwitchCase="'student'">
+
+    <div class="message">
+      Czy na pewno chcesz usunąć tego kursanta ?
+    </div>
+
+    <div class="student">
+      {{this.dialogData.obj.name}} {{this.dialogData.obj.surname}}
+    </div>
+
+  </ng-container>
+
+  <ng-container *ngSwitchCase="'instructor'">
+
+    <div class="message">
+      Czy na pewno chcesz usunąć tego instruktora ?
+    </div>
+
+    <div class="student">
+      {{this.dialogData.obj.name}} {{this.dialogData.obj.surname}}
+    </div>
+
+  </ng-container>
+
+  <ng-container *ngSwitchCase="'lesson'">
+
+    <div class="message">
+      Czy na pewno chcesz usunąć tą lekcje ?
+    </div>
+
+    <div class="lesson-details">
+
+      <div class="lesson-details-label">
+        <span>Godzina:</span>
+        <div class="content">{{dialogData.obj.time | slice:0:5}}</div>
+      </div>
+
+      <div class="lesson-details-label">
+        <span>Kursant:</span>
+        <div class="content" *ngFor="let student of dialogData.obj.student">
+          {{student.name}} {{student.surname}}
+        </div>
+      </div>
+
+      <div class="lesson-details-label">
+        <span>Instruktor:</span>
+        <div class="content">{{dialogData.obj.instructor[0].name}} {{dialogData.obj.instructor[0].surname}}</div>
+      </div>
+    </div>
+  </ng-container>
+
+  <div *ngSwitchDefault>
+    Potwierdź operacje usunięcia
+  </div>
+
+</div>
+
+<div class="buttons">
+  <button class="btn confirm-delete" type="button"
+  (click)="confirmDelete() ">
+    Tak
+  </button>
+
+
+  <button class="btn cancel-delete" type="button" autofocus
+  (click)="cancelDelete()">
+    Nie
+  </button>
+</div>

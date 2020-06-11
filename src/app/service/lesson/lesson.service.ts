@@ -43,9 +43,8 @@ export class LessonService {
       catchError(this.handleError)
       );
 
-// Used by Schedule component only
   getLessons(): Observable<ILessonPagingResponse>{
-    return this.http.get<any>(this._getLessonURL)
+    return this.http.get<any>(this._getLessonURL + '?orderBy=date')
       .pipe(
         catchError(this.handleError('getLessons', []))
       );

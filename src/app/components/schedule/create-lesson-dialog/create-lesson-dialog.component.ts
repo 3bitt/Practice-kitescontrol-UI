@@ -89,7 +89,8 @@ export class CreateLessonDialogComponent implements OnInit, OnDestroy {
           this.studentDisplayList.push(
             {
               id: row.id,
-              name: row.name.concat(' ', row.surname)
+              name: row.name.concat(' ', row.surname),
+              iko_level: row.iko_level
             });
             this.studentInput.control.setErrors(null);
 

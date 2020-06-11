@@ -1,26 +1,3 @@
-<p>lesson-list works!</p>
-
-
-<!-- <a routerLink="/dashboard">Back</a> -->
-<!-- <button class="back-button" routerLink='/dashboard'>Back</button> -->
-
-
-
-<!-- <div class="search-field" >
-  <input  #inputBox [ngModel]='searchValue' (input)="search(inputBox.value)" type="text"  placeholder="Szukaj kursanta..."/>
-</div>
-  <div class="search-list-container">
-    <ul class="search-ul-Parent" *ngIf="searchList.length">
-      <li class="searchElement" *ngFor="let student of searchList" >
-        <a [routerLink]="['./', student.id]">
-          {{student.name}} {{student.surname}}
-        </a>
-      </li>
-    </ul>
-  </div> -->
-
-
-
 
 <div class="lessons-table" >
 
@@ -29,29 +6,41 @@
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">Data</th>
+                <th scope="col">Godzina</th>
+                <th scope="col">Czas trwania</th>
                 <th scope="col">Instruktor</th>
                 <th scope="col">Kursant</th>
+                <th scope="col">Telefon</th>
                 <th scope="col">Rozliczona</th>
+                <th scope="col">Komentarz</th>
             </tr>
         </thead>
-        <tbody *ngIf="lessons$ | async as lessons">
-            <tr *ngFor="let lesson of lessons.results; index as i">
+        <tbody *ngIf="lessons">
+            <tr *ngFor="let lesson of lessons.results; index as i" [class.lesson-paid]="lesson.paid">
                 <td>{{i+1}}</td>
                 <td>{{lesson.created_date | date: 'dd-MM-yyyy'}}</td>
+                <td>{{lesson.time | slice:0:5}}</td>
+                <td>{{lesson.duration}} h</td>
                 <td>
                   <span *ngFor="let instr of lesson.instructor">
                   {{instr.name}} {{instr.surname}}
                   </span>
                 </td>
-                <td>
+                <td class="multi-row">
                   <span *ngFor="let stud of lesson.student">
-                  {{stud.name}} {{stud.surname}}
+                  {{stud.name}} {{stud.surname}} <br>
+                  </span>
+                </td>
+                <td class="multi-row">
+                  <span *ngFor="let stud of lesson.student">
+                  {{stud.mobile_number}} <br>
                   </span>
                 </td>
                 <td>
                   <i *ngIf="lesson.paid"  class="paid-icon fas fa-check"></i>
                   <i *ngIf="!lesson.paid"  class="not-paid-icon fas fa-times"></i>
                 </td>
+                <td>{{lesson.comment}}</td>
 
                 <!-- <td class="table-details-col">
                   <a [routerLink]="['.', student.id]">Szczegóły</a>
