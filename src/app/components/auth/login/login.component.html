@@ -1,18 +1,31 @@
 
 <div class="login-form-container">
 
-    <div class="login-input-label">Login:</div>
-    <div class="login-input">
-        <input type="text">
+  <div class="errorMessage" *ngIf='errorMessage'>
+    Niepoprawne dane!
+  </div>
+
+  <form #loginForm='ngForm'>
+    <div class="username">
+      <div class="login-input-label">Login:</div>
+      <div class="login-input">
+          <input type="text"
+          name="username"
+          ngModel
+          #username>
+      </div>
     </div>
 
-    <div class="pass-input-label">Password:</div>
-    <div class="pass-input">
-        <input type="password">
+    <div class="password">
+      <div class="pass-input-label">Hasło:</div>
+      <div class="pass-input">
+          <input type="password"
+          #password>
+      </div>
     </div>
 
-    <button class="login-button" (click)="login()">
+    <button class="login-button" (click)="login(username.value, password.value)">
             Zaloguj
     </button>
-
+  </form>
 </div>

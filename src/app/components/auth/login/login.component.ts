@@ -1,15 +1,19 @@
+import { catchError, throttleTime, debounceTime, distinctUntilChanged, tap, map, filter, switchMap } from 'rxjs/operators';
 import { AuthService } from './../service/auth.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
+import { of, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent {
+export class LoginComponent implements OnDestroy {
 
   message: string;
+  errorMessage: boolean = false;
+  subscription$: Subscription;
 
 
   constructor(public authService: AuthService,
@@ -23,24 +27,23 @@ export class LoginComponent {
   }
 
 
-  login() {
-    this.message = 'Trying to log in ...';
+  login(username: string, password: string) {
 
-    this.authService.login().subscribe(() => {
-      this.setMessage();
-      if (this.authService.isLoggedIn) {
-        // Usually you would use the redirect URL from the auth service.
-        // However to keep the example simple, we will always redirect to `/admin`.
-        const redirectUrl = '/app';
-
-        // Redirect the user
-        this.router.navigate([redirectUrl]);
-      }
-    });
+    this.subscription$ = this.authService.login({username, password}).
+    subscribe(
+      () => {
+        if(this.authService.isLoggedIn()){
+          this.errorMessage = false;
+          this.router.navigate(['app/dashboard'])
+        } else {
+          this.errorMessage = true
+        }
+      },
+      error => catchError(error)
+      )
   }
 
-  logout() {
-    this.authService.logout();
-    this.setMessage();
+  ngOnDestroy(){
+    this.subscription$.unsubscribe()
   }
 }
