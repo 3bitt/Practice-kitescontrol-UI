@@ -21,25 +21,14 @@ export class ForecastComponent implements OnInit, AfterViewInit {
   @ViewChild('forecast') elRef;
 
 
-  constructor(
-    // private renderer2: Renderer2,
-    // @Inject(DOCUMENT) private _document
-  ) { }
+  constructor() { }
 
 
 
   ngAfterViewInit(): void {
-    // console.log(this.elRef);
-    // this.elRef.nativeElement.innerHTML = this.script;
   }
 
   ngOnInit(): void {
-
-    // const s = this.renderer2.createElement('script');
-    // s.type = 'text/javascript';
-    // s.src = 'src/dist/script.js';
-    // s.text = ``;
-    // this.renderer2.appendChild(this._document.body, s);
   }
 
 }

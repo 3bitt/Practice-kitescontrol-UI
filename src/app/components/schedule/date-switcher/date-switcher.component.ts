@@ -49,7 +49,7 @@ export class DateSwitcherComponent implements OnInit, OnChanges, OnDestroy {
       );
     this.dateChangedEvent.next(this.scheduledate)
 
-    // Send schedule refresh 'request' with date
+
     this.debouncer.next(
       formatDate(this.scheduledate.toLocaleDateString().slice(0,10), 'yyyy-MM-dd', 'pl_PL'))
   }
@@ -61,14 +61,10 @@ export class DateSwitcherComponent implements OnInit, OnChanges, OnDestroy {
       );
       this.dateChangedEvent.next(this.scheduledate)
 
-    // Send schedule refresh 'request' with date
+
     this.debouncer.next(
       formatDate(this.scheduledate.toLocaleDateString().slice(0,10), 'yyyy-MM-dd', 'pl_PL'))
 
-    // this.debouncer.next(() =>
-    //   this.scheduleService.scheduleSubject.next(
-    //     formatDate(this.scheduledate.toLocaleDateString().slice(0,10), 'yyyy-MM-dd', 'pl_PL'))
-    // )
   }
 
 }

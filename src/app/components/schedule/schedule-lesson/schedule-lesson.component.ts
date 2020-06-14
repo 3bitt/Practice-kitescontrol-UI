@@ -56,14 +56,14 @@ export class ScheduleLessonComponent implements OnInit, OnDestroy {
       elementRef.parentElement.style.backgroundColor = '#267dff';
     }
   }
-  // = {'status': 'Niepotwierdzona'}
+
   confirmLesson(lessonId, lessonStatus: string){
     if (!lessonStatus.includes('NC')){
       lessonStatus = lessonStatus.replace('C', 'NC')
     } else if (lessonStatus.includes('NC')){
       lessonStatus = lessonStatus.replace('NC', 'C')
     } else {
-      return console.log('Nieznany status lekcji: ', lessonId, lessonStatus);
+      return {};
     }
     let payload = {status: lessonStatus}
 
@@ -71,7 +71,7 @@ export class ScheduleLessonComponent implements OnInit, OnDestroy {
     this.subscription$ = this.scheduleService.patchLesson(lessonId, payload).
     subscribe(
       data => {},
-      error =>   { console.log('ERR:', error) },
+      error =>   {  },
       () => this.scheduleService.scheduleSubject.next(null),
     )
   }
@@ -81,14 +81,13 @@ export class ScheduleLessonComponent implements OnInit, OnDestroy {
     this.subscription$ = this.scheduleService.patchLesson(lessonId, inProgressBool).
     subscribe(
       data => {},
-      error =>   { console.log('ERR:', error) },
+      error =>   { },
       () => this.scheduleService.scheduleSubject.next(null),
     )
   }
 
   finishLesson(lesson: ILessonDetailResponse){
 
-    // If lesson is already finished then don't display dialog, instead remove finished status
     if (lesson.status.includes('F')){
       let payload = {
         'status': lesson.status.includes('F') ? lesson.status.replace('F', '') : lesson.status.concat('F'),
@@ -96,9 +95,8 @@ export class ScheduleLessonComponent implements OnInit, OnDestroy {
         }
       this.subscription$ = this.scheduleService.patchLesson(lesson.id, payload).
       subscribe(
-        data => {console.log(data);
-        },
-        error =>   { console.log('ERR:', error) },
+        data => { },
+        error =>   {  },
         () => this.scheduleService.scheduleSubject.next(null),
       )
 
@@ -158,7 +156,7 @@ export class ScheduleLessonComponent implements OnInit, OnDestroy {
     this.subscription$ = this.scheduleService.deleteLesson(id)
     .subscribe(
       (data) => { },
-       err =>   { console.log('ERR:', err) },
+       err =>   { },
        () => { this.scheduleService.scheduleSubject.next(null) }
     );
 

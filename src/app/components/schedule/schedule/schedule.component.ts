@@ -22,7 +22,7 @@ export class ScheduleComponent implements OnInit {
     ) { }
 
   service$: Subscription;
-  // dialogCloseEvent$: Subscription;
+
   schedUpdate$: Subscription;
   public instructorsWithLessons: ISchedule;
 
@@ -33,15 +33,11 @@ export class ScheduleComponent implements OnInit {
   faCalendar = faCalendarAlt;
 
   ngOnInit() {
-    console.log('Schedule init');
 
     this.currDateAsString = formatDate(new Date().toLocaleDateString().slice(0,10), 'yyyy-MM-dd', 'pl_PL')
     this.currDateAsDate = new Date();
 
-    // Get lessons for given date (default: today)
-      // this.getTodaysLessons(this.currDateAsString);
 
-    // Subscribe to refresh view requests
     this.schedUpdate$ = this.scheduleService.subject$.subscribe(
       (date) => this.service$ = this.scheduleService.getInstructorsLessons(date ? date: this.currDateAsString).
       subscribe((data: ISchedule) => this.instructorsWithLessons = data)
@@ -56,7 +52,7 @@ export class ScheduleComponent implements OnInit {
 
 
   openDialog(): void{
-    // open dialog - pass in instructors with lessons for further validation when adding new lesson
+
     let dialogRef = this.dialog.open(
       CreateLessonDialogComponent,
       {
@@ -75,7 +71,6 @@ export class ScheduleComponent implements OnInit {
 
     this.currDateAsDate = new Date(date);
     this.currDateAsString = formatDate(new Date(date).toLocaleDateString().slice(0,10), 'yyyy-MM-dd', 'pl_PL');
-    console.log(this.currDateAsString);
   }
 
   switcherUpdateDate(date){
@@ -87,7 +82,6 @@ export class ScheduleComponent implements OnInit {
     this.service$ ? this.service$.unsubscribe() : null
     // this.dialogCloseEvent$.unsubscribe();
     this.schedUpdate$ ? this.schedUpdate$.unsubscribe() : null
-    console.log('Schedule OnDestroy');
 
   }
 

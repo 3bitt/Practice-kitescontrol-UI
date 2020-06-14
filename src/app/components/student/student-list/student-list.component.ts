@@ -76,10 +76,7 @@ export class StudentListComponent implements OnInit, OnDestroy {
   deleteStudent(id: number){
     this.students$ = this._studentService.deleteStudent(id)
     .subscribe( (data) => { this.students.results = data;
-      console.log(data);
-    }, err => {
-      console.log('ERR:', err);
-    });
+    }, err => {  });
   };
 
   searchStudents(studName: string, studSurname: string, studMobile: string){
@@ -88,21 +85,18 @@ export class StudentListComponent implements OnInit, OnDestroy {
       "studentSurname": studSurname.trim(),
       "mobileNumber": studMobile.trim()
     };
-    console.log(payload);
 
 
     this.students$ = this._studentService.getStudentsPostMethod(payload).
     subscribe(data => this.students = data,
-              err => console.log('ERR:', err)
+              err => {}
               );
   };
 
   ngOnInit() {
     this.students$ = this._studentService.getStudents()
     .subscribe((data) => { this.students = data
-    }, err => {
-      console.log('ERR:', err);
-      });
+    }, err => { });
   };
 
   ngOnDestroy(){
@@ -110,10 +104,3 @@ export class StudentListComponent implements OnInit, OnDestroy {
   };
 
 }
-
-
-
-  // Function used in template - place instructor.id in relative path /instructors/{id}
-  // getInstructorDetails(student){
-  //   this.router.navigate([student.id], {relativeTo: this.route})
-  // }

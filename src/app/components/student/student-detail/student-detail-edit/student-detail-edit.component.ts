@@ -14,11 +14,6 @@ export class StudentDetailEditComponent implements OnInit {
   @Output() editStudentEmitter = new EventEmitter<NgForm>();
   @Output() cancelEditEmitter = new EventEmitter<boolean>();
 
-  print(editForm){
-    console.log(editForm.value);
-
-  }
-
   submitEditForm(editForm: NgForm){
     this.editStudentEmitter.emit(editForm);
     this.editStudentEmitter.unsubscribe();

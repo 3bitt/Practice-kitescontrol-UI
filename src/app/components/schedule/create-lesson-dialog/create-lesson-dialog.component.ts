@@ -41,7 +41,6 @@ export class CreateLessonDialogComponent implements OnInit, OnDestroy {
 
   studentsSourceList: IStudentPagingResponse;
   instructorsSourceList: IInstructorPagingResponse;
-// Select student/instructor dropdown variables
   studentsDropdownList = []
   selectedStudent = ' ';
   studentIdsList: number[] = [];
@@ -52,29 +51,23 @@ export class CreateLessonDialogComponent implements OnInit, OnDestroy {
   studentDisplayList = [];
   instructorDisplayList= [];
 
-  // Used to set below fields status to valid when stud/instr is choosed
+
   @ViewChild('lessonInstructor') instructorInput: NgModel;
   @ViewChild('lessonStudent') studentInput: NgModel;
 
-  // Used to set today's date on init
   @ViewChild('lessonDate') lessonDate: NgModel;
   @ViewChild('lessonTime') lessonTime: NgModel;
   @ViewChild('lessonForm') lessonForm: NgForm;
 
-  // Used to show/hide div with lesson conflict error
   lessonTimeConflict = false;
 
-  // Not used for now
-  // Variables for displaying error of conflicting lesson time
-  // Value if set in checkExistingLessons function
+
   lessonStartTimeError;
   lessonDurationError;
 
   lessonDefaultDate = formatDate(new Date().toLocaleDateString().slice(0,10), 'yyyy-MM-dd', 'pl_PL')
   lessonDefaultTime: string = '';
 
-
-  // Functions used in dialog
   hideList(){
     this.studentsDropdownList = [];
     this.instructorsDropdownList = [];
@@ -103,7 +96,7 @@ export class CreateLessonDialogComponent implements OnInit, OnDestroy {
 
       this.instructorsSourceList.results.forEach(item=>{
         if(item.name === row.name && !this.instructorIdsList.includes(item.id) &&
-        // ONE INSTRUCTOR ONLY
+
         (this.instructorIdsList.length < 1)
         ){
           this.instructorIdsList.push(row.id);
@@ -125,7 +118,7 @@ export class CreateLessonDialogComponent implements OnInit, OnDestroy {
 
     if (inputField.name == 'student'){
       if (!inputField.value.trim()){
-        // this.studentsDropdownList=[]
+
         this.studentsDropdownList = this.studentsSourceList.results;
       } else {
         this.studentsDropdownList = this.studentsSourceList.results
@@ -135,7 +128,7 @@ export class CreateLessonDialogComponent implements OnInit, OnDestroy {
     } else if (inputField.name == 'instructor'){
 
       if (!inputField.value.trim()){
-        // this.studentsDropdownList=[]
+
         this.instructorsDropdownList = this.instructorsSourceList.results;
       } else {
         this.instructorsDropdownList = this.instructorsSourceList.results
@@ -161,9 +154,9 @@ export class CreateLessonDialogComponent implements OnInit, OnDestroy {
 
     this.subscription$ = this.scheduleService.createLesson(lesson.value).
     subscribe(
-      (data) => (console.log('CREATED:', data)),
-      (error: HttpErrorResponse) => (console.log('Error: ', error)),
-      // Broadcast to refresh schedule
+      (data) => ({}),
+      (error: HttpErrorResponse) => ({}),
+
       () => (
         this.scheduleService.scheduleSubject.next(null),
         this.dialogRef.close()
@@ -190,9 +183,7 @@ export class CreateLessonDialogComponent implements OnInit, OnDestroy {
     let existingInstructor = this.dialogData.instructors.filter(
       i => i.id === +newLessonInstructor)
 
-    // Check for clashing time for each existing lesson
-    // First IF to avoid error when checking instructor without lesson
-    // This can happen becouse validation is triggered on blur event in HTML
+
     if (existingInstructor.length > 0){
       for (let lesson of existingInstructor[0].lessons){
       let oldStartTime: number = +lesson.time.slice(0,5).replace(':', '')
@@ -202,26 +193,23 @@ export class CreateLessonDialogComponent implements OnInit, OnDestroy {
             (newEndTime > oldStartTime && newEndTime <= oldEndTime)     ||
             (newStartTime < oldStartTime && newEndTime > oldEndTime)
           ) {
-            // Not used for now
+
             this.lessonStartTimeError = lesson.time.slice(0,5)
             this.lessonDurationError = lesson.duration
 
             this.lessonTimeConflict = true;
-            console.log(this.lessonTimeConflict);
             break;
             }
             else {
               this.lessonTimeConflict = false;
-              console.log(this.lessonTimeConflict);
             };
       };
     } else {
-      console.log('elo');
 
       this.lessonTimeConflict = false;
     }
   }
-  // End of functions used in dialog
+
   exitDialog(){
     this.dialogRef.close();
   }

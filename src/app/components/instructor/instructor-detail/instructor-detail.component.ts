@@ -17,7 +17,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 export class InstructorDetailComponent implements OnInit, OnDestroy {
 
   private instructor$: Subscription;
-  public instructor: IInstructorDetailResponse;  //: IgetInstructorByIdResponse;
+  public instructor: IInstructorDetailResponse;
   public instructorId;
 
   constructor(private _instructorService: InstructorService,
@@ -31,7 +31,6 @@ export class InstructorDetailComponent implements OnInit, OnDestroy {
   editSuccess = false;
 
   ngOnInit() {
-    // ----- Reuse view if there would be instructor previous/next buttons ----
 
     this.instructor$ = this.route.paramMap.pipe(
       switchMap((params: ParamMap) =>
@@ -48,11 +47,10 @@ export class InstructorDetailComponent implements OnInit, OnDestroy {
   onReceiveEditForm(event: NgForm, instructorId?: number){
     this.instructor$ = this._instructorService.putInstructor(this.instructor.id, event.value).
     subscribe(
-      data => (console.log('Success: ', data),
-              this.editMode = false,
+      data => (this.editMode = false,
               this.editSuccess = true),
 
-      (error: HttpErrorResponse) => (console.log('Error: ', error),
+      (error: HttpErrorResponse) => (
                 this.editSuccess=false
                 ),
     );

@@ -19,7 +19,7 @@ export class NavigationComponent implements OnDestroy{
 
   logout(){
     this.subscription$ = this.authService.invalidateToken().subscribe();
-    // this.router.navigateByUrl ('/login');
+
   }
 
   ngOnDestroy(){

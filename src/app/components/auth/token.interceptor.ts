@@ -55,7 +55,7 @@ export class TokenInterceptor implements HttpInterceptor {
             tap(() => this.authService.redirectToLogin())
           )
       } else {
-          return throwError(console.log('Interceptor throw error', error)).pipe(
+          return throwError('').pipe(
             tap(() => this.authService.logout())
           );
         }
@@ -73,7 +73,6 @@ export class TokenInterceptor implements HttpInterceptor {
   private handle401Error(request: HttpRequest<any>, next: HttpHandler){
     // Log out when logged in but 401 and prevent refreshing token when user did not logged in yet
     if (this.authService.isLoggedIn()){
-      console.log('Token found but 401 error from interceptor - logging OUT !');
 
       // this.subscription$ =
       // return this.authService.logout()
@@ -82,7 +81,6 @@ export class TokenInterceptor implements HttpInterceptor {
      else {
 
       if (!this.isRefreshing && this.authService.getJwtToken()) {
-        console.log('REFRESHING');
 
         this.isRefreshing = true;
         this.refreshTokenSubject.next(null);

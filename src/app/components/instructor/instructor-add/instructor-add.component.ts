@@ -47,20 +47,18 @@ export class InstructorAddComponent implements OnDestroy {
       form.dailyHourLimit ? form.dailyHourLimit : null,
       form.active ? form.active : true
     );
-      console.log(this.newInstructor);
     }
 
   onSubmit(){
     this.newInstructor$ = this._instructorService.postInstructor(this.newInstructor)
     .subscribe(
-      data => (console.log('Success: ', data),
+      (data) => {
               this.postSuccess = true,
               this.formReady = false,
-              this.formSubmitted = false),
+              this.formSubmitted = false},
 
-      (error: HttpErrorResponse) => (console.log('Error: ', error),
-                this.postSuccess=false
-                ),
+      (error: HttpErrorResponse) => { this.postSuccess=false }
+
     );
   }
 

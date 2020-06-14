@@ -51,7 +51,6 @@ import { FinishLessonDialogComponent } from './finish-lesson-dialog/finish-lesso
     MatIconModule,
     MatButtonModule,
     MatInputModule,
-    // LessonSchedulePositionPipe
 
   ],
   exports: [

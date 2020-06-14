@@ -30,18 +30,17 @@ export class LessonAddComponent implements OnInit, OnDestroy {
       new Array(form.value.student),
       new Array(form.value.instructor)
     );
-      console.log(this.newLesson);
     }
 
   onSubmit(){
     this.postLesson$ = this._lessonService.postLesson(this.newLesson).
     subscribe(
-      data => (console.log('Success: ', data),
+      data => (
               this.formReady = false,
               this.formSubmitted = false,
               this.postSuccess = true),
 
-      (error: HttpErrorResponse) => (console.log('Error: ', error),
+      (error: HttpErrorResponse) => (
                 this.postSuccess=false
                 ),
     )

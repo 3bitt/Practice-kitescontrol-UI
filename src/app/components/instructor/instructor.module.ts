@@ -29,7 +29,5 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatCheckboxModule,
 
   ],
-  // It seems like it's sufficient to declare InstructorService in AppModule - it works
-  // providers: [InstructorService]
 })
 export class InstructorModule { }

@@ -47,19 +47,18 @@ export class StudentAddComponent implements OnInit, OnDestroy {
       form.value.leaveDate ? form.value.leave_date : null,
       form.value.comment ? form.value.comment : null
     );
-    console.log(form.value);
 
     }
 
     onSubmit(){
       this.newStudent$ = this._studentService.postStudent(this.newStudent).
       subscribe(
-        data => (console.log('Success: ', data),
+        data => (
                 this.formReady = false,
                 this.formSubmitted = false,
                 this.postSuccess = true),
 
-        (error: HttpErrorResponse) => (console.log('Error: ', error),
+        (error: HttpErrorResponse) => (
                   this.postSuccess=false
                   ),
       );

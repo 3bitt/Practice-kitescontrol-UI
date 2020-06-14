@@ -32,8 +32,8 @@ export class AuthService {
       // The backend returned an unsuccessful response code.
       // The response body may contain clues as to what went wrong,
       console.error(
-        `Backend returned code ${error.status}, ` +
-        `body was: ${error.error}`);
+        `Backend returned code ${error.status}, `
+
     }
     // return an observable with a user-facing error message
     return throwError(
@@ -97,15 +97,12 @@ export class AuthService {
   }
 
   private doLogoutUser(){
-    console.log('doLogoutUser method - atuhService');
-
     this.loggedUser = null;
     this.removeTokens();
     this.router.navigate(['login'])
   }
 
   private doLoginUser(username: string, tokens: Tokens) {
-    console.log(username, tokens);
 
     this.loggedUser = username;
     this.storeTokens(tokens);
@@ -121,12 +118,4 @@ export class AuthService {
     localStorage.removeItem(this.REFRESH_TOKEN);
   }
 
-  // logout(): void {
-  //   console.log('Logged out');
-
-  //   this.isLoggedIn = false;
-  //   console.log(this.isLoggedIn);
-
-  //   this.redirectUrl = '/login'
-  // }
 }

@@ -15,7 +15,6 @@ const homeRoutes: Routes = [
     children: [
       {
         path: '',
-        // canActivateChild: [AuthGuard],
         children: [
 
           { path: 'dashboard', loadChildren: () => import('../dashboard/dashboard.module').then(m => m.DashboardModule) },

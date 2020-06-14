@@ -42,11 +42,11 @@ export class StudentDetailComponent implements OnInit, OnDestroy, DoCheck {
     onReceiveEditForm(event: NgForm, studentId?: number){
       this.student$ = this._studentService.putStudent(this.student.id, event.value).
       subscribe(
-        data => (console.log('Success: ', data),
+        data => (
                 this.editMode = false,
                 this.editSuccess = true),
 
-        (error: HttpErrorResponse) => (console.log('Error: ', error),
+        (error: HttpErrorResponse) => (
                   this.editSuccess=false
                   ),
       );

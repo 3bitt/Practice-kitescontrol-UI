@@ -48,7 +48,7 @@ export class InstructorPaymentsComponent implements OnInit, OnDestroy {
     this.subscription = this.schoolService.getInstructorHours(this.pastDateAsString, this.currDateAsString).
     subscribe(
       (data: any) => { this.initialData = data },
-      err         => { console.log("error", err) },
+      err         => {  },
       ()          => { this.onSubscriptionComplete(this.initialData) }
     );
 
@@ -77,7 +77,7 @@ export class InstructorPaymentsComponent implements OnInit, OnDestroy {
     this.subscription = this.schoolService.getInstructorHours(dateFrom, dateTo).
     subscribe(
       (data: any) => { this.initialData = data },
-      err         => { console.log("error", err) },
+      err         => {  },
       ()          => { this.onSubscriptionComplete(this.initialData) }
     );
 

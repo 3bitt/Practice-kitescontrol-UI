@@ -47,7 +47,6 @@ export class FinishLessonDialogComponent implements OnInit {
 
   changeTime(event){
     this.lessonNewDuration.duration = event.target.value
-    console.log(this.lessonNewDuration);
   }
 
   submit(){

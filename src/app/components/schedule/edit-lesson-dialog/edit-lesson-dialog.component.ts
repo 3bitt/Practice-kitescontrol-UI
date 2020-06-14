@@ -68,7 +68,6 @@ export class EditLessonDialogComponent implements OnInit, OnDestroy {
             });
         }
       });
-      console.log(this.studentIdsList);
 
       this.studentsDropdownList = [];
 
@@ -76,7 +75,7 @@ export class EditLessonDialogComponent implements OnInit, OnDestroy {
 
       this.instructorsSourceList.results.forEach(item=>{
         if(item.name === row.name && !this.instructorIdsList.includes(item.id) &&
-        // ONE INSTRUCTOR ONLY
+
         (this.instructorIdsList.length < 1)
         ){
           this.instructorIdsList.push(row.id);
@@ -88,7 +87,6 @@ export class EditLessonDialogComponent implements OnInit, OnDestroy {
             });
         }
       })
-      console.log(this.instructorIdsList);
 
       this.instructorsDropdownList = [];
     }
@@ -99,7 +97,7 @@ export class EditLessonDialogComponent implements OnInit, OnDestroy {
 
     if (inputField.name == 'student'){
       if (!inputField.value.trim()){
-        // this.studentsDropdownList=[]
+
         this.studentsDropdownList = this.studentsSourceList.results;
       } else {
         this.studentsDropdownList = this.studentsSourceList.results
@@ -109,7 +107,7 @@ export class EditLessonDialogComponent implements OnInit, OnDestroy {
     } else if (inputField.name == 'instructor'){
 
       if (!inputField.value.trim()){
-        // this.studentsDropdownList=[]
+
         this.instructorsDropdownList = this.instructorsSourceList.results;
       } else {
         this.instructorsDropdownList = this.instructorsSourceList.results
@@ -128,7 +126,7 @@ export class EditLessonDialogComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-// Populate lists used to display and submit form from dialog data
+
     this.data.student.forEach(
        (student) => {
         this.studentDisplayList.push(
@@ -157,16 +155,15 @@ export class EditLessonDialogComponent implements OnInit, OnDestroy {
   }
 
   editLesson(lessonId, lesson){
-    // override API payload becouse of data binding and to avoid displaying
-    // text in instr/stud template input fields - TODO:switch to better solution ex. Dropdown
+
     lesson.student = this.studentIdsList;
     lesson.instructor = this.instructorIdsList;
 
     this.students$ = this.scheduleService.editLesson(lessonId, lesson).
     subscribe(
-      data => (console.log('Success: ', data),
+      data => (
               this.dialogRef.close()),
-      (error: HttpErrorResponse) => (console.log('Error: ', error)),
+      (error: HttpErrorResponse) => ({}),
       () => this.scheduleService.scheduleSubject.next(null),
     );
   }

@@ -25,22 +25,8 @@ export class LessonListComponent implements OnInit, OnDestroy {
     this.lessons$ = this._lessonService.getLessons()
     .subscribe((data) => { this.lessons = data;
     },
-    err => { console.log('ERR', err) });
+    err => { });
   }
-
-
-// // Using async in template
-//   ngOnInit(){
-//     this.lessons$ = this._lessonService.lessons$
-//     .pipe(
-//       catchError(error => {
-//         this.errorMessage = error;
-//         return of(null);
-//       })
-//     );
-
-//   }
-
 
   ngOnDestroy(){
     this.lessons$.unsubscribe();

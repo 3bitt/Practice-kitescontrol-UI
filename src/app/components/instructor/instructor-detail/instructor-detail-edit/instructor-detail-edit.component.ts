@@ -15,11 +15,6 @@ export class InstructorDetailEditComponent implements OnInit {
   @Output() editInstructorEmitter = new EventEmitter<NgForm>();
   @Output() cancelEditEmitter = new EventEmitter<boolean>();
 
-  print(editForm){
-    console.log(editForm.value);
-
-  }
-
   submitEditForm(editForm: NgForm){
     this.editInstructorEmitter.emit(editForm);
     this.editInstructorEmitter.unsubscribe();

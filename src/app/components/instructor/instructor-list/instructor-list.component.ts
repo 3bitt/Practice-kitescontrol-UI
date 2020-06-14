@@ -43,7 +43,6 @@ export class InstructorListComponent implements OnInit, OnDestroy {
     this.instructors$ = this._instructorService.getInstructors()
     .subscribe((data: IInstructorPagingResponse) => { this.instructors = data },
     err => {
-      console.log(err);
     });
   };
 
@@ -73,10 +72,10 @@ export class InstructorListComponent implements OnInit, OnDestroy {
   deleteInstructor(id: number){
     this.instructors$ = this._instructorService.deleteInstructor(id)
     .subscribe( (data) => { this.instructors.results = data;
-      console.log(data);
+
 
     }, err => {
-      console.log('ERR:', err);
+
     });
   }
 
@@ -84,8 +83,4 @@ export class InstructorListComponent implements OnInit, OnDestroy {
     this.instructors$.unsubscribe();
   };
 
-  // Function used in template - place instructor.id in relative path /instructors/{id}
-  // getInstructorDetails(instructor){
-  //   this.router.navigate([instructor.id], {relativeTo: this.route})
-  // }
 }
