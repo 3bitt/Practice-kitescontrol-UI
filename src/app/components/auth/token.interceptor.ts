@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { config } from './../../config/config';
 import { catchError, switchMap, take, filter, throttleTime, tap } from 'rxjs/operators';
 import { AuthService } from './service/auth.service';
@@ -8,7 +9,8 @@ import {
   HttpEvent,
   HttpInterceptor,
   HttpErrorResponse,
-  HttpResponse
+  HttpResponse,
+  HttpEventType
 } from '@angular/common/http';
 import { Observable, BehaviorSubject, throwError, Subscription } from 'rxjs';
 
@@ -17,13 +19,13 @@ import { Observable, BehaviorSubject, throwError, Subscription } from 'rxjs';
 export class TokenInterceptor implements HttpInterceptor {
 
   private isRefreshing = false;
-  private refreshTokenSubject: BehaviorSubject<any> = new BehaviorSubject<any>(null);
-  private subscription$: Subscription;
+  private refreshTokenSubject: BehaviorSubject<any> = new BehaviorSubject<any>('');
+  private verifyToken$: Observable<boolean>;
 
 
   constructor(public authService: AuthService) {}
 
-  intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<unknown>> {
+  intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     let existingToken = this.authService.getJwtToken();
 
     if (existingToken) {
@@ -31,6 +33,8 @@ export class TokenInterceptor implements HttpInterceptor {
     }
     return next.handle(request).pipe(catchError((error:HttpErrorResponse) => {
       if (error instanceof HttpErrorResponse && error.status === 401 && this.authService.isLoggedIn()) {
+
+        // Make new IF and check api request URL - filter refresh token requests basing on that and logout if refresh token is not valid anymore
 
         if (this.isRefreshing) {
 
@@ -40,24 +44,25 @@ export class TokenInterceptor implements HttpInterceptor {
             switchMap(accessToken => {
               return next.handle(this.addToken(request, accessToken));
             }));
+
         } else {
           this.isRefreshing = true;
+
           this.refreshTokenSubject.next(null);
           return this.authService.refreshToken().pipe(
             switchMap((token: any) => {
               this.isRefreshing = false;
               this.refreshTokenSubject.next(token.access);
-              return next.handle(this.addToken(request, token.access));
-            }));
+              return next.handle(this.addToken(request, token.access))
+            }),
+            catchError((error:HttpErrorResponse) => {
+              return throwError('throwing error')}),)
         }
-      } else if (error instanceof HttpErrorResponse && error.status === 401) {
-          return throwError(error).pipe(
-            tap(() => this.authService.redirectToLogin())
-          )
+      } else if (error instanceof HttpErrorResponse && (error.status === 401)) {
+          this.authService.logout();
+          return throwError(error)
       } else {
-          return throwError(console.log('Interceptor throw error', error)).pipe(
-            tap(() => this.authService.logout())
-          );
+          return throwError(console.log(error));
         }
     }));
   }

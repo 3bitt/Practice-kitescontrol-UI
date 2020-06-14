@@ -2,7 +2,7 @@ import { Router } from '@angular/router';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of, throwError } from 'rxjs';
-import { delay, tap, mapTo, catchError, throttleTime, debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
+import { delay, tap, mapTo, catchError, throttleTime, debounceTime, distinctUntilChanged, map, share } from 'rxjs/operators';
 import {config} from '../../../config/config';
 import { Tokens } from 'src/app/models/interfaces/IAuth';
 
@@ -61,8 +61,23 @@ export class AuthService {
     //     );
   }
 
+  verifyToken(){
+    return this.http.post<any>(`${config.api.baseURL}/verifyToken/`, {
+      'token': this.getRefreshToken()
+    }).pipe(
+      catchError((error:HttpErrorResponse) => {
+        console.log('verifyToken error', error);
+
+        this.logout();
+        return of(false);
+      }),
+      mapTo(true)
+    )
+  }
+
   logout(){
     this.doLogoutUser();
+    return of(true)
   }
   redirectToLogin(){
     this.router.navigate(['login']);
