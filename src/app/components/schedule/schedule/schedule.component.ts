@@ -1,3 +1,4 @@
+import { throttleTime, debounceTime } from 'rxjs/operators';
 import { formatDate } from '@angular/common';
 import { ISchedule } from './../model/schedule-interface';
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
@@ -83,9 +84,9 @@ export class ScheduleComponent implements OnInit {
   }
 
   ngOnDestroy(): void {
-    this.service$.unsubscribe();
+    this.service$ ? this.service$.unsubscribe() : null
     // this.dialogCloseEvent$.unsubscribe();
-    this.schedUpdate$.unsubscribe();
+    this.schedUpdate$ ? this.schedUpdate$.unsubscribe() : null
     console.log('Schedule OnDestroy');
 
   }

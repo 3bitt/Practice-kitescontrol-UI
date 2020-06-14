@@ -1,37 +1,48 @@
 import { catchError, throttleTime, debounceTime, distinctUntilChanged, tap, map, filter, switchMap } from 'rxjs/operators';
 import { AuthService } from './../service/auth.service';
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { of, Subscription } from 'rxjs';
+import { of, Subscription, Observable, Subject, fromEvent } from 'rxjs';
+import { callbackify } from 'util';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnDestroy {
+export class LoginComponent implements OnInit, OnDestroy {
 
-  message: string;
   errorMessage: boolean = false;
   subscription$: Subscription;
+  subi$: Subscription;
+
+  subject$: Subject<any> = new Subject()
 
 
   constructor(public authService: AuthService,
               public router: Router ) {
-
-                this.setMessage();
               }
 
-  setMessage() {
-    this.message = 'Logged ' + (this.authService.isLoggedIn ? 'in' : 'out');
+
+  ngOnInit(){
+    this.subscription$ = this.subject$.pipe(
+      throttleTime(3000)
+      ).subscribe((val) => this.login(val)
+      )
   }
 
+  clickLogin(username: string, password: string){
+    if (!username.trim() || !password.trim() ){
+      return this.errorMessage = true
+    }
+    this.subject$.next({username: username, password: password})
+  }
 
-  login(username: string, password: string) {
+  login(userObj) {
 
-    this.subscription$ = this.authService.login({username, password}).
+    this.subi$ = this.authService.login(userObj).
     subscribe(
-      () => {
+      (success) => {
         if(this.authService.isLoggedIn()){
           this.errorMessage = false;
           this.router.navigate(['app/dashboard'])
@@ -39,11 +50,12 @@ export class LoginComponent implements OnDestroy {
           this.errorMessage = true
         }
       },
-      error => catchError(error)
-      )
+      (error) => {this.errorMessage = true});
+
   }
 
   ngOnDestroy(){
-    this.subscription$.unsubscribe()
+    this.subscription$ ? this.subscription$.unsubscribe() : null
+    this.subi$ ? this.subi$.unsubscribe : null
   }
 }

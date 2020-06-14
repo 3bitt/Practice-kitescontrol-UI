@@ -24,7 +24,7 @@
       </div>
     </div>
 
-    <button class="login-button" (click)="login(username.value, password.value)">
+    <button class="login-button" #loginButton (click)="clickLogin(username.value, password.value)" >
             Zaloguj
     </button>
   </form>

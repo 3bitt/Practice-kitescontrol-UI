@@ -40,30 +40,36 @@ export class AuthService {
       'Something bad happened; please try again later.');
   };
 
-  login(user: {username: string, password: string}) {
+  login(user: {username: string, password: string}): Observable<any> {
     return this.http.post<any>(`${config.api.baseURL}/authenticateUser/`, user)
-    .pipe(throttleTime(40000),
+    .pipe(
       tap(tokens => this.doLoginUser(user.username, tokens)))
       // mapTo(true),
       // catchError(this.handleError))
       // mapTo(true),
   }
 
-  logout(){
-    console.log('ELO');
-
+  invalidateToken(): Observable<any>{
     return this.http.post<any>(`${config.api.baseURL}/logout/`, {
       'refresh': this.getRefreshToken()
-    }).pipe(
-      tap(() => this.doLogoutUser()),
-      mapTo(true),
-      catchError(error => {
-        return of(false);
-      }));
+    })
+    .pipe(
+      tap(() => {this.doLogoutUser()}),
+      mapTo(true))
+    //   // catchError(error => {
+    //   //   return of(false)})
+    //     );
+  }
+
+  logout(){
+    this.doLogoutUser();
+  }
+  redirectToLogin(){
+    this.router.navigate(['login']);
   }
 
   isLoggedIn(){
-    if(this.loggedUser && this.getJwtToken()){
+    if(this.getJwtToken()){
       return true;
     } else {
       return false;
@@ -91,6 +97,8 @@ export class AuthService {
   }
 
   private doLogoutUser(){
+    console.log('doLogoutUser method - atuhService');
+
     this.loggedUser = null;
     this.removeTokens();
     this.router.navigate(['login'])

@@ -239,7 +239,7 @@ export class CreateLessonDialogComponent implements OnInit, OnDestroy {
     if (this.subscription$){
       this.subscription$.unsubscribe();
     }
-    this.students$.unsubscribe();
+    this.students$ ? this.students$.unsubscribe() : null;
   }
 
 }
